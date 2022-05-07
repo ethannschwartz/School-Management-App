@@ -13,7 +13,7 @@
                     <Link v-for="navLink in navLinks"
                           :href="route(navLink.route)"
                           class="duration-200 hover:text-slate-800"
-                          :class="navLink.route === currentPage.length ? 'text-teal-600 underline underline-offset-4 font-bold': null">
+                          :class="navLink.title === $inertia.page.component ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600': null">
                         {{ navLink.title }}
                     </Link>
                 </ul>

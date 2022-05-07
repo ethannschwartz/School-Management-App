@@ -37,4 +37,11 @@ class CourseController extends Controller
             'user' => fn () => $request->user()->with('courses')->get(),
         ]);
     }
+
+    public function find(Request $request, Course $course)
+    {
+        return Inertia::render('Courses', [
+            'keycode_search_results' => $course->where('keycode', $request->input('keycode'))->get(),
+        ]);
+    }
 }

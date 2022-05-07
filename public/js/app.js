@@ -22673,6 +22673,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/BaseSvg */ "./resources/js/Components/BaseSvg.vue");
 /* harmony import */ var _Components_HintTransition__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/HintTransition */ "./resources/js/Components/HintTransition.vue");
 /* harmony import */ var _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Modals/Modal */ "./resources/js/Components/Modals/Modal.vue");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 
 
 
@@ -22687,44 +22689,66 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
+    var accountType = props.user[0].account_type;
     var coursesArray = (_props$user$ = props.user[0]) === null || _props$user$ === void 0 ? void 0 : _props$user$.courses;
     var currentCourse = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(coursesArray[0]);
     var copyHintSeen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
-    var courseForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+    var createCourseForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       title: null,
       code: null,
       section: null,
       description: null
-    });
-    var courseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    }); // const joinCourseForm = useForm({
+    //     keycode: null,
+    // })
+
+    var createCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var joinCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
 
     var copyText = function copyText(event) {
       return navigator.clipboard.writeText(event.target.textContent);
     };
 
     var createCourse = function createCourse() {
-      courseForm.post(route('courses.store'), {
+      createCourseForm.post(route('courses.store'), {
         onFinish: function onFinish() {
           return console.log('Course created successfully!');
         }
       });
     };
 
+    var joinCourse = function joinCourse() {// joinCourseForm.post(route(''))
+    };
+
+    var keycode = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(keycode, function (value) {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__.Inertia.post("/courses", {
+        keycode: value
+      }, {
+        preserveState: true
+      });
+    });
     var __returned__ = {
       props: props,
+      accountType: accountType,
       coursesArray: coursesArray,
       currentCourse: currentCourse,
       copyHintSeen: copyHintSeen,
-      courseForm: courseForm,
-      courseModalOpen: courseModalOpen,
+      createCourseForm: createCourseForm,
+      createCourseModalOpen: createCourseModalOpen,
+      joinCourseModalOpen: joinCourseModalOpen,
       copyText: copyText,
       createCourse: createCourse,
+      joinCourse: joinCourse,
+      keycode: keycode,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link,
       BaseSvg: _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_2__["default"],
       HintTransition: _Components_HintTransition__WEBPACK_IMPORTED_MODULE_3__["default"],
       Modal: _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_4__["default"],
-      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm
+      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm,
+      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__.Inertia
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -23353,7 +23377,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.navLinks, function (navLink) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
       href: _ctx.route(navLink.route),
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["duration-200 hover:text-slate-800", navLink.route === $setup.currentPage.length ? 'text-teal-600 underline underline-offset-4 font-bold' : null])
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["duration-200 hover:text-slate-800", navLink.title === _ctx.$inertia.page.component ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null])
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(navLink.title), 1
@@ -24965,52 +24989,57 @@ var _hoisted_6 = {
   "class": "w-[250px]"
 };
 var _hoisted_7 = {
+  key: 0,
   "class": "border-t-[1px] !w-full border-gray-200 absolute bottom-0 text-center"
 };
 var _hoisted_8 = {
-  "class": "w-full h-full"
+  key: 1,
+  "class": "border-t-[1px] !w-full border-gray-200 absolute bottom-0 text-center"
 };
 var _hoisted_9 = {
-  "class": "w-full bg-gray-200 p-4"
+  "class": "w-full h-full"
 };
 var _hoisted_10 = {
-  "class": "text-3xl capitalize"
+  "class": "w-full bg-gray-200 p-4"
 };
 var _hoisted_11 = {
-  "class": "text-slate-500 text-lg"
+  "class": "text-3xl capitalize"
 };
 var _hoisted_12 = {
-  "class": "text-xl"
+  "class": "text-slate-500 text-lg"
 };
 var _hoisted_13 = {
+  "class": "text-xl"
+};
+var _hoisted_14 = {
   "class": "flex whitespace-nowrap w-fit"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Click to Copy");
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Click to Copy");
 
-var _hoisted_15 = {
+var _hoisted_16 = {
   "class": "flex justify-between m-6"
 };
-var _hoisted_16 = {
+var _hoisted_17 = {
   "class": "w-[400px] h-[400px]"
 };
-var _hoisted_17 = {
+var _hoisted_18 = {
   "class": "flex items-center justify-between px-[8px]"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "text-xl tracking-wider"
 }, "Announcements", -1
 /* HOISTED */
 );
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
   "class": "z-0 h-full overflow-y-scroll p-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                <AnnouncementCard v-for=\"announcement in courseAnnouncements\" :announcement=\"announcement\" />")], -1
 /* HOISTED */
 );
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", {
   "class": "block w-1/2 text-right"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
   "class": "flex justify-end gap-4"
@@ -25048,23 +25077,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["onClick", "class", "href"])]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ))]), $setup.accountType === 'teacher' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $setup.courseModalOpen = !$setup.courseModalOpen;
+      return $setup.createCourseModalOpen = !$setup.createCourseModalOpen;
     }),
     "class": "w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white"
-  }, "Create Course")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse2 = $setup.currentCourse) === null || _$setup$currentCourse2 === void 0 ? void 0 : _$setup$currentCourse2.title) + " ", 1
+  }, "Create Course")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.joinCourseModalOpen = !$setup.joinCourseModalOpen;
+    }),
+    "class": "w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white"
+  }, "Join Course")]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse2 = $setup.currentCourse) === null || _$setup$currentCourse2 === void 0 ? void 0 : _$setup$currentCourse2.title) + " ", 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, "(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse3 = $setup.currentCourse) === null || _$setup$currentCourse3 === void 0 ? void 0 : _$setup$currentCourse3.section) + ")", 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, "(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse3 = $setup.currentCourse) === null || _$setup$currentCourse3 === void 0 ? void 0 : _$setup$currentCourse3.section) + ")", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse4 = $setup.currentCourse) === null || _$setup$currentCourse4 === void 0 ? void 0 : _$setup$currentCourse4.admin_prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse5 = $setup.currentCourse) === null || _$setup$currentCourse5 === void 0 ? void 0 : _$setup$currentCourse5.admin_name.split(" ")[1]), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse4 = $setup.currentCourse) === null || _$setup$currentCourse4 === void 0 ? void 0 : _$setup$currentCourse4.admin_prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse5 = $setup.currentCourse) === null || _$setup$currentCourse5 === void 0 ? void 0 : _$setup$currentCourse5.admin_name.split(" ")[1]), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "flex w-fit whitespace-nowrap",
-    onMouseover: _cache[1] || (_cache[1] = function ($event) {
+    onMouseover: _cache[2] || (_cache[2] = function ($event) {
       return $setup.copyHintSeen = true;
     }),
-    onMouseleave: _cache[2] || (_cache[2] = function ($event) {
+    onMouseleave: _cache[3] || (_cache[3] = function ($event) {
       return $setup.copyHintSeen = false;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -25082,21 +25116,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "fade"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_14];
+      return [_hoisted_15];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["hint-seen"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
+  , ["hint-seen"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-plus-sign",
     "class": "scale-50 text-slate-500"
-  })])]), _hoisted_19]), _hoisted_20])])])])]), $setup.courseModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
+  })])]), _hoisted_20]), _hoisted_21])])])])]), $setup.createCourseModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
     key: 0,
-    open: $setup.courseModalOpen,
-    onClose: _cache[7] || (_cache[7] = function ($event) {
-      return $setup.courseModalOpen = !$setup.courseModalOpen;
+    open: $setup.createCourseModalOpen,
+    onClose: _cache[8] || (_cache[8] = function ($event) {
+      return $setup.createCourseModalOpen = !$setup.createCourseModalOpen;
     }),
     "submit-label": "Create Course",
     header: "Create Course",
@@ -25107,40 +25141,67 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         placeholder: "Title",
         "class": "p-2 border border-gray-200 rounded-md",
-        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-          return $setup.courseForm.title = $event;
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+          return $setup.createCourseForm.title = $event;
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.courseForm.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.createCourseForm.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "text",
         placeholder: "Code",
         "class": "p-2 border border-gray-200 rounded-md",
-        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-          return $setup.courseForm.code = $event;
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+          return $setup.createCourseForm.code = $event;
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.courseForm.code]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.createCourseForm.code]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "text",
         placeholder: "Section",
         "class": "p-2 border border-gray-200 rounded-md",
-        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-          return $setup.courseForm.section = $event;
+        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+          return $setup.createCourseForm.section = $event;
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.courseForm.section]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.createCourseForm.section]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
         type: "text",
         placeholder: "Description",
         rows: "6",
         "class": "p-2 border border-gray-200 rounded-md resize-none",
-        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-          return $setup.courseForm.description = $event;
+        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+          return $setup.createCourseForm.description = $event;
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.courseForm.description]])];
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.createCourseForm.description]])];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["open"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.joinCourseModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
+    key: 1,
+    open: $setup.joinCourseModalOpen,
+    onClose: _cache[10] || (_cache[10] = function ($event) {
+      return $setup.joinCourseModalOpen = !$setup.joinCourseModalOpen;
+    }),
+    "submit-label": "Join Course",
+    header: "Join Course",
+    "submit-function": $setup.joinCourse
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        placeholder: "Keycode",
+        "class": "p-2 border border-gray-200 rounded-md",
+        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+          return $setup.keycode = $event;
+        })
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.keycode]])];
     }),
     _: 1
     /* STABLE */

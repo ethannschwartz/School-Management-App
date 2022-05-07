@@ -24,9 +24,14 @@
                         </li>
                     </ul>
 
-                    <div class="border-t-[1px] !w-full border-gray-200 absolute bottom-0 text-center">
-                        <button @click="courseModalOpen = !courseModalOpen"
+                    <div v-if="accountType === 'teacher'" class="border-t-[1px] !w-full border-gray-200 absolute bottom-0 text-center">
+                        <button @click="createCourseModalOpen = !createCourseModalOpen"
                                 class="w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white">Create Course</button>
+                    </div>
+
+                    <div v-else class="border-t-[1px] !w-full border-gray-200 absolute bottom-0 text-center">
+                        <button @click="joinCourseModalOpen = !joinCourseModalOpen"
+                                class="w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white">Join Course</button>
                     </div>
                 </aside>
 
@@ -83,12 +88,18 @@
         </div>
     </section>
 
-    <Modal v-if="courseModalOpen" :open="courseModalOpen" @close="courseModalOpen = !courseModalOpen" submit-label="Create Course" header="Create Course" :submit-function="createCourse">
+    <Modal v-if="createCourseModalOpen" :open="createCourseModalOpen" @close="createCourseModalOpen = !createCourseModalOpen" submit-label="Create Course" header="Create Course" :submit-function="createCourse">
 
-        <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="courseForm.title">
-        <input type="text" placeholder="Code" class="p-2 border border-gray-200 rounded-md" v-model="courseForm.code">
-        <input type="text" placeholder="Section" class="p-2 border border-gray-200 rounded-md" v-model="courseForm.section">
-        <textarea type="text" placeholder="Description" rows="6" class="p-2 border border-gray-200 rounded-md resize-none" v-model="courseForm.description"></textarea>
+        <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="createCourseForm.title">
+        <input type="text" placeholder="Code" class="p-2 border border-gray-200 rounded-md" v-model="createCourseForm.code">
+        <input type="text" placeholder="Section" class="p-2 border border-gray-200 rounded-md" v-model="createCourseForm.section">
+        <textarea type="text" placeholder="Description" rows="6" class="p-2 border border-gray-200 rounded-md resize-none" v-model="createCourseForm.description"></textarea>
+
+    </Modal>
+
+    <Modal v-if="joinCourseModalOpen" :open="joinCourseModalOpen" @close="joinCourseModalOpen = !joinCourseModalOpen" submit-label="Join Course" header="Join Course" :submit-function="joinCourse">
+
+        <input type="text" placeholder="Keycode" class="p-2 border border-gray-200 rounded-md" v-model="keycode">
 
     </Modal>
 
@@ -96,35 +107,54 @@
 
 <script setup>
 
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 import BaseSvg from "@/Components/BaseSvg";
 import HintTransition from "@/Components/HintTransition";
 import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
+import {Inertia} from "@inertiajs/inertia";
 
 const props = defineProps(['course', 'user']);
 
+const accountType = props.user[0].account_type;
 const coursesArray = props.user[0]?.courses;
 let currentCourse = ref(coursesArray[0]);
 
 const copyHintSeen = ref(false);
 
-const courseForm = useForm({
+const createCourseForm = useForm({
     title: null,
     code: null,
     section: null,
     description: null,
 });
 
-let courseModalOpen = ref(false);
+// const joinCourseForm = useForm({
+//     keycode: null,
+// })
+
+let createCourseModalOpen = ref(false);
+let joinCourseModalOpen = ref(false);
 
 const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
 
 const createCourse = () => {
-    courseForm.post(route('courses.store'), {
+    createCourseForm.post(route('courses.store'), {
         onFinish: () =>  console.log('Course created successfully!'),
     });
 };
+
+const joinCourse = () => {
+    // joinCourseForm.post(route(''))
+};
+
+let keycode = ref('');
+
+watch(keycode, value => {
+    Inertia.post(`/courses`, {  keycode: value }, {
+        preserveState: true,
+    });
+});
 
 </script>

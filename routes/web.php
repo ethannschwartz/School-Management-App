@@ -33,6 +33,8 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::get('/courses', [\App\Http\Controllers\CourseController::class, 'index'])->name('index');
     Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'store'])->name('store');
     Route::get('/courses/{course}', [\App\Http\Controllers\CourseController::class, 'show'])->name('show');
+
+    Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'find'])->name('find');
 });
 
 Route::middleware(['auth', 'verified'])->name('groups.')->group(function() {
