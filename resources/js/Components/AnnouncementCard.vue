@@ -9,7 +9,7 @@
                 </div>
             </div>
 
-            <div v-if="announcementButtonsSeen && (user[0].id === course[0].user_id  )" class="flex">
+            <div v-if="announcementButtonsSeen && (user[0].id === course[0].user_id )" class="flex">
                 <button>
                     <BaseSvg name="icon-edit" class="opacity-50 hover:opacity-100 scale-75" />
                 </button>

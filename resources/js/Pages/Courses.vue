@@ -1,6 +1,6 @@
 <template>
 
-    <section class="pt-[4em] bg-purple-600">
+    <section class="pt-[4em] bg-teal-100">
         <div class="px-[30px] lg:px-[60px] py-[30px] lg:py-[60px]">
             <div class="h-[600px] flex bg-white shadow-lg">
 
@@ -19,8 +19,8 @@
                                   class="w-full capitalize flex justify-between items-center p-2 border-b-[1px] border-gray-200 hover:bg-slate-100 hover:cursor-pointer"
                                   :href="route('courses.show', course?.id)"
                             >
-                                {{ course?.title }} {{ course?.section}}
-                                <button v-if="currentCourse === course" @click="settingsOpen = !settingsOpen">•••</button>
+                                {{ course?.title }} ({{ course?.section }})
+                                <button class="hover:bg-teal-700 px-2 rounded-md" v-if="currentCourse === course && user[0].id === course.user_id" @click="settingsOpen = !settingsOpen">•••</button>
                             </Link>
 
                             <transition name="fade">
@@ -59,7 +59,7 @@
 
                         <div class="flex whitespace-nowrap w-fit">
                             <div class="flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
-                                <button @click="copyText" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ currentCourse?.keycode }}</button>
+                                <button @click="(event) => navigator.clipboard.writeText(event.target.textContent)" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ currentCourse?.keycode }}</button>
                                 <BaseSvg name="icon-clipboard-copy" class="ml-2 opacity-50 scale-75" />
                             </div>
                             <HintTransition :hint-seen="copyHintSeen" name="fade">Click to Copy</HintTransition>
@@ -98,28 +98,22 @@
 
     <transition name="fade">
         <Modal v-if="createCourseModalOpen" :open="createCourseModalOpen" @close="createCourseModalOpen = !createCourseModalOpen" submit-label="Create Course" header="Create Course" :submit-function="createCourse">
-
             <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="createCourseForm.title">
             <input type="text" placeholder="Code" class="p-2 border border-gray-200 rounded-md" v-model="createCourseForm.code">
             <input type="text" placeholder="Section" class="p-2 border border-gray-200 rounded-md" v-model="createCourseForm.section">
             <textarea type="text" placeholder="Description" rows="6" class="p-2 border border-gray-200 rounded-md resize-none" v-model="createCourseForm.description"></textarea>
-
         </Modal>
     </transition>
 
     <transition name="fade">
         <Modal v-if="announcementModalSeen" :open="announcementModalSeen" @close="announcementModalSeen = !announcementModalSeen" submit-label="Post Announcement" header="Post Announcement" :submit-function="postAnnouncement">
-
             <textarea type="text" :placeholder="`Announce to ${currentCourse.title} (${currentCourse.section})`" rows="6" class="p-2 border border-gray-200 rounded-md resize-none" v-model="announcementForm.body"></textarea>
-
         </Modal>
     </transition>
 
     <transition name="fade">
         <Modal v-if="joinCourseModalOpen" :open="joinCourseModalOpen" @close="joinCourseModalOpen = !joinCourseModalOpen" submit-label="Join Course" header="Join Course" :submit-function="joinCourse">
-
             <input type="text" placeholder="Keycode" class="p-2 border border-gray-200 rounded-md" v-model="keycode">
-
         </Modal>
     </transition>
 
@@ -140,7 +134,7 @@ const props = defineProps(['course', 'user']);
 const accountType = props.user[0].account_type;
 const coursesArray = props.user[0]?.courses;
 
-let currentCourse = ref(coursesArray[0]);
+let currentCourse = ref(props.course[0]);
 
 const copyHintSeen = ref(false);
 const settingsOpen = ref(false);
@@ -152,21 +146,20 @@ const createCourseForm = useForm({
     description: null,
 });
 
-let createCourseModalOpen = ref(false);
-let joinCourseModalOpen = ref(false);
-let announcementModalSeen = ref(false);
-
-const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
-
 const announcementForm = useForm({
     body: null,
 });
+
+let createCourseModalOpen = ref(false);
+let joinCourseModalOpen = ref(false);
+let announcementModalSeen = ref(false);
 
 const createCourse = () => {
     createCourseForm.post(route('courses.store'), {
         onSuccess: () => {
             console.log('Course created successfully!');
-            createCourseModalOpen = false;
+            createCourseForm.reset();
+            createCourseModalOpen.value = false;
         },
     });
 };
@@ -175,7 +168,8 @@ const postAnnouncement = () => {
     announcementForm.post(route('courses.announcements.store', props.course[0].id), {
         onSuccess: () => {
             console.log('Announcement posted successfully!');
-            announcementModalSeen = false;
+            announcementForm.reset();
+            announcementModalSeen.value = false;
         },
     });
 };

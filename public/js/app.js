@@ -22757,7 +22757,7 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
     var accountType = props.user[0].account_type;
     var coursesArray = (_props$user$ = props.user[0]) === null || _props$user$ === void 0 ? void 0 : _props$user$.courses;
-    var currentCourse = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(coursesArray[0]);
+    var currentCourse = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(props.course[0]);
     var copyHintSeen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var settingsOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var createCourseForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)({
@@ -22766,23 +22766,19 @@ __webpack_require__.r(__webpack_exports__);
       section: null,
       description: null
     });
-    var createCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var joinCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var announcementModalSeen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-
-    var copyText = function copyText(event) {
-      return navigator.clipboard.writeText(event.target.textContent);
-    };
-
     var announcementForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)({
       body: null
     });
+    var createCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var joinCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var announcementModalSeen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
 
     var createCourse = function createCourse() {
       createCourseForm.post(route('courses.store'), {
         onSuccess: function onSuccess() {
           console.log('Course created successfully!');
-          createCourseModalOpen = false;
+          createCourseForm.reset();
+          createCourseModalOpen.value = false;
         }
       });
     };
@@ -22791,7 +22787,8 @@ __webpack_require__.r(__webpack_exports__);
       announcementForm.post(route('courses.announcements.store', props.course[0].id), {
         onSuccess: function onSuccess() {
           console.log('Announcement posted successfully!');
-          announcementModalSeen = false;
+          announcementForm.reset();
+          announcementModalSeen.value = false;
         }
       });
     };
@@ -22816,11 +22813,10 @@ __webpack_require__.r(__webpack_exports__);
       copyHintSeen: copyHintSeen,
       settingsOpen: settingsOpen,
       createCourseForm: createCourseForm,
+      announcementForm: announcementForm,
       createCourseModalOpen: createCourseModalOpen,
       joinCourseModalOpen: joinCourseModalOpen,
       announcementModalSeen: announcementModalSeen,
-      copyText: copyText,
-      announcementForm: announcementForm,
       createCourse: createCourse,
       postAnnouncement: postAnnouncement,
       joinCourse: joinCourse,
@@ -22921,14 +22917,12 @@ __webpack_require__.r(__webpack_exports__);
 
     var createGroup = function createGroup() {
       groupForm.post(route('groups.store'), {
-        onFinish: function onFinish() {
-          return console.log('Group created successfully!');
+        onSuccess: function onSuccess() {
+          console.log('Group created successfully!');
+          groupForm.reset();
+          groupModalOpen.value = false;
         }
       });
-    };
-
-    var copyText = function copyText(event) {
-      return navigator.clipboard.writeText(event.target.textContent);
     };
 
     var __returned__ = {
@@ -22940,7 +22934,6 @@ __webpack_require__.r(__webpack_exports__);
       groupForm: groupForm,
       groupModalOpen: groupModalOpen,
       createGroup: createGroup,
-      copyText: copyText,
       Modal: _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_0__["default"],
       Button: _vendor_laravel_breeze_stubs_inertia_vue_resources_js_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
       onMounted: vue__WEBPACK_IMPORTED_MODULE_2__.onMounted,
@@ -24450,7 +24443,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", {
-  "class": "w-screen h-[49px] bg-purple-700 flex justify-center items-center"
+  "class": "w-screen h-[49px] bg-teal-200 text-teal-600 flex justify-center items-center"
 }, " Developed by Ethan Schwartz | 2022 ", -1
 /* HOISTED */
 );
@@ -25292,7 +25285,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "pt-[4em] bg-purple-600"
+  "class": "pt-[4em] bg-teal-100"
 };
 var _hoisted_2 = {
   "class": "px-[30px] lg:px-[60px] py-[30px] lg:py-[60px]"
@@ -25399,10 +25392,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       href: _ctx.route('courses.show', course === null || course === void 0 ? void 0 : course.id)
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(course === null || course === void 0 ? void 0 : course.title) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(course === null || course === void 0 ? void 0 : course.section) + " ", 1
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(course === null || course === void 0 ? void 0 : course.title) + " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(course === null || course === void 0 ? void 0 : course.section) + ") ", 1
         /* TEXT */
-        ), $setup.currentCourse === course ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+        ), $setup.currentCourse === course && $props.user[0].id === course.user_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
           key: 0,
+          "class": "hover:bg-teal-700 px-2 rounded-md",
           onClick: _cache[0] || (_cache[0] = function ($event) {
             return $setup.settingsOpen = !$setup.settingsOpen;
           })
@@ -25469,14 +25463,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "flex w-fit whitespace-nowrap",
-    onMouseover: _cache[3] || (_cache[3] = function ($event) {
+    onMouseover: _cache[4] || (_cache[4] = function ($event) {
       return $setup.copyHintSeen = true;
     }),
-    onMouseleave: _cache[4] || (_cache[4] = function ($event) {
+    onMouseleave: _cache[5] || (_cache[5] = function ($event) {
       return $setup.copyHintSeen = false;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: $setup.copyText,
+    onClick: _cache[3] || (_cache[3] = function (event) {
+      return _ctx.navigator.clipboard.writeText(event.target.textContent);
+    }),
     "class": "w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4"
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse6 = $setup.currentCourse) === null || _$setup$currentCourse6 === void 0 ? void 0 : _$setup$currentCourse6.keycode), 1
   /* TEXT */
@@ -25499,7 +25495,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["hint-seen"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "text-slate-500",
-    onClick: _cache[5] || (_cache[5] = function ($event) {
+    onClick: _cache[6] || (_cache[6] = function ($event) {
       return $setup.announcementModalSeen = !$setup.announcementModalSeen;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
@@ -25524,7 +25520,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [$setup.createCourseModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
         key: 0,
         open: $setup.createCourseModalOpen,
-        onClose: _cache[10] || (_cache[10] = function ($event) {
+        onClose: _cache[11] || (_cache[11] = function ($event) {
           return $setup.createCourseModalOpen = !$setup.createCourseModalOpen;
         }),
         "submit-label": "Create Course",
@@ -25536,7 +25532,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             type: "text",
             placeholder: "Title",
             "class": "p-2 border border-gray-200 rounded-md",
-            "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+            "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
               return $setup.createCourseForm.title = $event;
             })
           }, null, 512
@@ -25545,7 +25541,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             type: "text",
             placeholder: "Code",
             "class": "p-2 border border-gray-200 rounded-md",
-            "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+            "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
               return $setup.createCourseForm.code = $event;
             })
           }, null, 512
@@ -25554,7 +25550,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             type: "text",
             placeholder: "Section",
             "class": "p-2 border border-gray-200 rounded-md",
-            "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+            "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
               return $setup.createCourseForm.section = $event;
             })
           }, null, 512
@@ -25564,7 +25560,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Description",
             rows: "6",
             "class": "p-2 border border-gray-200 rounded-md resize-none",
-            "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+            "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
               return $setup.createCourseForm.description = $event;
             })
           }, null, 512
@@ -25588,7 +25584,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [$setup.announcementModalSeen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
         key: 0,
         open: $setup.announcementModalSeen,
-        onClose: _cache[12] || (_cache[12] = function ($event) {
+        onClose: _cache[13] || (_cache[13] = function ($event) {
           return $setup.announcementModalSeen = !$setup.announcementModalSeen;
         }),
         "submit-label": "Post Announcement",
@@ -25601,7 +25597,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Announce to ".concat($setup.currentCourse.title, " (").concat($setup.currentCourse.section, ")"),
             rows: "6",
             "class": "p-2 border border-gray-200 rounded-md resize-none",
-            "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+            "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
               return $setup.announcementForm.body = $event;
             })
           }, null, 8
@@ -25625,7 +25621,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [$setup.joinCourseModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
         key: 0,
         open: $setup.joinCourseModalOpen,
-        onClose: _cache[14] || (_cache[14] = function ($event) {
+        onClose: _cache[15] || (_cache[15] = function ($event) {
           return $setup.joinCourseModalOpen = !$setup.joinCourseModalOpen;
         }),
         "submit-label": "Join Course",
@@ -25637,7 +25633,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             type: "text",
             placeholder: "Keycode",
             "class": "p-2 border border-gray-200 rounded-md",
-            "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+            "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
               return $setup.keycode = $event;
             })
           }, null, 512
@@ -25727,7 +25723,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "pt-[4em] bg-purple-600"
+  "class": "pt-[4em] bg-teal-100"
 };
 var _hoisted_2 = {
   "class": "px-[30px] lg:px-[60px] py-[30px] lg:py-[60px]"
@@ -25819,14 +25815,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(_$setup$currentGroup3 = $setup.currentGroup) !== null && _$setup$currentGroup3 !== void 0 && _$setup$currentGroup3.keycode ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
     "class": "flex w-fit whitespace-nowrap",
-    onMouseover: _cache[1] || (_cache[1] = function ($event) {
+    onMouseover: _cache[2] || (_cache[2] = function ($event) {
       return $setup.copyHintSeen = true;
     }),
-    onMouseleave: _cache[2] || (_cache[2] = function ($event) {
+    onMouseleave: _cache[3] || (_cache[3] = function ($event) {
       return $setup.copyHintSeen = false;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: $setup.copyText,
+    onClick: _cache[1] || (_cache[1] = function (event) {
+      return _ctx.navigator.clipboard.writeText(event.target.textContent);
+    }),
     "class": "w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4"
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentGroup4 = $setup.currentGroup) === null || _$setup$currentGroup4 === void 0 ? void 0 : _$setup$currentGroup4.keycode), 1
   /* TEXT */
@@ -25854,7 +25852,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [$setup.groupModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
         key: 0,
         open: $setup.groupModalOpen,
-        onClose: _cache[5] || (_cache[5] = function ($event) {
+        onClose: _cache[6] || (_cache[6] = function ($event) {
           return $setup.groupModalOpen = !$setup.groupModalOpen;
         }),
         "submit-label": "Create Group",
@@ -25866,7 +25864,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             type: "text",
             placeholder: "Title",
             "class": "p-2 border border-gray-200 rounded-md",
-            "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+            "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
               return $setup.groupForm.title = $event;
             })
           }, null, 512
@@ -25876,7 +25874,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Description",
             rows: "6",
             "class": "p-2 border border-gray-200 rounded-md resize-none",
-            "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+            "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
               return $setup.groupForm.description = $event;
             })
           }, null, 512
