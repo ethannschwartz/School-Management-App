@@ -44,11 +44,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function courses(){
+    public function courses()
+    {
         return $this->hasMany(Course::class);
     }
 
-    public function groups(){
+    public function groups()
+    {
         return $this->hasMany(Group::class);
+    }
+
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
     }
 }

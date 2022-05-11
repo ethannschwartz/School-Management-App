@@ -24,4 +24,14 @@ class Course extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function followers()
+    {
+        return $this->hasMany(Follower::class);
+    }
+
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class);
+    }
 }

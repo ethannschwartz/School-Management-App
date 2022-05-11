@@ -17,6 +17,10 @@ import Share from './SvgPaths/Share'
 import PlusSign from './SvgPaths/PlusSign'
 import Download from './SvgPaths/Download'
 import Profile from './SvgPaths/Profile'
+import Delete from './SvgPaths/Delete'
+import Edit from './SvgPaths/Edit'
+import AddBox from './SvgPaths/AddBox'
+import ClosingXCircle from './SvgPaths/ClosingXCircle'
 
 export default {
     name: 'base-svg',
@@ -30,6 +34,10 @@ export default {
         'icon-plus-sign': PlusSign,
         'icon-download': Download,
         'icon-profile': Profile,
+        'icon-delete': Delete,
+        'icon-edit': Edit,
+        'icon-add-box': AddBox,
+        'icon-closing-x-circle': ClosingXCircle,
     },
     props: {
         name: {

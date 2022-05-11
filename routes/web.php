@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'store'])->name('store');
     Route::get('/courses/{course}', [\App\Http\Controllers\CourseController::class, 'show'])->name('show');
 
-    Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'find'])->name('find');
+    Route::post('/courses/{course}/announcements', [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store');
 });
 
 Route::middleware(['auth', 'verified'])->name('groups.')->group(function() {

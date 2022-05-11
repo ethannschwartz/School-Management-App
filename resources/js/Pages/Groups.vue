@@ -60,12 +60,14 @@
         </div>
     </section>
 
-    <Modal v-if="groupModalOpen" :open="groupModalOpen" @close="groupModalOpen = !groupModalOpen" submit-label="Create Group" header="Create Group" :submit-function="createGroup">
+    <transition name="fade">
+        <Modal v-if="groupModalOpen" :open="groupModalOpen" @close="groupModalOpen = !groupModalOpen" submit-label="Create Group" header="Create Group" :submit-function="createGroup">
 
-        <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="groupForm.title">
-        <textarea type="text" placeholder="Description" rows="6" class="p-2 border border-gray-200 rounded-md resize-none" v-model="groupForm.description"></textarea>
+            <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="groupForm.title">
+            <textarea type="text" placeholder="Description" rows="6" class="p-2 border border-gray-200 rounded-md resize-none" v-model="groupForm.description"></textarea>
 
-    </Modal>
+        </Modal>
+    </transition>
 
 
 </template>

@@ -21,7 +21,7 @@
 
             <div class="flex gap-8 items-center justify-end relative flex-grow basis-1/4">
                 <h2 class="flex justify-end items-center  cursor-pointer" v-if="user" @click="profileDropdownSeen =! profileDropdownSeen">
-                    <BaseSvg name="icon-profile" class="scale-[35%] lg:scale-50" />
+                    <BaseSvg name="icon-profile" class="scale-[35%] lg:scale-50 fill-slate-600" />
                     {{ user[0].name }}
                 </h2>
                 <transition name="fade">
@@ -52,21 +52,21 @@ const navLinks = [
         title: 'Groups',
         route: 'groups.index',
     },
-    // {
-    //     id: 3,
-    //     title: 'Schedule',
-    //     route: 'schedule',
-    // },
-    // {
-    //     id: 4,
-    //     title: 'Events',
-    //     route: 'events',
-    // },
-    // {
-    //     id: 5,
-    //     title: 'Gradebook',
-    //     route: 'gradebook',
-    // },
+    {
+        id: 3,
+        title: 'Schedule',
+        route: 'groups.index',
+    },
+    {
+        id: 4,
+        title: 'Events',
+        route: 'groups.index',
+    },
+    {
+        id: 5,
+        title: 'Gradebook',
+        route: 'groups.index',
+    },
 ];
 
 let currentPage = ref(navLinks[0]);
