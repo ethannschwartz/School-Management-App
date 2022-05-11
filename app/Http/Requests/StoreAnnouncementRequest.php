@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAnnouncementRequest extends FormRequest
@@ -13,7 +14,7 @@ class StoreAnnouncementRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->route('course')->user_id === $this->user()->getKey();
     }
 
     /**

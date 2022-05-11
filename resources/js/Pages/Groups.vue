@@ -1,6 +1,6 @@
 <template>
 
-    <section class="pt-[4em] bg-purple-600">
+    <section class="pt-[4em] bg-teal-100">
         <div class="px-[30px] lg:px-[60px] py-[30px] lg:py-[60px]">
             <div class="h-[600px] flex bg-white shadow-lg">
 
@@ -37,7 +37,10 @@
 
                         <div class="flex whitespace-nowrap w-fit">
                             <div v-if="currentGroup?.keycode" class="flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
-                                <button @click="copyText" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ currentGroup?.keycode }}</button>
+                                <button @click="(event) => navigator.clipboard.writeText(event.target.textContent)"
+                                        class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">
+                                    {{ currentGroup?.keycode }}
+                                </button>
                                 <BaseSvg name="icon-clipboard-copy" class="ml-2 opacity-50 scale-75" />
                             </div>
                             <HintTransition :hint-seen="copyHintSeen" name="fade">Click to Copy</HintTransition>
@@ -98,10 +101,11 @@ const groupModalOpen = ref(false);
 
 const createGroup = () => {
     groupForm.post(route('groups.store'), {
-        onFinish: () => console.log('Group created successfully!'),
+        onSuccess: () => {
+            console.log('Group created successfully!');
+            groupForm.reset();
+            groupModalOpen.value = false;
+        },
     });
 }
-
-const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
-
 </script>
