@@ -15,7 +15,7 @@ class CourseController extends Controller
     {
         return Inertia::render('Courses', [
             'user' => $request->user()->with('courses')->where('id', Auth::id())->get(),
-            'course' => $request->user()->courses()->with('announcements')->get(),
+            'course' => $request->user()->courses()->with(array_reverse(['announcements']))->get(),
         ]);
     }
 

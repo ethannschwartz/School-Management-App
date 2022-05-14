@@ -23,7 +23,7 @@
                                 <button class="hover:bg-teal-700 px-2 rounded-md" v-if="currentCourse === course && user[0].id === course.user_id" @click="settingsOpen = !settingsOpen">•••</button>
                             </Link>
 
-                            <transition name="fade">
+                            <transition name="expand">
                                 <ul v-if="currentCourse === course && settingsOpen" class="absolute -right-[140px] top-0 bg-slate-700 shadow-md">
                                     <Link class="flex justify-between items-center w-[140px] text-white capitalize block p-2 bg-slate-700 hover:bg-slate-800 hover:cursor-pointer">
                                         Edit
@@ -58,16 +58,16 @@
                         <h2 class="text-xl">{{ currentCourse?.admin_prefix }} {{ currentCourse?.admin_name.split(" ")[1] }}</h2>
 
                         <div class="flex whitespace-nowrap w-fit">
-                            <div class="flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
-                                <button @click="(event) => navigator.clipboard.writeText(event.target.textContent)" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ currentCourse?.keycode }}</button>
+                            <div class="hidden xl:flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
+                                <button @click="copyText" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ currentCourse?.keycode }}</button>
                                 <BaseSvg name="icon-clipboard-copy" class="ml-2 opacity-50 scale-75" />
                             </div>
                             <HintTransition :hint-seen="copyHintSeen" name="fade">Click to Copy</HintTransition>
                         </div>
                     </header>
 
-                    <div class="flex justify-between m-6">
-                        <article class="w-[400px] h-[400px]">
+                    <div class="flex justify-between gap-[16px] m-6">
+                        <article class="w-1/2 pr-4 h-[400px] border-r-[1px]">
                             <header class="flex items-center justify-between px-[8px]">
                                 <h2 class="text-xl tracking-wider text-slate-600">Announcements</h2>
                                 <button class="text-slate-500" @click="announcementModalSeen = !announcementModalSeen">
@@ -76,16 +76,43 @@
                             </header>
 
                             <ul class="z-0 h-full overflow-y-scroll p-2">
-                                <AnnouncementCard v-if="course[0]"
-                                                  v-for="announcement in course[0].announcements"
-                                                  :announcement="announcement"
-                                                  :user="user"
-                                                  :course="course"
-                                />
+                                <li v-if="course[0].announcements.length !== 0">
+                                    <AnnouncementCard v-for="announcement in course[0].announcements"
+                                                      :announcement="announcement"
+                                                      :user="user"
+                                                      :course="course"
+                                    />
+                                </li>
+
+                                <li v-else class="h-full flex items-center justify-center text-center text-slate-600 text-[18px] w-full">
+                                    <div class="bg-slate-100 rounded-lg px-6 py-2">You don't have any announcements</div>
+                                </li>
                             </ul>
                         </article>
 
-                        <article class="block w-1/2 text-right">
+                        <article class="block w-1/2 px-4 text-right overflow-hidden">
+                            <header>
+                                <ul class="flex gap-4 flex-wrap">
+                                    <li @click="currentElement=courseElement" :class="currentElement === courseElement ? 'bg-pink-600 !text-white hover:bg-pink-600' : 'bg-pink-200'" class="text-pink-600 px-4 rounded-full tracking-wider whitespace-nowrap hover:bg-pink-300" v-for="courseElement in courseElements">
+                                        <button>{{ courseElement }}</button>
+                                    </li>
+                                </ul>
+                            </header>
+
+                                <div>
+                                    <header class="text-slate-600 mt-[1em] text-left text-[23px]">
+                                        <h1>{{ currentElement }}</h1>
+                                    </header>
+                                    <div class="flex overflow-visible">
+                                        <transition name="slide">
+                                            <AssignmentsSection v-if="currentElement==='Assignments'" :course="course" :user="user" />
+                                        </transition>
+                                        <transition name="slide">
+                                            <ResourcesSection v-if="currentElement==='Resources'" :course="course" :user="user" />
+                                        </transition>
+                                    </div>
+                                </div>
+
 
                         </article>
                     </div>
@@ -119,6 +146,40 @@
 
 </template>
 
+<style scoped>
+.expand-enter-from, .expand-leave-to {
+    opacity:0;
+    transform: scaleX(0.5) ;
+    transform-origin: left;
+}
+
+.expand-enter-to, .expand-leave-from {
+    opacity:1;
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.expand-enter-active, .expand-leave-active {
+    transition: all 0.2s ease-in;
+}
+
+.slide-enter-from, .slide-leave-to {
+    opacity:0;
+    transform: translateX(100%) ;
+    transform-origin: left;
+}
+
+.slide-enter-to, .slide-leave-from {
+    opacity:1;
+    transform: translateX(0);
+    transform-origin: left;
+}
+
+.slide-enter-active, .slide-leave-active {
+    transition: all 0.15s ease-in;
+}
+</style>
+
 <script setup>
 import {debounce} from "lodash";
 import {ref, watch} from "vue";
@@ -129,12 +190,23 @@ import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
 import {Inertia} from "@inertiajs/inertia";
 import AnnouncementCard from "@/Components/AnnouncementCard";
+import AssignmentsSection from "@/Components/CourseElements/AssignmentsSection";
+import ResourcesSection from "@/Components/CourseElements/ResourcesSection";
 
 const props = defineProps(['course', 'user']);
 const accountType = props.user[0].account_type;
 const coursesArray = props.user[0]?.courses;
 
 let currentCourse = ref(props.course[0]);
+
+const courseElements = [
+    'Assignments',
+    'Resources',
+    'Exams',
+    'Office Hours'
+];
+
+let currentElement = ref(courseElements[0]);
 
 const copyHintSeen = ref(false);
 const settingsOpen = ref(false);
@@ -186,5 +258,7 @@ watch(keycode, value => {
         });
     }, 800);
 });
+
+const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
 
 </script>

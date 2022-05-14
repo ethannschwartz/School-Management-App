@@ -21,6 +21,8 @@ import Delete from './SvgPaths/Delete'
 import Edit from './SvgPaths/Edit'
 import AddBox from './SvgPaths/AddBox'
 import ClosingXCircle from './SvgPaths/ClosingXCircle'
+import ChevronUp from './SvgPaths/ChevronUp'
+import ChevronDown from './SvgPaths/ChevronDown'
 
 export default {
     name: 'base-svg',
@@ -38,6 +40,8 @@ export default {
         'icon-edit': Edit,
         'icon-add-box': AddBox,
         'icon-closing-x-circle': ClosingXCircle,
+        'icon-chevron-up': ChevronUp,
+        'icon-chevron-down': ChevronDown,
     },
     props: {
         name: {

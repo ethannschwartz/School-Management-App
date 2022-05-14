@@ -24,7 +24,7 @@
                     <BaseSvg name="icon-profile" class="scale-[35%] lg:scale-50 fill-slate-600" />
                     {{ user[0].name }}
                 </h2>
-                <transition name="fade">
+                <transition name="appear">
                     <form v-if="profileDropdownSeen" class="absolute -bottom-10 shadow-xl border-[1px] bg-gray-100 hover:bg-gray-200 rounded-md" action="/login">
                         <Link method="post" as="button" :href="route('logout')" class="text-slate-600 rounded-md py-2 px-4">Logout</Link>
                     </form>
@@ -34,6 +34,25 @@
         </nav>
     </header>
 </template>
+
+<style scoped>
+.appear-enter-from, .appear-leave-to {
+    opacity:0;
+    transform: scaleY(0.5);
+    transform-origin: top;
+}
+
+.appear-enter-to, .appear-leave-from {
+    opacity:1;
+    transform: scaleY(1);
+    transform-origin: top;
+}
+
+.appear-enter-active, .appear-leave-active {
+    transition: all 0.15s ease-in;
+}
+
+</style>
 
 <script setup>
 import {Link} from "@inertiajs/inertia-vue3";
