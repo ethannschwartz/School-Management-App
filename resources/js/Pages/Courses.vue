@@ -91,7 +91,7 @@
                             </ul>
                         </article>
 
-                        <article class="block w-1/2 px-4 text-right overflow-hidden">
+                        <article class="block w-1/2 px-4 overflow-hidden">
                             <header>
                                 <ul class="flex gap-4 flex-wrap">
                                     <li @click="currentElement=courseElement" :class="currentElement === courseElement ? 'bg-pink-600 !text-white hover:bg-pink-600' : 'bg-pink-200'" class="text-pink-600 px-4 rounded-full tracking-wider whitespace-nowrap hover:bg-pink-300" v-for="courseElement in courseElements">

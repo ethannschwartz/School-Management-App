@@ -21760,6 +21760,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/BaseSvg */ "./resources/js/Components/BaseSvg.vue");
+/* harmony import */ var _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Modals/Modal */ "./resources/js/Components/Modals/Modal.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -21769,6 +21773,7 @@ __webpack_require__.r(__webpack_exports__);
     expose();
     var props = __props;
     var isFocused = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var assignmentModalSeen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var assignments = [{
       title: 'Homework 1',
       body: 'This is the details for Homework 1'
@@ -21782,12 +21787,29 @@ __webpack_require__.r(__webpack_exports__);
       title: 'Homework 4',
       body: 'This is the details for Homework 4'
     }];
+    var assignmentForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.useForm)({
+      title: null,
+      description: null,
+      due_date: null,
+      due_time: null,
+      points: null
+    });
+
+    var createAssignment = function createAssignment() {
+      assignmentForm.post('courses.assignments');
+    };
+
     var __returned__ = {
       props: props,
       isFocused: isFocused,
+      assignmentModalSeen: assignmentModalSeen,
       assignments: assignments,
+      assignmentForm: assignmentForm,
+      createAssignment: createAssignment,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
-      BaseSvg: _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_1__["default"]
+      BaseSvg: _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_1__["default"],
+      Modal: _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_2__["default"],
+      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.useForm
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -23298,16 +23320,19 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   "class": "text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]"
 };
-var _hoisted_6 = {
-  "class": "flex items-center justify-center gap-1 w-full h-full opacity-60 hover:opacity-100 hover:bg-slate-200 active:bg-slate-300 p-2"
-};
 
-var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Create Assignment", -1
   /* HOISTED */
   );
 });
 
+var _hoisted_7 = {
+  "class": "block lg:flex gap-4"
+};
+var _hoisted_8 = {
+  "class": "lg:flex lg:gap-4 w-full lg:w-1/2"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.assignments, function (assignment) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -23340,10 +23365,88 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_2);
   }), 64
   /* STABLE_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $setup.assignmentModalSeen = !$setup.assignmentModalSeen;
+    }),
+    "class": "flex items-center justify-center gap-1 w-full h-full opacity-60 hover:opacity-100 hover:bg-slate-200 active:bg-slate-300 p-2"
+  }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-plus-sign",
     "class": "fill-slate-600 duration-200"
-  })])])]);
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+    name: "fade"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [$setup.assignmentModalSeen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
+        key: 0,
+        open: $setup.assignmentModalSeen,
+        onClose: _cache[6] || (_cache[6] = function ($event) {
+          return $setup.assignmentModalSeen = !$setup.assignmentModalSeen;
+        }),
+        "submit-label": "Create Assignment",
+        header: "Create Assignment",
+        "submit-function": $setup.createAssignment
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+            type: "text",
+            placeholder: "Title",
+            "class": "p-2 border border-gray-200 rounded-md",
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+              return $setup.assignmentForm.title = $event;
+            })
+          }, null, 512
+          /* NEED_PATCH */
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+            type: "date",
+            placeholder: "Due Date",
+            "class": "p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2",
+            "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+              return $setup.assignmentForm.due_date = $event;
+            })
+          }, null, 512
+          /* NEED_PATCH */
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.due_date]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+            type: "time",
+            placeholder: "Time",
+            "class": "p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2",
+            "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+              return $setup.assignmentForm.due_date = $event;
+            })
+          }, null, 512
+          /* NEED_PATCH */
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.due_date]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+            type: "number",
+            placeholder: "Points",
+            "class": "p-2 border border-gray-200 rounded-md w-full lg:w-1/2",
+            "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+              return $setup.assignmentForm.points = $event;
+            })
+          }, null, 512
+          /* NEED_PATCH */
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.points]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+            type: "text",
+            placeholder: "Description",
+            rows: "6",
+            "class": "p-2 border border-gray-200 rounded-md resize-none",
+            "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+              return $setup.assignmentForm.description = $event;
+            })
+          }, null, 512
+          /* NEED_PATCH */
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.description]])];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["open"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+    }),
+    _: 1
+    /* STABLE */
+
+  })]);
 }
 
 /***/ }),
@@ -23617,7 +23720,7 @@ var _hoisted_1 = {
   "class": "flex flex-col justify-center w-screen h-screen absolute top-0 left-0 bg-gray-900/30 backdrop-blur-sm"
 };
 var _hoisted_2 = {
-  "class": "bg-white rounded-md rounded-lg h-fit max-w-[730px] w-1/3 py-4 mx-auto"
+  "class": "bg-white rounded-md rounded-lg h-fit max-w-[730px] w-[500px] py-4 mx-auto"
 };
 var _hoisted_3 = {
   "class": "text-right text-gray-200"
@@ -25733,7 +25836,7 @@ var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
 
 var _hoisted_28 = [_hoisted_27];
 var _hoisted_29 = {
-  "class": "block w-1/2 px-4 text-right overflow-hidden"
+  "class": "block w-1/2 px-4 overflow-hidden"
 };
 var _hoisted_30 = {
   "class": "flex gap-4 flex-wrap"

@@ -10,11 +10,25 @@
             </transition>
         </div>
         <div class="text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]">
-            <button class="flex items-center justify-center gap-1 w-full h-full opacity-60 hover:opacity-100 hover:bg-slate-200 active:bg-slate-300 p-2">
+            <button @click="assignmentModalSeen = !assignmentModalSeen" class="flex items-center justify-center gap-1 w-full h-full opacity-60 hover:opacity-100 hover:bg-slate-200 active:bg-slate-300 p-2">
                 <span>Create Assignment</span>
                 <BaseSvg name="icon-plus-sign" class="fill-slate-600 duration-200" />
             </button>
         </div>
+
+        <transition name="fade">
+            <Modal v-if="assignmentModalSeen" :open="assignmentModalSeen" @close="assignmentModalSeen=!assignmentModalSeen" submit-label="Create Assignment" header="Create Assignment" :submit-function="createAssignment">
+                <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="assignmentForm.title">
+                <div class="block lg:flex gap-4">
+                    <div class="lg:flex lg:gap-4 w-full lg:w-1/2">
+                        <input type="date" placeholder="Due Date" class="p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2" v-model="assignmentForm.due_date">
+                        <input type="time" placeholder="Time" class="p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2" v-model="assignmentForm.due_date">
+                    </div>
+                    <input type="number" placeholder="Points" class="p-2 border border-gray-200 rounded-md w-full lg:w-1/2" v-model="assignmentForm.points">
+                </div>
+                <textarea type="text" placeholder="Description" rows="6" class="p-2 border border-gray-200 rounded-md resize-none" v-model="assignmentForm.description"></textarea>
+            </Modal>
+        </transition>
 
     </div>
 </template>
@@ -40,10 +54,14 @@
 <script setup>
 import {defineProps, ref} from "vue";
 import BaseSvg from "@/Components/BaseSvg";
+import Modal from "@/Components/Modals/Modal";
+import {useForm} from "@inertiajs/inertia-vue3";
 
 const props = defineProps(['course', 'user']);
 
 const isFocused = ref(false);
+
+let assignmentModalSeen = ref(false);
 
 const assignments = [
     {
@@ -63,5 +81,18 @@ const assignments = [
         body: 'This is the details for Homework 4',
     },
 ];
+
+const assignmentForm = useForm({
+    title: null,
+    description: null,
+    due_date: null,
+    due_time: null,
+    points: null,
+});
+
+const createAssignment = () => {
+    assignmentForm.post('courses.assignments')
+
+};
 
 </script>
