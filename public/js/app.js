@@ -22830,19 +22830,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/BaseSvg */ "./resources/js/Components/BaseSvg.vue");
-/* harmony import */ var _Components_HintTransition__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/HintTransition */ "./resources/js/Components/HintTransition.vue");
-/* harmony import */ var _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Modals/Modal */ "./resources/js/Components/Modals/Modal.vue");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _Components_AnnouncementCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/AnnouncementCard */ "./resources/js/Components/AnnouncementCard.vue");
-/* harmony import */ var _Components_CourseElements_AssignmentsSection__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/CourseElements/AssignmentsSection */ "./resources/js/Components/CourseElements/AssignmentsSection.vue");
-/* harmony import */ var _Components_CourseElements_ResourcesSection__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Components/CourseElements/ResourcesSection */ "./resources/js/Components/CourseElements/ResourcesSection.vue");
-
-
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/BaseSvg */ "./resources/js/Components/BaseSvg.vue");
+/* harmony import */ var _Components_HintTransition__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/HintTransition */ "./resources/js/Components/HintTransition.vue");
+/* harmony import */ var _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Modals/Modal */ "./resources/js/Components/Modals/Modal.vue");
+/* harmony import */ var _Components_AnnouncementCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/AnnouncementCard */ "./resources/js/Components/AnnouncementCard.vue");
+/* harmony import */ var _Components_CourseElements_AssignmentsSection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/CourseElements/AssignmentsSection */ "./resources/js/Components/CourseElements/AssignmentsSection.vue");
+/* harmony import */ var _Components_CourseElements_ResourcesSection__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/CourseElements/ResourcesSection */ "./resources/js/Components/CourseElements/ResourcesSection.vue");
 
 
 
@@ -22862,23 +22857,23 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
     var accountType = props.user[0].account_type;
     var coursesArray = (_props$user$ = props.user[0]) === null || _props$user$ === void 0 ? void 0 : _props$user$.courses;
-    var currentCourse = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(props.course[0]);
+    var currentCourse = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.course[0]);
     var courseElements = ['Assignments', 'Resources', 'Exams', 'Office Hours'];
-    var currentElement = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(courseElements[0]);
-    var copyHintSeen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var settingsOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var createCourseForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+    var currentElement = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(courseElements[0]);
+    var copyHintSeen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var settingsOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var createCourseForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       title: null,
       code: null,
       section: null,
       description: null
     });
-    var announcementForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+    var announcementForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       body: null
     });
-    var createCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var joinCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var announcementModalSeen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var createCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var joinCourseModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var announcementModalSeen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
 
     var createCourse = function createCourse() {
       createCourseForm.post(route('courses.store'), {
@@ -22902,17 +22897,6 @@ __webpack_require__.r(__webpack_exports__);
 
     var joinCourse = function joinCourse() {};
 
-    var keycode = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(keycode, function (value) {
-      (0,lodash__WEBPACK_IMPORTED_MODULE_0__.debounce)(function () {
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__.Inertia.post("/courses", {
-          keycode: value
-        }, {
-          preserveState: true
-        });
-      }, 800);
-    });
-
     var copyText = function copyText(event) {
       return navigator.clipboard.writeText(event.target.textContent);
     };
@@ -22934,20 +22918,16 @@ __webpack_require__.r(__webpack_exports__);
       createCourse: createCourse,
       postAnnouncement: postAnnouncement,
       joinCourse: joinCourse,
-      keycode: keycode,
       copyText: copyText,
-      debounce: lodash__WEBPACK_IMPORTED_MODULE_0__.debounce,
-      ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
-      watch: vue__WEBPACK_IMPORTED_MODULE_1__.watch,
-      Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link,
-      BaseSvg: _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_3__["default"],
-      HintTransition: _Components_HintTransition__WEBPACK_IMPORTED_MODULE_4__["default"],
-      Modal: _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_5__["default"],
-      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm,
-      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__.Inertia,
-      AnnouncementCard: _Components_AnnouncementCard__WEBPACK_IMPORTED_MODULE_7__["default"],
-      AssignmentsSection: _Components_CourseElements_AssignmentsSection__WEBPACK_IMPORTED_MODULE_8__["default"],
-      ResourcesSection: _Components_CourseElements_ResourcesSection__WEBPACK_IMPORTED_MODULE_9__["default"]
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link,
+      BaseSvg: _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_2__["default"],
+      HintTransition: _Components_HintTransition__WEBPACK_IMPORTED_MODULE_3__["default"],
+      Modal: _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_4__["default"],
+      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm,
+      AnnouncementCard: _Components_AnnouncementCard__WEBPACK_IMPORTED_MODULE_5__["default"],
+      AssignmentsSection: _Components_CourseElements_AssignmentsSection__WEBPACK_IMPORTED_MODULE_6__["default"],
+      ResourcesSection: _Components_CourseElements_ResourcesSection__WEBPACK_IMPORTED_MODULE_7__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -23315,6 +23295,19 @@ var _hoisted_4 = {
   key: 0,
   "class": "w-full text-left text-slate-500"
 };
+var _hoisted_5 = {
+  "class": "text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]"
+};
+var _hoisted_6 = {
+  "class": "flex items-center justify-center gap-1 w-full h-full opacity-60 hover:opacity-100 hover:bg-slate-200 active:bg-slate-300 p-2"
+};
+
+var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Create Assignment", -1
+  /* HOISTED */
+  );
+});
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.assignments, function (assignment) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -23347,7 +23340,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_2);
   }), 64
   /* STABLE_FRAGMENT */
-  ))]);
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
+    name: "icon-plus-sign",
+    "class": "fill-slate-600 duration-200"
+  })])])]);
 }
 
 /***/ }),
@@ -24367,19 +24363,28 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   xmlns: "http://www.w3.org/2000/svg",
-  height: "48",
-  width: "48"
+  height: "24px",
+  viewBox: "0 0 24 24",
+  width: "24px",
+  fill: "#000000"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M24 38Q23.35 38 22.925 37.575Q22.5 37.15 22.5 36.5V25.5H11.5Q10.85 25.5 10.425 25.075Q10 24.65 10 24Q10 23.35 10.425 22.925Q10.85 22.5 11.5 22.5H22.5V11.5Q22.5 10.85 22.925 10.425Q23.35 10 24 10Q24.65 10 25.075 10.425Q25.5 10.85 25.5 11.5V22.5H36.5Q37.15 22.5 37.575 22.925Q38 23.35 38 24Q38 24.65 37.575 25.075Q37.15 25.5 36.5 25.5H25.5V36.5Q25.5 37.15 25.075 37.575Q24.65 38 24 38Z"
+  d: "M0 0h24v24H0V0z",
+  fill: "none"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_3 = [_hoisted_2];
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_4 = [_hoisted_2, _hoisted_3];
 function render(_ctx, _cache) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_1, _hoisted_3);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_1, _hoisted_4);
 }
 
 /***/ }),
@@ -25742,7 +25747,7 @@ var _hoisted_33 = {
 };
 var _hoisted_34 = ["placeholder"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _$setup$currentCourse2, _$setup$currentCourse3, _$setup$currentCourse4, _$setup$currentCourse5, _$setup$currentCourse6;
+  var _$setup$currentCourse2, _$setup$currentCourse3, _$setup$currentCourse4, _$setup$currentCourse5, _$setup$currentCourse6, _$props$course$0$anno;
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.coursesArray, function (course) {
     var _$setup$currentCourse;
@@ -25820,7 +25825,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.joinCourseModalOpen = !$setup.joinCourseModalOpen;
     }),
     "class": "w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white"
-  }, "Join Course ")]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse2 = $setup.currentCourse) === null || _$setup$currentCourse2 === void 0 ? void 0 : _$setup$currentCourse2.title) + " ", 1
+  }, " Join Course ")]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse2 = $setup.currentCourse) === null || _$setup$currentCourse2 === void 0 ? void 0 : _$setup$currentCourse2.title) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, "(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse3 = $setup.currentCourse) === null || _$setup$currentCourse3 === void 0 ? void 0 : _$setup$currentCourse3.section) + ")", 1
   /* TEXT */
@@ -25864,7 +25869,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-add-box",
     "class": "opacity-75 hover:opacity-100 fill-slate-700"
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_24, [$props.course[0].announcements.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_25, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.course[0].announcements, function (announcement) {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_24, [((_$props$course$0$anno = $props.course[0].announcements) === null || _$props$course$0$anno === void 0 ? void 0 : _$props$course$0$anno.length) !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_25, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.course[0].announcements, function (announcement) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AnnouncementCard"], {
       announcement: announcement,
       user: $props.user,
@@ -26040,11 +26045,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Keycode",
             "class": "p-2 border border-gray-200 rounded-md",
             "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
-              return $setup.keycode = $event;
+              return _ctx.keycode = $event;
             })
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.keycode]])];
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.keycode]])];
         }),
         _: 1
         /* STABLE */

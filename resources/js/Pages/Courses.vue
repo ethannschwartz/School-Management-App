@@ -47,7 +47,8 @@
 
                     <div v-else class="border-t-[1px] !w-full border-gray-200 absolute bottom-0 text-center">
                         <button @click="joinCourseModalOpen = !joinCourseModalOpen"
-                                class="w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white">Join Course
+                                class="w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white">
+                            Join Course
                         </button>
                     </div>
                 </aside>
@@ -76,7 +77,7 @@
                             </header>
 
                             <ul class="z-0 h-full overflow-y-scroll p-2">
-                                <li v-if="course[0].announcements.length !== 0">
+                                <li v-if="course[0].announcements?.length !== 0">
                                     <AnnouncementCard v-for="announcement in course[0].announcements"
                                                       :announcement="announcement"
                                                       :user="user"
@@ -181,14 +182,12 @@
 </style>
 
 <script setup>
-import {debounce} from "lodash";
-import {ref, watch} from "vue";
+import {ref} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 import BaseSvg from "@/Components/BaseSvg";
 import HintTransition from "@/Components/HintTransition";
 import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
-import {Inertia} from "@inertiajs/inertia";
 import AnnouncementCard from "@/Components/AnnouncementCard";
 import AssignmentsSection from "@/Components/CourseElements/AssignmentsSection";
 import ResourcesSection from "@/Components/CourseElements/ResourcesSection";
@@ -249,15 +248,6 @@ const postAnnouncement = () => {
 const joinCourse = () => {
 
 };
-
-let keycode = ref('');
-watch(keycode, value => {
-    debounce(() => {
-        Inertia.post(`/courses`, {  keycode: value }, {
-            preserveState: true,
-        });
-    }, 800);
-});
 
 const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
 

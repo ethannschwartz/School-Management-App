@@ -9,6 +9,13 @@
                 <div class="w-full text-left text-slate-500" v-if="isFocused===assignment.title">{{ assignment.body }}</div>
             </transition>
         </div>
+        <div class="text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]">
+            <button class="flex items-center justify-center gap-1 w-full h-full opacity-60 hover:opacity-100 hover:bg-slate-200 active:bg-slate-300 p-2">
+                <span>Create Assignment</span>
+                <BaseSvg name="icon-plus-sign" class="fill-slate-600 duration-200" />
+            </button>
+        </div>
+
     </div>
 </template>
 

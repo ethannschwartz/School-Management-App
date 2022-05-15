@@ -32,6 +32,11 @@ class Course extends Model
 
     public function announcements()
     {
-        return $this->hasMany(Announcement::class);
+        return $this->hasMany(Announcement::class)->orderBy('created_at', 'desc');
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class)->orderBy('created_at', 'desc');
     }
 }
