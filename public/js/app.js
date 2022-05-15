@@ -21787,7 +21787,9 @@ __webpack_require__.r(__webpack_exports__);
     var createAssignment = function createAssignment() {
       assignmentForm.post(route('courses.assignments.store', props.course[0].id), {
         onSuccess: function onSuccess() {
-          return console.log('Assignment posted successfully!');
+          console.log('Assignment posted successfully!');
+          assignmentForm.reset();
+          assignmentModalSeen.value = false;
         }
       });
     };
@@ -23300,23 +23302,24 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "bg-slate-100 border-[1px] shadow-md h-full w-full p-8 mt-[1em] rounded-md"
+  "class": "bg-slate-100 border-[1px] shadow-md h-full w-full p-8 mt-[1em] rounded-md z-50"
 };
 var _hoisted_2 = ["onClick"];
 var _hoisted_3 = {
-  "class": "flex items-center justify-between w-full"
+  "class": "flex items-center justify-between w-full z-50"
 };
 var _hoisted_4 = {
-  key: 0
+  key: 0,
+  "class": "z-20 overflow-hidden"
 };
 var _hoisted_5 = {
-  "class": "w-full text-left text-slate-500"
+  "class": "w-full text-left text-slate-500 z-20"
 };
 var _hoisted_6 = {
-  "class": "w-full text-left text-slate-400 text-right text-xs"
+  "class": "w-full text-left text-slate-400 text-right text-xs z-20"
 };
 var _hoisted_7 = {
-  "class": "w-full text-left text-slate-400 text-xs"
+  "class": "w-full text-left text-slate-400 text-xs z-20"
 };
 var _hoisted_8 = {
   "class": "text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]"
@@ -23340,7 +23343,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $setup.isFocused === assignment.title ? $setup.isFocused = false : $setup.isFocused = assignment.title;
       },
-      "class": "text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px] p-2 hover:bg-slate-200 active:bg-slate-300 text-opacity-60 hover:text-opacity-100"
+      "class": "z-50 text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px] p-2 hover:bg-slate-200 active:bg-slate-300 text-opacity-60 hover:text-opacity-100"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(assignment.title), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
@@ -23349,7 +23352,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8
     /* PROPS */
     , ["class"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
-      name: "expand"
+      name: "expand",
+      "class": "overflow-hidden"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [$setup.isFocused === assignment.title ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(assignment.description), 1
@@ -25833,7 +25837,7 @@ var _hoisted_26 = {
 
 var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "bg-slate-100 rounded-lg px-6 py-2"
+    "class": "bg-slate-100 border-[1px] shadow-md rounded-lg px-6 py-2"
   }, "You don't have any announcements", -1
   /* HOISTED */
   );
@@ -25992,7 +25996,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $setup.currentElement = courseElement;
       },
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$setup.currentElement === courseElement ? 'bg-pink-600 !text-white hover:bg-pink-600' : 'bg-pink-200', "text-pink-600 px-4 rounded-full tracking-wider whitespace-nowrap hover:bg-pink-300"])
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$setup.currentElement === courseElement ? 'bg-pink-600 !text-white hover:!bg-pink-600' : 'bg-pink-200', "text-pink-600 px-4 rounded-full tracking-wider whitespace-nowrap hover:bg-pink-300"])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(courseElement), 1
     /* TEXT */
     )], 10
@@ -26667,7 +26671,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.expand-enter-from[data-v-5fafc521], .expand-leave-to[data-v-5fafc521] {\n    opacity:0;\n    transform: scaleY(0.5) ;\n    transform-origin: top;\n}\n.expand-enter-to[data-v-5fafc521], .expand-leave-from[data-v-5fafc521] {\n    opacity:1;\n    transform: scaleY(1);\n    transform-origin: top;\n}\n.expand-enter-active[data-v-5fafc521], .expand-leave-active[data-v-5fafc521] {\n    transition: all 0.2s ease-in;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/*.expand-enter-from, .expand-leave-to {*/\n/*    opacity:0;*/\n/*    transform: scaleY(0.5) ;*/\n/*    transform-origin: top;*/\n/*}*/\n\n/*.expand-enter-to, .expand-leave-from {*/\n/*    opacity:1;*/\n/*    transform: scaleY(1);*/\n/*    transform-origin: top;*/\n/*}*/\n\n/*.expand-enter-active, .expand-leave-active {*/\n/*    transition: all 0.2s ease-in;*/\n/*}*/\n.expand-enter-from[data-v-5fafc521], .expand-leave-to[data-v-5fafc521] {\n    opacity:0;\n    transform: translateY(-40px) ;\n    transform-origin: top;\n}\n.expand-enter-to[data-v-5fafc521], .expand-leave-from[data-v-5fafc521] {\n    opacity:1;\n    transform: translateY(0);\n    transform-origin: top;\n}\n.expand-enter-active[data-v-5fafc521], .expand-leave-active[data-v-5fafc521] {\n    transition: all 0.2s ease-in;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

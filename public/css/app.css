@@ -659,6 +659,9 @@ select {
 .z-30 {
   z-index: 30;
 }
+.z-20 {
+  z-index: 20;
+}
 .m-6 {
   margin: 1.5rem;
 }
@@ -1602,6 +1605,10 @@ select {
 .hover\:bg-pink-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(236 72 153 / var(--tw-bg-opacity));
+}
+.hover\:\!bg-pink-600:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(219 39 119 / var(--tw-bg-opacity)) !important;
 }
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;

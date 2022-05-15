@@ -1,15 +1,15 @@
 <template>
-    <div class="bg-slate-100 border-[1px] shadow-md h-full w-full p-8 mt-[1em] rounded-md">
-        <div @click="isFocused===assignment.title? isFocused=false: isFocused=assignment.title" v-for="assignment in course[0].assignments" class="text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px] p-2 hover:bg-slate-200 active:bg-slate-300 text-opacity-60 hover:text-opacity-100">
-            <button class="flex items-center justify-between w-full">
+    <div class="bg-slate-100 border-[1px] shadow-md h-full w-full p-8 mt-[1em] rounded-md z-50">
+        <div @click="isFocused===assignment.title? isFocused=false: isFocused=assignment.title" v-for="assignment in course[0].assignments" class="z-50 text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px] p-2 hover:bg-slate-200 active:bg-slate-300 text-opacity-60 hover:text-opacity-100">
+            <button class="flex items-center justify-between w-full z-50">
                 <span>{{ assignment.title }}</span>
                 <BaseSvg name="icon-chevron-up" class="fill-slate-600 duration-200" :class="isFocused===assignment.title? '-rotate-180': null " />
             </button>
-            <transition name="expand" >
-                <div v-if="isFocused===assignment.title">
-                    <div class="w-full text-left text-slate-500">{{ assignment.description }}</div>
-                    <div class="w-full text-left text-slate-400 text-right text-xs">{{ DateTime.fromISO(assignment?.created_at).toFormat('FF') }}</div>
-                    <div class="w-full text-left text-slate-400 text-xs">{{ assignment.points }} points</div>
+            <transition name="expand" class="overflow-hidden" >
+                <div v-if="isFocused===assignment.title" class="z-20 overflow-hidden">
+                    <div class="w-full text-left text-slate-500 z-20">{{ assignment.description }}</div>
+                    <div class="w-full text-left text-slate-400 text-right text-xs z-20">{{ DateTime.fromISO(assignment?.created_at).toFormat('FF') }}</div>
+                    <div class="w-full text-left text-slate-400 text-xs z-20">{{ assignment.points }} points</div>
                 </div>
             </transition>
         </div>
@@ -38,15 +38,31 @@
 </template>
 
 <style scoped>
+/*.expand-enter-from, .expand-leave-to {*/
+/*    opacity:0;*/
+/*    transform: scaleY(0.5) ;*/
+/*    transform-origin: top;*/
+/*}*/
+
+/*.expand-enter-to, .expand-leave-from {*/
+/*    opacity:1;*/
+/*    transform: scaleY(1);*/
+/*    transform-origin: top;*/
+/*}*/
+
+/*.expand-enter-active, .expand-leave-active {*/
+/*    transition: all 0.2s ease-in;*/
+/*}*/
+
 .expand-enter-from, .expand-leave-to {
     opacity:0;
-    transform: scaleY(0.5) ;
+    transform: translateY(-40px) ;
     transform-origin: top;
 }
 
 .expand-enter-to, .expand-leave-from {
     opacity:1;
-    transform: scaleY(1);
+    transform: translateY(0);
     transform-origin: top;
 }
 
@@ -78,7 +94,11 @@ const assignmentForm = useForm({
 
 const createAssignment = () => {
     assignmentForm.post(route('courses.assignments.store', props.course[0].id), {
-        onSuccess: () => console.log('Assignment posted successfully!'),
+        onSuccess: () => {
+            console.log('Assignment posted successfully!');
+            assignmentForm.reset();
+            assignmentModalSeen.value = false;
+        }
     });
 };
 

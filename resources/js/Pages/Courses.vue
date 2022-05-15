@@ -78,15 +78,11 @@
 
                             <ul class="z-0 h-full overflow-y-scroll p-2">
                                 <li v-if="course[0]?.announcements?.length !== 0">
-                                    <AnnouncementCard v-for="announcement in course[0]?.announcements"
-                                                      :announcement="announcement"
-                                                      :user="user"
-                                                      :course="course"
-                                    />
+                                    <AnnouncementCard v-for="announcement in course[0]?.announcements" :announcement="announcement" :user="user" :course="course" />
                                 </li>
 
                                 <li v-else class="h-full flex items-center justify-center text-center text-slate-600 text-[18px] w-full">
-                                    <div class="bg-slate-100 rounded-lg px-6 py-2">You don't have any announcements</div>
+                                    <div class="bg-slate-100 border-[1px] shadow-md rounded-lg px-6 py-2">You don't have any announcements</div>
                                 </li>
                             </ul>
                         </article>
@@ -94,7 +90,7 @@
                         <article class="block w-1/2 px-4 overflow-hidden">
                             <header>
                                 <ul class="flex gap-4 flex-wrap">
-                                    <li @click="currentElement=courseElement" :class="currentElement === courseElement ? 'bg-pink-600 !text-white hover:bg-pink-600' : 'bg-pink-200'" class="text-pink-600 px-4 rounded-full tracking-wider whitespace-nowrap hover:bg-pink-300" v-for="courseElement in courseElements">
+                                    <li @click="currentElement=courseElement" :class="currentElement === courseElement ? 'bg-pink-600 !text-white hover:!bg-pink-600' : 'bg-pink-200'" class="text-pink-600 px-4 rounded-full tracking-wider whitespace-nowrap hover:bg-pink-300" v-for="courseElement in courseElements">
                                         <button>{{ courseElement }}</button>
                                     </li>
                                 </ul>
