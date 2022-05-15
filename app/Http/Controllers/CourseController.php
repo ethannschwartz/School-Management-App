@@ -15,7 +15,7 @@ class CourseController extends Controller
     {
         return Inertia::render('Courses', [
             'user' => $request->user()->with('courses')->where('id', Auth::id())->get(),
-            'course' => $request->user()->courses()->with('announcements')->get(),
+            'course' => $request->user()->courses()->with('announcements', 'assignments')->get(),
         ]);
     }
 
@@ -34,7 +34,7 @@ class CourseController extends Controller
     {
         return Inertia::render('Courses', [
             'user' => $request->user()->with('courses')->where('id', Auth::id())->get(),
-            'course' => $course->with('announcements')->where('id', $course->id)->get(),
+            'course' => $course->with('announcements', 'assignments')->where('id', $course->id)->get(),
         ]);
     }
 

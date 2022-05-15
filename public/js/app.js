@@ -21762,6 +21762,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/BaseSvg */ "./resources/js/Components/BaseSvg.vue");
 /* harmony import */ var _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Modals/Modal */ "./resources/js/Components/Modals/Modal.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+
 
 
 
@@ -21774,19 +21776,6 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
     var isFocused = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var assignmentModalSeen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
-    var assignments = [{
-      title: 'Homework 1',
-      body: 'This is the details for Homework 1'
-    }, {
-      title: 'Homework 2',
-      body: 'This is the details for Homework 2'
-    }, {
-      title: 'Homework 3',
-      body: 'This is the details for Homework 3'
-    }, {
-      title: 'Homework 4',
-      body: 'This is the details for Homework 4'
-    }];
     var assignmentForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.useForm)({
       title: null,
       description: null,
@@ -21796,20 +21785,24 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     var createAssignment = function createAssignment() {
-      assignmentForm.post('courses.assignments');
+      assignmentForm.post(route('courses.assignments.store', props.course[0].id), {
+        onSuccess: function onSuccess() {
+          return console.log('Assignment posted successfully!');
+        }
+      });
     };
 
     var __returned__ = {
       props: props,
       isFocused: isFocused,
       assignmentModalSeen: assignmentModalSeen,
-      assignments: assignments,
       assignmentForm: assignmentForm,
       createAssignment: createAssignment,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       BaseSvg: _Components_BaseSvg__WEBPACK_IMPORTED_MODULE_1__["default"],
       Modal: _Components_Modals_Modal__WEBPACK_IMPORTED_MODULE_2__["default"],
-      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.useForm
+      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.useForm,
+      DateTime: luxon__WEBPACK_IMPORTED_MODULE_4__.DateTime
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -22872,13 +22865,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['course', 'user'],
   setup: function setup(__props, _ref) {
-    var _props$user$;
-
     var expose = _ref.expose;
     expose();
     var props = __props;
     var accountType = props.user[0].account_type;
-    var coursesArray = (_props$user$ = props.user[0]) === null || _props$user$ === void 0 ? void 0 : _props$user$.courses;
+    var coursesArray = props.user[0].courses;
     var currentCourse = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.course[0]);
     var courseElements = ['Assignments', 'Resources', 'Exams', 'Office Hours'];
     var currentElement = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(courseElements[0]);
@@ -23144,6 +23135,8 @@ var _hoisted_9 = {
   key: 1
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _$props$announcement, _$props$announcement2, _$props$announcement3, _$props$announcement4, _$props$announcement5, _$props$announcement6;
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
     onMouseover: _cache[0] || (_cache[0] = function ($event) {
       $setup.exactTimeSeen = true;
@@ -23156,14 +23149,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "hover:scale-[102%] mb-4 p-4 bg-slate-100 border-[1px] rounded-lg shadow-md w-full duration-150 z-10 overflow-visible"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     draggable: "false",
-    src: "https://i.pravatar.cc/150?img=".concat($props.announcement.user_id + 17),
+    src: "https://i.pravatar.cc/150?img=".concat(((_$props$announcement = $props.announcement) === null || _$props$announcement === void 0 ? void 0 : _$props$announcement.user_id) + 17),
     alt: "pro-pic",
     "class": "w-[40px] rounded-lg shadow-md"
   }, null, 8
   /* PROPS */
-  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.announcement.prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.announcement.name.split(' ')[1]), 1
+  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement2 = $props.announcement) === null || _$props$announcement2 === void 0 ? void 0 : _$props$announcement2.prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement3 = $props.announcement) === null || _$props$announcement3 === void 0 ? void 0 : _$props$announcement3.name.split(' ')[1]), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.announcement.body), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement4 = $props.announcement) === null || _$props$announcement4 === void 0 ? void 0 : _$props$announcement4.body), 1
   /* TEXT */
   )])]), $setup.announcementButtonsSeen && $props.user[0].id === $props.course[0].user_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-edit",
@@ -23171,9 +23164,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-closing-x-circle",
     "class": "opacity-50 hover:opacity-100 scale-75"
-  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$setup.exactTimeSeen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.DateTime.fromISO($props.announcement.created_at).toFormat('FF')), 1
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$setup.exactTimeSeen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.DateTime.fromISO((_$props$announcement5 = $props.announcement) === null || _$props$announcement5 === void 0 ? void 0 : _$props$announcement5.created_at).toFormat('FF')), 1
   /* TEXT */
-  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayjs($props.announcement.created_at).fromNow()), 1
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayjs((_$props$announcement6 = $props.announcement) === null || _$props$announcement6 === void 0 ? void 0 : _$props$announcement6.created_at).fromNow()), 1
   /* TEXT */
   ))])], 32
   /* HYDRATE_EVENTS */
@@ -23314,28 +23307,36 @@ var _hoisted_3 = {
   "class": "flex items-center justify-between w-full"
 };
 var _hoisted_4 = {
-  key: 0,
-  "class": "w-full text-left text-slate-500"
+  key: 0
 };
 var _hoisted_5 = {
+  "class": "w-full text-left text-slate-500"
+};
+var _hoisted_6 = {
+  "class": "w-full text-left text-slate-400 text-right text-xs"
+};
+var _hoisted_7 = {
+  "class": "w-full text-left text-slate-400 text-xs"
+};
+var _hoisted_8 = {
   "class": "text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]"
 };
 
-var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Create Assignment", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_7 = {
+var _hoisted_10 = {
   "class": "block lg:flex gap-4"
 };
-var _hoisted_8 = {
+var _hoisted_11 = {
   "class": "lg:flex lg:gap-4 w-full lg:w-1/2"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.assignments, function (assignment) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.course[0].assignments, function (assignment) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       onClick: function onClick($event) {
         return $setup.isFocused === assignment.title ? $setup.isFocused = false : $setup.isFocused = assignment.title;
       },
@@ -23351,9 +23352,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: "expand"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [$setup.isFocused === assignment.title ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(assignment.body), 1
+        return [$setup.isFocused === assignment.title ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(assignment.description), 1
         /* TEXT */
-        )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.DateTime.fromISO(assignment === null || assignment === void 0 ? void 0 : assignment.created_at).toFormat('FF')), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(assignment.points) + " points", 1
+        /* TEXT */
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
       }),
       _: 2
       /* DYNAMIC */
@@ -23363,14 +23368,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )], 8
     /* PROPS */
     , _hoisted_2);
-  }), 64
-  /* STABLE_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $setup.assignmentModalSeen = !$setup.assignmentModalSeen;
     }),
     "class": "flex items-center justify-center gap-1 w-full h-full opacity-60 hover:opacity-100 hover:bg-slate-200 active:bg-slate-300 p-2"
-  }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
+  }, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-plus-sign",
     "class": "fill-slate-600 duration-200"
   })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
@@ -23397,7 +23402,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             })
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "date",
             placeholder: "Due Date",
             "class": "p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2",
@@ -23411,11 +23416,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Time",
             "class": "p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2",
             "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-              return $setup.assignmentForm.due_date = $event;
+              return $setup.assignmentForm.due_time = $event;
             })
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.due_date]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.assignmentForm.due_time]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "number",
             placeholder: "Points",
             "class": "p-2 border border-gray-200 rounded-md w-full lg:w-1/2",
@@ -25850,7 +25855,7 @@ var _hoisted_33 = {
 };
 var _hoisted_34 = ["placeholder"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _$setup$currentCourse2, _$setup$currentCourse3, _$setup$currentCourse4, _$setup$currentCourse5, _$setup$currentCourse6, _$props$course$0$anno;
+  var _$setup$currentCourse2, _$setup$currentCourse3, _$setup$currentCourse4, _$setup$currentCourse5, _$setup$currentCourse6, _$props$course$, _$props$course$$annou, _$props$course$2;
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.coursesArray, function (course) {
     var _$setup$currentCourse;
@@ -25972,7 +25977,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-add-box",
     "class": "opacity-75 hover:opacity-100 fill-slate-700"
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_24, [((_$props$course$0$anno = $props.course[0].announcements) === null || _$props$course$0$anno === void 0 ? void 0 : _$props$course$0$anno.length) !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_25, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.course[0].announcements, function (announcement) {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_24, [((_$props$course$ = $props.course[0]) === null || _$props$course$ === void 0 ? void 0 : (_$props$course$$annou = _$props$course$.announcements) === null || _$props$course$$annou === void 0 ? void 0 : _$props$course$$annou.length) !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_25, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$course$2 = $props.course[0]) === null || _$props$course$2 === void 0 ? void 0 : _$props$course$2.announcements, function (announcement) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AnnouncementCard"], {
       announcement: announcement,
       user: $props.user,

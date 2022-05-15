@@ -77,8 +77,8 @@
                             </header>
 
                             <ul class="z-0 h-full overflow-y-scroll p-2">
-                                <li v-if="course[0].announcements?.length !== 0">
-                                    <AnnouncementCard v-for="announcement in course[0].announcements"
+                                <li v-if="course[0]?.announcements?.length !== 0">
+                                    <AnnouncementCard v-for="announcement in course[0]?.announcements"
                                                       :announcement="announcement"
                                                       :user="user"
                                                       :course="course"
@@ -194,7 +194,7 @@ import ResourcesSection from "@/Components/CourseElements/ResourcesSection";
 
 const props = defineProps(['course', 'user']);
 const accountType = props.user[0].account_type;
-const coursesArray = props.user[0]?.courses;
+const coursesArray = props.user[0].courses
 
 let currentCourse = ref(props.course[0]);
 

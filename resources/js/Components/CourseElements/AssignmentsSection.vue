@@ -1,12 +1,16 @@
 <template>
     <div class="bg-slate-100 border-[1px] shadow-md h-full w-full p-8 mt-[1em] rounded-md">
-        <div @click="isFocused===assignment.title? isFocused=false: isFocused=assignment.title" v-for="assignment in assignments" class="text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px] p-2 hover:bg-slate-200 active:bg-slate-300 text-opacity-60 hover:text-opacity-100">
+        <div @click="isFocused===assignment.title? isFocused=false: isFocused=assignment.title" v-for="assignment in course[0].assignments" class="text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px] p-2 hover:bg-slate-200 active:bg-slate-300 text-opacity-60 hover:text-opacity-100">
             <button class="flex items-center justify-between w-full">
                 <span>{{ assignment.title }}</span>
                 <BaseSvg name="icon-chevron-up" class="fill-slate-600 duration-200" :class="isFocused===assignment.title? '-rotate-180': null " />
             </button>
             <transition name="expand" >
-                <div class="w-full text-left text-slate-500" v-if="isFocused===assignment.title">{{ assignment.body }}</div>
+                <div v-if="isFocused===assignment.title">
+                    <div class="w-full text-left text-slate-500">{{ assignment.description }}</div>
+                    <div class="w-full text-left text-slate-400 text-right text-xs">{{ DateTime.fromISO(assignment?.created_at).toFormat('FF') }}</div>
+                    <div class="w-full text-left text-slate-400 text-xs">{{ assignment.points }} points</div>
+                </div>
             </transition>
         </div>
         <div class="text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]">
@@ -22,7 +26,7 @@
                 <div class="block lg:flex gap-4">
                     <div class="lg:flex lg:gap-4 w-full lg:w-1/2">
                         <input type="date" placeholder="Due Date" class="p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2" v-model="assignmentForm.due_date">
-                        <input type="time" placeholder="Time" class="p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2" v-model="assignmentForm.due_date">
+                        <input type="time" placeholder="Time" class="p-2 border border-gray-200 rounded-md w-full mb-[0.8em] lg:mb-0 lg:w-1/2" v-model="assignmentForm.due_time">
                     </div>
                     <input type="number" placeholder="Points" class="p-2 border border-gray-200 rounded-md w-full lg:w-1/2" v-model="assignmentForm.points">
                 </div>
@@ -56,31 +60,13 @@ import {defineProps, ref} from "vue";
 import BaseSvg from "@/Components/BaseSvg";
 import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
+import {DateTime} from "luxon";
 
 const props = defineProps(['course', 'user']);
 
 const isFocused = ref(false);
 
 let assignmentModalSeen = ref(false);
-
-const assignments = [
-    {
-        title:'Homework 1',
-        body: 'This is the details for Homework 1',
-    },
-    {
-        title:'Homework 2',
-        body: 'This is the details for Homework 2',
-    },
-    {
-        title:'Homework 3',
-        body: 'This is the details for Homework 3',
-    },
-    {
-        title:'Homework 4',
-        body: 'This is the details for Homework 4',
-    },
-];
 
 const assignmentForm = useForm({
     title: null,
@@ -91,8 +77,9 @@ const assignmentForm = useForm({
 });
 
 const createAssignment = () => {
-    assignmentForm.post('courses.assignments')
-
+    assignmentForm.post(route('courses.assignments.store', props.course[0].id), {
+        onSuccess: () => console.log('Assignment posted successfully!'),
+    });
 };
 
 </script>
