@@ -1,5 +1,5 @@
 <template>
-    <div v-if="open" class="flex flex-col justify-center w-screen h-screen absolute top-0 left-0 bg-gray-900/30 backdrop-blur-sm">
+    <div v-if="open" class="flex flex-col justify-center w-screen h-screen absolute top-0 left-0 bg-gray-900/30 backdrop-blur-sm z-[100]">
         <div class="bg-white rounded-md rounded-lg h-fit max-w-[730px] w-[500px] py-4 mx-auto">
             <div class="text-right text-gray-200">
                 <button class="mr-4 opacity-25 hover:opacity-100" type="button" @click="$emit('close')">

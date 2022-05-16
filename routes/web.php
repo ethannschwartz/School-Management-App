@@ -41,7 +41,9 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
 Route::middleware(['auth', 'verified'])->name('profile.')->group(function() {
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('index');
 
-    Route::post('/profile', );
+    Route::get('/profile', [\App\Http\Controllers\FileController::class, 'index'])->name('index');
+
+    Route::post('/profile', [\App\Http\Controllers\FileController::class, 'store'])->name('store');
 });
 
 Route::middleware(['auth', 'verified'])->name('groups.')->group(function() {

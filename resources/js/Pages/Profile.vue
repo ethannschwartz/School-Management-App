@@ -4,7 +4,7 @@
 
             <div class="h-[600px] flex bg-white shadow-lg p-[32px]">
                 <div class="w-[400px] border-r-[1px] pr-[32px]">
-                    <h1 class="text-slate-600 text-[23px] mb-[0.8em] text-center">{{ user[0].prefix }} {{ user[0].name }}</h1>
+                    <h1 class="text-slate-600 text-[23px] mb-[0.8em] text-center">{{ user[0]?.prefix }} {{ user[0]?.name }}</h1>
 
                     <div class="mb-[1em] w-full">
                         <div class="relative w-fit shadow-md border-[1px] mx-auto rounded-lg overflow-hidden"
@@ -19,7 +19,7 @@
                     <div class="flex justify-between items-center w-full border-b-[1px] py-[0.8em]">
                         <div class="flex gap-4">
                             <div>Email</div>
-                            <div>{{ user[0].email }}</div>
+                            <div>{{ user[0]?.email }}</div>
                         </div>
                         <button class="hover:underline underline-offset-4 text-pink-600 hover:text-black">Edit</button>
                     </div>
@@ -32,8 +32,6 @@
                         <button class="hover:underline underline-offset-4 text-pink-600 hover:text-black">Edit</button>
                     </div>
 
-
-
                 </div>
             </div>
 
@@ -42,7 +40,9 @@
 
     <transition name="fade">
         <Modal v-if="editPhotoModal" :open="editPhotoModal" @close="editPhotoModal = !editPhotoModal" submit-label="Upload Photo" header="Edit Photo" :submit-function="changePhoto">
-            <input type="file" v-model="photoForm.photo" />
+            <img v-if="photoForm.photo" :src="photoForm.photo" alt="photo_preview">
+            <input  type="file" v-model="photoForm.photo" />
+            <FilePond name="photo" ref="pond" label-idle="Click to choose photo" server="/profile" />
         </Modal>
     </transition>
 </template>
@@ -51,6 +51,14 @@
 import {defineProps, ref} from "vue";
 import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
+import vueFilePond from 'vue-filepond';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.esm.js';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js';
+
+import 'filepond/dist/filepond.min.css';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+
+const FilePond = vueFilePond(FilePondPluginFileValidateType, FilePondPluginImagePreview);
 
 const props = defineProps(['user']);
 

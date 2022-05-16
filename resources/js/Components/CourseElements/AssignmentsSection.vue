@@ -1,6 +1,6 @@
 <template>
     <div class="bg-slate-100 border-[1px] shadow-md h-full w-full p-8 mt-[1em] rounded-md z-50">
-        <div @click="isFocused===assignment.title? isFocused=false: isFocused=assignment.title" v-for="assignment in course[0].assignments" class="z-50 text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px] p-2 hover:bg-slate-200 active:bg-slate-300 text-opacity-60 hover:text-opacity-100">
+        <div @click="isFocused===assignment.title? isFocused=false: isFocused=assignment.title" v-for="assignment in course[0]?.assignments" class="z-50 text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px] p-2 hover:bg-slate-200 active:bg-slate-300 text-opacity-60 hover:text-opacity-100">
             <button class="flex items-center justify-between w-full z-50">
                 <span>{{ assignment.title }}</span>
                 <BaseSvg name="icon-chevron-up" class="fill-slate-600 duration-200" :class="isFocused===assignment.title? '-rotate-180': null " />
@@ -38,22 +38,6 @@
 </template>
 
 <style scoped>
-/*.expand-enter-from, .expand-leave-to {*/
-/*    opacity:0;*/
-/*    transform: scaleY(0.5) ;*/
-/*    transform-origin: top;*/
-/*}*/
-
-/*.expand-enter-to, .expand-leave-from {*/
-/*    opacity:1;*/
-/*    transform: scaleY(1);*/
-/*    transform-origin: top;*/
-/*}*/
-
-/*.expand-enter-active, .expand-leave-active {*/
-/*    transition: all 0.2s ease-in;*/
-/*}*/
-
 .expand-enter-from, .expand-leave-to {
     opacity:0;
     transform: translateY(-40px) ;
