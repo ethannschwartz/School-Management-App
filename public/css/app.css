@@ -742,6 +742,12 @@ select {
 .mb-\[0\.8em\] {
   margin-bottom: 0.8em;
 }
+.mb-\[1em\] {
+  margin-bottom: 1em;
+}
+.box-border {
+  box-sizing: border-box;
+}
 .block {
   display: block;
 }
@@ -800,6 +806,15 @@ select {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+.h-\[20px\] {
+  height: 20px;
+}
+.h-\[24px\] {
+  height: 24px;
+}
+.h-\[30px\] {
+  height: 30px;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -1182,6 +1197,12 @@ select {
 .p-8 {
   padding: 2rem;
 }
+.p-\[16px\] {
+  padding: 16px;
+}
+.p-\[32px\] {
+  padding: 32px;
+}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1238,6 +1259,10 @@ select {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+.py-\[0\.8em\] {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+}
 .pt-8 {
   padding-top: 2rem;
 }
@@ -1267,6 +1292,12 @@ select {
 }
 .pt-\[4em\] {
   padding-top: 4em;
+}
+.pr-\[32px\] {
+  padding-right: 32px;
+}
+.pb-\[0\.8em\] {
+  padding-bottom: 0.8em;
 }
 .text-left {
   text-align: left;
@@ -1542,6 +1573,9 @@ select {
 .last-of-type\:border-b-\[1px\]:last-of-type {
   border-bottom-width: 1px;
 }
+.hover\:flex:hover {
+  display: flex;
+}
 .hover\:scale-\[102\%\]:hover {
   --tw-scale-x: 102%;
   --tw-scale-y: 102%;
@@ -1645,6 +1679,10 @@ select {
 .hover\:text-gray-900:hover {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .hover\:text-opacity-100:hover {
   --tw-text-opacity: 1;

@@ -36,7 +36,12 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
 
     Route::post('/courses/{course}/announcements', [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store');
     Route::post('/courses/{course}/assignments', [\App\Http\Controllers\AssignmentController::class, 'store'])->name('assignments.store');
+});
 
+Route::middleware(['auth', 'verified'])->name('profile.')->group(function() {
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('index');
+
+    Route::post('/profile', );
 });
 
 Route::middleware(['auth', 'verified'])->name('groups.')->group(function() {

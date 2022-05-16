@@ -20,7 +20,7 @@
                                   :href="route('courses.show', course?.id)"
                             >
                                 {{ course?.title }} ({{ course?.section }})
-                                <button class="hover:bg-teal-700 px-2 rounded-md" v-if="currentCourse === course && user[0].id === course.user_id" @click="settingsOpen = !settingsOpen">•••</button>
+                                <button class="hover:bg-teal-700 px-2 rounded-md" v-if="currentCourse.id === course.id && user[0].id === course.user_id" @click="settingsOpen = !settingsOpen">•••</button>
                             </Link>
 
                             <transition name="expand">

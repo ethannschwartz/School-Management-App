@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Assignment::class);
     }
+
+    public function file()
+    {
+        return $this->hasOne(File::class);
+    }
 }
