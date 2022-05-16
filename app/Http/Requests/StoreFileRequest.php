@@ -24,7 +24,7 @@ class StoreFileRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'image | mimes:jpeg, png, jpg, gif, svg'
+            'file' => 'string'
         ];
     }
 }

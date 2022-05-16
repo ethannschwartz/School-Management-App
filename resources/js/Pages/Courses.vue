@@ -107,6 +107,12 @@
                                         <transition name="slide">
                                             <ResourcesSection v-if="currentElement==='Resources'" :course="course" :user="user" />
                                         </transition>
+                                        <transition name="slide">
+                                            <ExamsSection v-if="currentElement==='Exams'" :course="course" :user="user" />
+                                        </transition>
+                                        <transition name="slide">
+                                            <HoursSection v-if="currentElement==='Office Hours'" :course="course" :user="user" />
+                                        </transition>
                                     </div>
                                 </div>
 
@@ -187,6 +193,8 @@ import {useForm} from "@inertiajs/inertia-vue3";
 import AnnouncementCard from "@/Components/AnnouncementCard";
 import AssignmentsSection from "@/Components/CourseElements/AssignmentsSection";
 import ResourcesSection from "@/Components/CourseElements/ResourcesSection";
+import ExamsSection from "@/Components/CourseElements/ExamsSection";
+import HoursSection from "@/Components/CourseElements/HoursSection";
 
 const props = defineProps(['course', 'user']);
 const accountType = props.user[0].account_type;

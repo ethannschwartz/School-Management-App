@@ -9,9 +9,7 @@ class Follower extends Model
 {
     use HasFactory;
 
-//    protected $fillable = [
-//        'name',
-//    ];
+    protected $fillable = [];
 
     public function course()
     {

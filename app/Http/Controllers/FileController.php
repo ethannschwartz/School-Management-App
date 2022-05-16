@@ -10,17 +10,18 @@ class FileController extends Controller
 {
     public function index(Request $request)
     {
-//        dd($request->user()->with('courses', 'groups', 'files')->where('id', $request->user()->getKey())->get());
-
          return Inertia::render('Profile', [
              'user' => $request->user()->with('courses', 'groups')->where('id', $request->user()->getKey())->get(),
-             'photo' => $request->user()->file()->get(),
+//             'file' => $request->user()->file()->get(),
          ]);
     }
 
     public function store(StoreFileRequest $request)
     {
-        $request->user()->file()->create($request->validated());
-        return back();
+        $request->user()->files('file')->create(array_merge($request->validated(), [
+            'user_id' => $request->user()->id,
+            'name'    => $request->user()->name,
+        ]));
+        return back()->with('success', 'file upload successful!');
     }
 }

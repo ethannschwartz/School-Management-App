@@ -19,21 +19,17 @@
         "@vue/server-renderer": "^3.2.31",
         "autoprefixer": "^10.4.2",
         "axios": "^0.25",
-        "filepond": "^4.30.3",
-        "filepond-plugin-file-validate-type": "^1.2.8",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.4.6",
         "postcss-import": "^14.0.2",
         "tailwindcss": "^3.0.18",
         "vue": "^3.2.31",
-        "vue-filepond": "^7.0.3",
         "vue-loader": "^17.0.0",
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
         "dayjs": "^1.11.2",
-        "filepond-plugin-image-preview": "^4.6.11",
         "luxon": "^2.3.2"
     }
 }

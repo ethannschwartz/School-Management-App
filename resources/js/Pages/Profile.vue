@@ -40,9 +40,8 @@
 
     <transition name="fade">
         <Modal v-if="editPhotoModal" :open="editPhotoModal" @close="editPhotoModal = !editPhotoModal" submit-label="Upload Photo" header="Edit Photo" :submit-function="changePhoto">
-            <img v-if="photoForm.photo" :src="photoForm.photo" alt="photo_preview">
-            <input  type="file" v-model="photoForm.photo" />
-            <FilePond name="photo" ref="pond" label-idle="Click to choose photo" server="/profile" />
+            <input type="file" :ref="photoForm.file" />
+
         </Modal>
     </transition>
 </template>
@@ -51,14 +50,6 @@
 import {defineProps, ref} from "vue";
 import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
-import vueFilePond from 'vue-filepond';
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.esm.js';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js';
-
-import 'filepond/dist/filepond.min.css';
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
-
-const FilePond = vueFilePond(FilePondPluginFileValidateType, FilePondPluginImagePreview);
 
 const props = defineProps(['user']);
 
@@ -67,7 +58,7 @@ const isFocused = ref(false);
 let editPhotoModal = ref(false);
 
 const photoForm = useForm({
-    photo: null,
+    file: null,
 });
 
 const changePhoto = () => {

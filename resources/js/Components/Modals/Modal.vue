@@ -9,7 +9,7 @@
             <header class="w-3/4 mx-auto p-4">
                 <h1 class="text-3xl text-slate-600 font-bold">{{ header }}</h1>
             </header>
-            <form :action="action" :method="method" @submit.prevent="submitFunction" class="w-3/4 mx-auto flex flex-col justify-evenly gap-4">
+            <form :action="action" enctype="multipart/form-data" :method="method" @submit.prevent="submitFunction" class="w-3/4 mx-auto flex flex-col justify-evenly gap-4">
 
                 <slot />
 
