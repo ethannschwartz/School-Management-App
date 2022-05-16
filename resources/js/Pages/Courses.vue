@@ -143,7 +143,7 @@
 
     <transition name="fade">
         <Modal v-if="joinCourseModalOpen" :open="joinCourseModalOpen" @close="joinCourseModalOpen = !joinCourseModalOpen" submit-label="Join Course" header="Join Course" :submit-function="joinCourse">
-            <input type="text" placeholder="Keycode" class="p-2 border border-gray-200 rounded-md" v-model="keycode">
+            <input type="text" placeholder="Keycode" class="p-2 border border-gray-200 rounded-md" v-model="joinCourseForm.keycode">
         </Modal>
     </transition>
 
@@ -221,6 +221,10 @@ const createCourseForm = useForm({
     description: null,
 });
 
+const joinCourseForm = useForm({
+    keycode: null,
+});
+
 const announcementForm = useForm({
     body: null,
 });
@@ -250,9 +254,17 @@ const postAnnouncement = () => {
 };
 
 const joinCourse = () => {
-
+    joinCourseForm.post(route('courses.follower.store', joinCourseForm.keycode), {
+        onSuccess: () => {
+            console.log('course follow successful!');
+            joinCourseForm.reset();
+            joinCourseModalOpen.value = false;
+        },
+    });
 };
 
 const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
 
 </script>
+
+<!--KZzBQBpo0bjV2I5CDkJr-->

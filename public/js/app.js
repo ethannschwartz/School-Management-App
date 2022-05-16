@@ -23051,6 +23051,9 @@ __webpack_require__.r(__webpack_exports__);
       section: null,
       description: null
     });
+    var joinCourseForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+      keycode: null
+    });
     var announcementForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       body: null
     });
@@ -23078,7 +23081,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
-    var joinCourse = function joinCourse() {};
+    var joinCourse = function joinCourse() {
+      joinCourseForm.post(route('courses.follower.store', joinCourseForm.keycode), {
+        onSuccess: function onSuccess() {
+          console.log('course follow successful!');
+          joinCourseForm.reset();
+          joinCourseModalOpen.value = false;
+        }
+      });
+    };
 
     var copyText = function copyText(event) {
       return navigator.clipboard.writeText(event.target.textContent);
@@ -23094,6 +23105,7 @@ __webpack_require__.r(__webpack_exports__);
       copyHintSeen: copyHintSeen,
       settingsOpen: settingsOpen,
       createCourseForm: createCourseForm,
+      joinCourseForm: joinCourseForm,
       announcementForm: announcementForm,
       createCourseModalOpen: createCourseModalOpen,
       joinCourseModalOpen: joinCourseModalOpen,
@@ -26872,11 +26884,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Keycode",
             "class": "p-2 border border-gray-200 rounded-md",
             "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
-              return _ctx.keycode = $event;
+              return $setup.joinCourseForm.keycode = $event;
             })
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.keycode]])];
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.joinCourseForm.keycode]])];
         }),
         _: 1
         /* STABLE */
