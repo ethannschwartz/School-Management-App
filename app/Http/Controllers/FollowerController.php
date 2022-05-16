@@ -11,7 +11,7 @@ class FollowerController extends Controller
     {
         $course->followers()->create(array_merge($request->validated(), [
             'user_id' => $request->user()->id,
-            'course_id' => $course->where('keycode', $request->input('keycode'))->get(),
+            'course_id' => $course->where('keycode', $request->input('keycode'))->pluck('id')->get('id'),
         ]));
         return back();
     }
