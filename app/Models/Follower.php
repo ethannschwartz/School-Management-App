@@ -14,8 +14,8 @@ class Follower extends Model
         'user_id',
     ];
 
-    public function course()
+    public function courses()
     {
-        return $this->belongsTo(Course::class);
+        return $this->hasMany(Course::class);
     }
 }

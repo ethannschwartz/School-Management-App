@@ -4,7 +4,7 @@
             <div class="flex gap-2 items-start">
                 <img draggable="false" :src="`https://i.pravatar.cc/150?img=${announcement?.user_id + 17}`" alt="pro-pic" class="w-[40px] rounded-lg shadow-md">
                 <div>
-                    <h2 class="font-bold text-slate-600">{{ announcement?.prefix }} {{ announcement?.name.split(' ')[1] }}</h2>
+                    <h2 class="font-bold text-slate-600">{{ announcement?.prefix }} {{ announcement?.name?.split(' ')[1] }}</h2>
                     <p class="mb-2 text-slate-600">{{ announcement?.body }}</p>
                 </div>
             </div>

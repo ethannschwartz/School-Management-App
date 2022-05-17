@@ -23084,8 +23084,8 @@ __webpack_require__.r(__webpack_exports__);
     var joinCourse = function joinCourse() {
       joinCourseForm.post(route('courses.follower.store', joinCourseForm.keycode), {
         onSuccess: function onSuccess() {
-          console.log('course follow successful!');
-          joinCourseForm.reset();
+          console.log('course follow successful!'); // joinCourseForm.reset();
+
           joinCourseModalOpen.value = false;
         }
       });
@@ -23376,7 +23376,7 @@ var _hoisted_9 = {
   key: 1
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _$props$announcement, _$props$announcement2, _$props$announcement3, _$props$announcement4, _$props$announcement5, _$props$announcement6;
+  var _$props$announcement, _$props$announcement2, _$props$announcement3, _$props$announcement4, _$props$announcement5, _$props$announcement6, _$props$announcement7;
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
     onMouseover: _cache[0] || (_cache[0] = function ($event) {
@@ -23395,9 +23395,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "w-[40px] rounded-lg shadow-md"
   }, null, 8
   /* PROPS */
-  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement2 = $props.announcement) === null || _$props$announcement2 === void 0 ? void 0 : _$props$announcement2.prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement3 = $props.announcement) === null || _$props$announcement3 === void 0 ? void 0 : _$props$announcement3.name.split(' ')[1]), 1
+  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement2 = $props.announcement) === null || _$props$announcement2 === void 0 ? void 0 : _$props$announcement2.prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement3 = $props.announcement) === null || _$props$announcement3 === void 0 ? void 0 : (_$props$announcement4 = _$props$announcement3.name) === null || _$props$announcement4 === void 0 ? void 0 : _$props$announcement4.split(' ')[1]), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement4 = $props.announcement) === null || _$props$announcement4 === void 0 ? void 0 : _$props$announcement4.body), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$announcement5 = $props.announcement) === null || _$props$announcement5 === void 0 ? void 0 : _$props$announcement5.body), 1
   /* TEXT */
   )])]), $setup.announcementButtonsSeen && $props.user[0].id === $props.course[0].user_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-edit",
@@ -23405,9 +23405,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-closing-x-circle",
     "class": "opacity-50 hover:opacity-100 scale-75"
-  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$setup.exactTimeSeen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.DateTime.fromISO((_$props$announcement5 = $props.announcement) === null || _$props$announcement5 === void 0 ? void 0 : _$props$announcement5.created_at).toFormat('FF')), 1
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$setup.exactTimeSeen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.DateTime.fromISO((_$props$announcement6 = $props.announcement) === null || _$props$announcement6 === void 0 ? void 0 : _$props$announcement6.created_at).toFormat('FF')), 1
   /* TEXT */
-  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayjs((_$props$announcement6 = $props.announcement) === null || _$props$announcement6 === void 0 ? void 0 : _$props$announcement6.created_at).fromNow()), 1
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayjs((_$props$announcement7 = $props.announcement) === null || _$props$announcement7 === void 0 ? void 0 : _$props$announcement7.created_at).fromNow()), 1
   /* TEXT */
   ))])], 32
   /* HYDRATE_EVENTS */
@@ -26556,7 +26556,7 @@ var _hoisted_33 = {
 };
 var _hoisted_34 = ["placeholder"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _$setup$currentCourse2, _$setup$currentCourse3, _$setup$currentCourse4, _$setup$currentCourse5, _$setup$currentCourse6, _$props$course$, _$props$course$$annou, _$props$course$2;
+  var _$setup$currentCourse2, _$setup$currentCourse3, _$setup$currentCourse4, _$setup$currentCourse5, _$setup$currentCourse6, _$setup$currentCourse7, _$props$course$, _$props$course$$annou, _$props$course$2;
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.coursesArray, function (course) {
     var _$setup$currentCourse;
@@ -26638,7 +26638,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, "(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse3 = $setup.currentCourse) === null || _$setup$currentCourse3 === void 0 ? void 0 : _$setup$currentCourse3.section) + ")", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse4 = $setup.currentCourse) === null || _$setup$currentCourse4 === void 0 ? void 0 : _$setup$currentCourse4.admin_prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse5 = $setup.currentCourse) === null || _$setup$currentCourse5 === void 0 ? void 0 : _$setup$currentCourse5.admin_name.split(" ")[1]), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse4 = $setup.currentCourse) === null || _$setup$currentCourse4 === void 0 ? void 0 : _$setup$currentCourse4.admin_prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse5 = $setup.currentCourse) === null || _$setup$currentCourse5 === void 0 ? void 0 : (_$setup$currentCourse6 = _$setup$currentCourse5.admin_name) === null || _$setup$currentCourse6 === void 0 ? void 0 : _$setup$currentCourse6.split(" ")[1]), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "hidden xl:flex w-fit whitespace-nowrap",
@@ -26651,7 +26651,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: $setup.copyText,
     "class": "w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse6 = $setup.currentCourse) === null || _$setup$currentCourse6 === void 0 ? void 0 : _$setup$currentCourse6.keycode), 1
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$currentCourse7 = $setup.currentCourse) === null || _$setup$currentCourse7 === void 0 ? void 0 : _$setup$currentCourse7.keycode), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-clipboard-copy",

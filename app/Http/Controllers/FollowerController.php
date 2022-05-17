@@ -11,10 +11,22 @@ class FollowerController extends Controller
     {
         $course->followers()->create(array_merge($request->validated(), [
             'user_id' => $request->user()->id,
-            'course_id' => $course->where('keycode', $request->input('keycode'))->pluck('id')->get('id'),
+            'course_id' => $course->where('keycode', $request->input('keycode'))->get()[0]->id,
         ]));
         return back();
     }
+
+//    public function store(StoreFollowRequest $request, Course $course)
+//    {
+//        $course_id = $course->where('keycode', $request->input('keycode'))->get()[0]->id;
+//
+//        $course->followers()->create(array_merge($request->validated(), [
+//            'user_id' => $request->user()->id,
+//            'course_id' => $course_id,
+//        ]));
+//
+//        return back();
+//    }
 }
 
 //KZzBQBpo0bjV2I5CDkJr

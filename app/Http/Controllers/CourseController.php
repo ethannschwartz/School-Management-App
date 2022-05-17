@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
+use App\Models\Follower;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -11,12 +13,21 @@ use Inertia\Inertia;
 
 class CourseController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, Course $course, Follower $follower)
     {
-        return Inertia::render('Courses', [
-            'user' => $request->user()->with('courses')->where('id', Auth::id())->get(),
-            'course' => $request->user()->courses()->with('announcements', 'assignments')->get(),
-        ]);
+        if(Auth::user()->account_type === 'teacher')
+        {
+            return Inertia::render('Courses', [
+                'user' => $request->user()->with('courses')->where('id', Auth::id())->get(),
+                'course' => $request->user()->courses()->with('announcements', 'assignments')->get(),
+            ]);
+        } else {
+//            dd($request->user()->courses()->followers()->get());
+//            return Inertia::render('Courses', [
+//                'user' => $request->user()->with('courses')->where('id', Auth::id())->get(),
+//                'course' => $follower->where('user_id', Auth::id())->get('course_id'),
+//            ]);
+        }
     }
 
     public function store(StoreCourseRequest $request)
@@ -38,10 +49,4 @@ class CourseController extends Controller
         ]);
     }
 
-    public function find(Request $request, Course $course)
-    {
-        return Inertia::render('Courses', [
-            'keycode_search_results' => $course->where('keycode', $request->input('keycode'))->get(),
-        ]);
-    }
 }

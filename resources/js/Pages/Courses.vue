@@ -56,7 +56,7 @@
                 <section class="w-full h-full">
                     <header class="w-full bg-gray-200 p-4">
                         <h1 class="text-3xl capitalize">{{ currentCourse?.title }} <span class="text-slate-500 text-2xl">({{ currentCourse?.section }})</span></h1>
-                        <h2 class="text-xl">{{ currentCourse?.admin_prefix }} {{ currentCourse?.admin_name.split(" ")[1] }}</h2>
+                        <h2 class="text-xl">{{ currentCourse?.admin_prefix }} {{ currentCourse?.admin_name?.split(" ")[1] }}</h2>
 
                         <div class="flex whitespace-nowrap w-fit">
                             <div class="hidden xl:flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
@@ -257,7 +257,7 @@ const joinCourse = () => {
     joinCourseForm.post(route('courses.follower.store', joinCourseForm.keycode), {
         onSuccess: () => {
             console.log('course follow successful!');
-            joinCourseForm.reset();
+            // joinCourseForm.reset();
             joinCourseModalOpen.value = false;
         },
     });

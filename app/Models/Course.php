@@ -27,7 +27,7 @@ class Course extends Model
 
     public function followers()
     {
-        return $this->hasMany(Follower::class);
+        return $this->belongsTo(Follower::class);
     }
 
     public function announcements()
