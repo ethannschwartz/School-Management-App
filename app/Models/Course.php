@@ -25,9 +25,9 @@ class Course extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function followers()
+    public function follow()
     {
-        return $this->belongsTo(Follower::class);
+        return $this->belongsToMany(Follow::class);
     }
 
     public function announcements()

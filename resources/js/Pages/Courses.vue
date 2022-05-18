@@ -11,7 +11,7 @@
                     </header>
 
                     <ul class="w-[250px]">
-                        <li v-for="course in coursesArray" class="relative">
+                        <li v-for="course in courses" class="relative">
                             <Link :only="['course']"
                                   @click="currentCourse = course"
                                   preserve-state
@@ -196,9 +196,9 @@ import ResourcesSection from "@/Components/CourseElements/ResourcesSection";
 import ExamsSection from "@/Components/CourseElements/ExamsSection";
 import HoursSection from "@/Components/CourseElements/HoursSection";
 
-const props = defineProps(['course', 'user']);
+const props = defineProps(['user', 'courses', 'course']);
 const accountType = props.user[0].account_type;
-const coursesArray = props.user[0].courses
+const coursesArray = props.user[0].courses;
 
 let currentCourse = ref(props.course[0]);
 

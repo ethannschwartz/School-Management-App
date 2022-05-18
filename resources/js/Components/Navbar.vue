@@ -74,7 +74,7 @@ const navLinks = [
     {
         id: 3,
         title: 'Schedule',
-        route: 'groups.index',
+        route: 'schedule.index',
     },
     {
         id: 4,

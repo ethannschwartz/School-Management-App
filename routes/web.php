@@ -38,8 +38,14 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::post('/courses/{course}/assignments', [\App\Http\Controllers\AssignmentController::class, 'store'])->name('assignments.store');
 
 //    Route::get('/courses/followers', [\App\Http\Controllers\CourseController::class, 'index'])->name('follower.index');
-    Route::post('/courses/{keycode}', [\App\Http\Controllers\FollowerController::class, 'store'])->name('follower.store');
+    Route::post('/courses/{keycode}', [\App\Http\Controllers\FollowController::class, 'store'])->name('follower.store');
 
+});
+
+Route::middleware(['auth', 'verified'])->name('schedule.')->group(function() {
+    Route::get('/schedule', function (){
+        return Inertia::render('Schedule');
+    })->name('index');
 });
 
 Route::middleware(['auth', 'verified'])->name('profile.')->group(function() {
