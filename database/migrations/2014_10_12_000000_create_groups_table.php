@@ -15,12 +15,9 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('description');
-            $table->unsignedBigInteger('user_id');
-            $table->string('admin_prefix')->nullable();
-            $table->string('admin_name');
-            $table->string('admin_email');
             $table->string('keycode');
 
             $table->timestamps();

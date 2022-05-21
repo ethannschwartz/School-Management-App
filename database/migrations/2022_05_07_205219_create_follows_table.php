@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('follows', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('followers');
+        Schema::dropIfExists('follows');
     }
 };

@@ -11,21 +11,20 @@ use Inertia\Inertia;
 
 class CourseController extends Controller
 {
-    public function index(Request $request, Course $course)
+    public function index(Request $request)
     {
         if(Auth::user()->account_type === 'teacher')
         {
             return Inertia::render('Courses', [
-                'user' => $request->user()->with('courses')->where('id', Auth::id())->get(),
+                'user' => Auth::user(),
+                'course' => $request->user()->courses()->with('announcements', 'assignments')->first(),
                 'courses' => $request->user()->courses()->get(),
-                'course' => $request->user()->courses()->with('announcements', 'assignments')->get(),
             ]);
         } else {
             return Inertia::render('Courses', [
-//                'user' => $request->user()->where('id', Auth::id())->get(),
-                'user' => $request->user()->with('courses')->where('id', Auth::id())->get(),
-
-                'course' => $request->user()->follows()->where('user_id', Auth::id())->get()
+                'user' => Auth::user(),
+                'course' => $request->user()->follows()->get(),
+                'courses' => $request->user()->courses()->get(),
             ]);
         }
     }
@@ -43,22 +42,22 @@ class CourseController extends Controller
 
     public function show(Request $request, Course $course)
     {
-        if(Auth::user()->account_type === 'teacher') {
+
+        if(Auth::user()->account_type === 'teacher' && $course->user_id === $request->user()->getKey()) {
             return Inertia::render('Courses', [
-                'user' => $request->user()->where('id', Auth::id())->get(),
+                'user' => Auth::user(),
+                'course' => $course->with('announcements', 'assignments')->where('id', $course->getKey())->get()[0],
                 'courses' => $request->user()->courses()->get(),
-                'course' => $course->with('announcements', 'assignments')->where('id', $course->id)->get(),
+            ]);
+        } else if(Auth::user()->account_type === 'student') {
+            return Inertia::render('Courses', [
+                'user' => Auth::user(),
+                'course' => $course->with('announcements', 'assignments')->findOrFail($course->getKey()),
+                'courses' => $course->follows()->where('user_id', Auth::id())->get(),
             ]);
         } else {
-            dd($course->follows()->getParent());
-//            return Inertia::render('Courses', [
-//                'user' => $request->user()->where('id', Auth::id())->get(),
-//                'course' => $course->with('announcements', 'assignments')->where('id', $course->id)->get(),
-//                'course' => $request->user()->follows()->with('course')->where('user_id', Auth::id())->findOrFail($course->id),
-//                'course' => $course->follows()->where('user_id', Auth::id())->getParent(),
-//            ]);
+            dd('You are not subscribed do this page.');
         }
-
     }
 
 }

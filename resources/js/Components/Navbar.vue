@@ -22,7 +22,7 @@
             <div class="flex gap-8 items-center justify-end relative flex-grow basis-1/4">
                 <h2 class="flex justify-end items-center  cursor-pointer" v-if="user" @click="profileDropdownSeen =! profileDropdownSeen">
                     <BaseSvg name="icon-profile" class="scale-[35%] lg:scale-50 fill-slate-600" />
-                    {{ user[0].name }}
+                    {{ user.name }}
                 </h2>
                 <transition name="appear">
                     <form v-if="profileDropdownSeen" class="absolute -bottom-10 shadow-xl border-[1px] bg-gray-100 hover:bg-gray-200 rounded-md" action="/login">
@@ -89,11 +89,6 @@ const navLinks = [
 ];
 
 let currentPage = ref(navLinks[0]);
-
 const profileDropdownSeen = ref(false);
-
-
-
-
 
 </script>

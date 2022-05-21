@@ -4,36 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGroupRequest;
 use App\Models\Group;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class GroupController extends Controller
 {
-    function index(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    function index(Request $request): Response
     {
         return Inertia::render('Groups', [
-            'user' => $request->user()->with('groups')->where('id', Auth::id())->get(),
+            'user' => Auth::user(),
+            'group' => $request->user()->groups()->with('user')->where('user_id', Auth::id())->first(),
+            'groups' => $request->user()->groups()->get(),
         ]);
     }
 
-    public function store(StoreGroupRequest $request)
+    /**
+     * @param StoreGroupRequest $request
+     * @return RedirectResponse
+     */
+    public function store(StoreGroupRequest $request): RedirectResponse
     {
         $request->user()->groups()->create(array_merge($request->validated(), [
             'keycode' => Str::random(20),
-            'admin_prefix' => Auth::user()->prefix,
-            'admin_name' => Auth::user()->name,
-            'admin_email' => Auth::user()->email,
         ]));
         return back();
     }
 
-    public function show(Request $request, Group $group)
+    /**
+     * @param Request $request
+     * @param Group $group
+     * @return Response
+     */
+    public function show(Request $request, Group $group): Response
     {
         return Inertia::render('Groups', [
-            'group' => $group,
-            'user' => $request->user()->with('groups')->where('id', Auth::id())->get(),
+            'user' => Auth::user(),
+            'group' => $group->with('user')->where('id', $group->getKey())->get()[0],
+            'groups' => $group->follow()->where('user_id',  Auth::id())->get(),
         ]);
     }
 }

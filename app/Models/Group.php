@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Group extends Model
 {
@@ -12,14 +15,24 @@ class Group extends Model
         'title',
         'description',
         'user_id',
-        'admin_prefix',
-        'admin_name',
-        'admin_email',
         'keycode',
     ];
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function follow(): BelongsToMany
+    {
+        return $this->BelongsToMany(Follow::class, 'user_id');
+    }
+
+
 }

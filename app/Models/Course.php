@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Course extends Model
 {
@@ -20,22 +21,34 @@ class Course extends Model
         'keycode',
     ];
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function follow()
+    /**
+     * @return BelongsTo
+     */
+    public function follow(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsToMany(Follow::class);
+        return $this->belongsTo(Follow::class);
     }
 
-    public function announcements()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function announcements(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Announcement::class)->orderBy('created_at', 'desc');
     }
 
-    public function assignments()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assignments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Assignment::class)->orderBy('created_at', 'desc');
     }
