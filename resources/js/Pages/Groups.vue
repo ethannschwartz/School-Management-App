@@ -11,7 +11,7 @@
                     </header>
 
                     <ul class="w-[250px]">
-                        <li v-for="group in groups" class="relative">
+                        <li v-for="group in followings" class="relative">
                             <Link :only="['group']"
                                   @click="isGroup = group"
                                   preserve-state
@@ -207,7 +207,7 @@ const createGroup = () => {
 };
 
 const postAnnouncement = () => {
-    announcementForm.post(route('group.announcements.store', props.group.id), {
+    announcementForm.post(route('group.announcements.store', props.group?.id), {
         onSuccess: () => {
             console.log('Announcement posted successfully!');
             announcementForm.reset();
