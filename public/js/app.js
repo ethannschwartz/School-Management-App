@@ -23210,7 +23210,7 @@ __webpack_require__.r(__webpack_exports__);
       description: null
     });
     var joinGroupForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-      keycode: null
+      keycode: '1jsmgqzF4oiL1USUbvL9'
     });
     var announcementForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       body: null

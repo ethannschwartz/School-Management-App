@@ -29,10 +29,9 @@ class Group extends Model
     /**
      * @return BelongsToMany
      */
-    public function follow(): BelongsToMany
+    public function followers(): BelongsToMany
     {
-        return $this->BelongsToMany(Follow::class, 'user_id');
+        return $this->belongsToMany(User::class, 'group_user','user_id', 'keycode')->withTimestamps();
     }
-
 
 }

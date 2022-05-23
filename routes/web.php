@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
 
     Route::post('/courses/{course}/assignments', [\App\Http\Controllers\AssignmentController::class, 'store'])->name('assignments.store');
 
-    Route::post('/courses/{keycode}', [\App\Http\Controllers\FollowController::class, 'store_course_follow'])->name('course_follower.store');
+//    Route::post('/courses/{keycode}', [\App\Http\Controllers\GroupController::class, 'store_course_follow'])->name('course_follower.store');
 });
 
 Route::middleware(['auth', 'verified'])->name('groups.')->group(function() {
@@ -47,7 +47,7 @@ Route::middleware(['auth', 'verified'])->name('groups.')->group(function() {
     Route::post('/groups', [\App\Http\Controllers\GroupController::class, 'store'])->name('store');
     Route::get('/groups/{group}', [\App\Http\Controllers\GroupController::class, 'show'])->name('show');
 
-    Route::post('/groups/{keycode}', [\App\Http\Controllers\FollowController::class, 'store_group_follow'])->name('group_follower.store');
+    Route::post('/groups/{keycode}', [\App\Http\Controllers\GroupController::class, 'store_follow'])->name('group_follower.store');
 });
 
 Route::middleware(['auth', 'verified'])->name('schedule.')->group(function() {
@@ -58,8 +58,6 @@ Route::middleware(['auth', 'verified'])->name('schedule.')->group(function() {
 
 Route::middleware(['auth', 'verified'])->name('profile.')->group(function() {
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('index');
-    Route::get('/profile', [\App\Http\Controllers\FileController::class, 'index'])->name('index');
-    Route::post('/profile', [\App\Http\Controllers\FileController::class, 'store'])->name('store');
 });
 
 

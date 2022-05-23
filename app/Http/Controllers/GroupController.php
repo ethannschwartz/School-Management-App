@@ -48,7 +48,17 @@ class GroupController extends Controller
         return Inertia::render('Groups', [
             'user' => Auth::user(),
             'group' => $group->with('user')->where('id', $group->getKey())->get()[0],
-            'groups' => $group->follow()->where('user_id',  Auth::id())->get(),
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Group $group
+     * @return RedirectResponse
+     */
+    public function store_follow(Request $request, Group $group): RedirectResponse
+    {
+        $group->followers()->attach(Auth::id());
+        return back();
     }
 }

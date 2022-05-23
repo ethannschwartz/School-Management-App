@@ -187,7 +187,7 @@ const createGroupForm = useForm({
 });
 
 const joinGroupForm = useForm({
-    keycode: null,
+    keycode: '1jsmgqzF4oiL1USUbvL9',
 });
 
 const announcementForm = useForm({
@@ -228,5 +228,3 @@ const joinGroup = () => {
 const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
 
 </script>
-
-<!--KZzBQBpo0bjV2I5CDkJr-->
