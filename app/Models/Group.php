@@ -31,7 +31,7 @@ class Group extends Model
      */
     public function followers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'group_user','user_id', 'keycode')->withTimestamps();
+        return $this->belongsToMany(User::class, 'group_user','user_id', 'group_id')->withTimestamps();
     }
 
 }

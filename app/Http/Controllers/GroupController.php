@@ -23,6 +23,7 @@ class GroupController extends Controller
             'user' => Auth::user(),
             'group' => $request->user()->groups()->with('user')->where('user_id', Auth::id())->first(),
             'groups' => $request->user()->groups()->get(),
+            'followings' => $request->user()->followings()->get(),
         ]);
     }
 
@@ -53,11 +54,11 @@ class GroupController extends Controller
 
     /**
      * @param Request $request
-     * @param Group $group
      * @return RedirectResponse
      */
-    public function store_follow(Request $request, Group $group): RedirectResponse
+    public function store_follow(Request $request): RedirectResponse
     {
+        $group = Group::all()->where('keycode', $request->input('keycode'))[0];
         $group->followers()->attach(Auth::id());
         return back();
     }

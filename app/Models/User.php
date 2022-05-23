@@ -81,11 +81,11 @@ class User extends Authenticatable
     }
 
     /**
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function followings(): HasMany
+    public function followings(): BelongsToMany
     {
-        return $this->hasMany(Group::class, 'keycode', 'user_id');
+        return $this->belongsToMany(Group::class, 'group_user', 'group_id', 'user_id');
     }
 
 }

@@ -23197,7 +23197,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['user', 'group', 'groups'],
+  props: ['user', 'group', 'groups', 'followings'],
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();

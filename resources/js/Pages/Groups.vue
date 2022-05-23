@@ -174,7 +174,7 @@ import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
 import AnnouncementCard from "@/Components/AnnouncementCard";
 
-const props = defineProps(['user', 'group', 'groups']);
+const props = defineProps(['user', 'group', 'groups', 'followings']);
 const accountType = props.user.account_type;
 
 const isGroup = ref(props.group);
