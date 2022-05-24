@@ -11,7 +11,7 @@
                     </header>
 
                     <ul class="w-[250px]">
-                        <li v-for="group in followings" class="relative">
+                        <li v-for="group in groups" class="relative">
                             <Link :only="['group']"
                                   @click="isGroup = group"
                                   preserve-state
@@ -134,13 +134,13 @@
 <style scoped>
 .expand-enter-from, .expand-leave-to {
     opacity:0;
-    transform: scaleX(0.5) ;
+    transform: translateX(-100%) ;
     transform-origin: left;
 }
 
 .expand-enter-to, .expand-leave-from {
     opacity:1;
-    transform: scaleX(1);
+    transform: translateX(0);
     transform-origin: left;
 }
 

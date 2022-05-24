@@ -20,19 +20,23 @@
                                   :href="route('courses.show', course?.id)"
                             >
                                 {{ course?.title }} ({{ course?.section }})
-                                <button class="hover:bg-teal-700 px-2 rounded-md" v-if="isCourse.id === course?.id && user.id === course?.user_id" @click="settingsOpen = !settingsOpen">•••</button>
+                                <button class="hover:bg-teal-700 px-2 rounded-md" v-if="isCourse?.id === course?.id && user.id === course?.user_id" @click="settingsOpen = !settingsOpen">•••</button>
                             </Link>
 
                             <transition name="expand">
                                 <ul v-if="isCourse === course && settingsOpen" class="absolute -right-[140px] top-0 bg-slate-700 shadow-md">
-                                    <Link class="flex justify-between items-center w-[140px] text-white capitalize block p-2 bg-slate-700 hover:bg-slate-800 hover:cursor-pointer">
-                                        Edit
-                                        <BaseSvg name="icon-edit" class="fill-slate-100 scale-75" />
-                                    </Link>
-                                    <Link class="flex justify-between items-center w-[140px] text-white capitalize block p-2 bg-slate-700 hover:bg-slate-800 hover:cursor-pointer">
-                                        Delete
-                                        <BaseSvg name="icon-delete" class="fill-slate-100 scale-75" />
-                                    </Link>
+                                    <li>
+                                        <Link class="flex justify-between items-center w-[140px] text-white capitalize block p-2 bg-slate-700 hover:bg-slate-800 hover:cursor-pointer">
+                                            Edit
+                                            <BaseSvg name="icon-edit" class="fill-slate-100 scale-75" />
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link class="flex justify-between items-center w-[140px] text-white capitalize block p-2 bg-slate-700 hover:bg-slate-800 hover:cursor-pointer">
+                                            Delete
+                                            <BaseSvg name="icon-delete" class="fill-slate-100 scale-75" />
+                                        </Link>
+                                    </li>
                                 </ul>
                             </transition>
                         </li>
@@ -56,24 +60,34 @@
                 <section class="w-full h-full">
                     <header class="w-full bg-gray-200 p-4">
                         <h1 class="text-3xl capitalize">{{ course?.title }} <span class="text-slate-500 text-2xl">({{ course?.section }})</span></h1>
-                        <h2 class="text-xl">{{ course?.admin_prefix }} {{ course?.admin_name?.split(" ")[1] }}</h2>
+                        <h2 class="text-xl">{{ course?.user.prefix }} {{ course?.user.name?.split(" ")[1] }}</h2>
 
-                        <div class="flex whitespace-nowrap w-fit">
+                        <div v-if="user.account_type === 'teacher' " class="flex whitespace-nowrap w-fit">
                             <div class="hidden xl:flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
                                 <button @click="copyText" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ course?.keycode }}</button>
                                 <BaseSvg name="icon-clipboard-copy" class="ml-2 opacity-50 scale-75" />
                             </div>
                             <HintTransition :hint-seen="copyHintSeen" name="fade">Click to Copy</HintTransition>
                         </div>
+
+                        <div v-else class="flex whitespace-nowrap w-fit">
+                            <div class="hidden xl:flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
+                                <a :href="`mailTo:${course?.user.email}`" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ course?.user.email }}</a>
+                                <BaseSvg name="icon-mail-envelope" class="ml-2 opacity-50 scale-75" />
+                            </div>
+                            <HintTransition :hint-seen="copyHintSeen" name="fade">Email {{ course?.user.prefix }} {{ course?.user.name.split(' ')[1]}}</HintTransition>
+                        </div>
                     </header>
 
                     <div class="flex justify-between gap-[16px] m-6">
                         <article class="w-1/2 pr-4 h-[400px] border-r-[1px]">
                             <header class="flex items-center justify-between px-[8px]">
-                                <h2 class="text-xl tracking-wider text-slate-600">Announcements</h2>
-                                <button class="text-slate-500" @click="announcementModalSeen = !announcementModalSeen">
-                                    <BaseSvg name="icon-add-box" class="opacity-75 hover:opacity-100 fill-slate-700" />
-                                </button>
+                                <h2 class="text-[18px] tracking-wider text-slate-600">Announcements</h2>
+                                <div>
+                                    <button v-if="user.account_type === 'teacher'" class="text-slate-500" @click="announcementModalSeen = !announcementModalSeen">
+                                        <BaseSvg name="icon-add-box" class="opacity-75 hover:opacity-100 fill-slate-700" />
+                                    </button>
+                                </div>
                             </header>
 
                             <ul class="z-0 h-full overflow-y-scroll p-2">
@@ -97,7 +111,7 @@
                             </header>
 
                                 <div>
-                                    <header class="text-slate-600 mt-[1em] text-left text-[23px]">
+                                    <header class="text-slate-600 mt-[1em] text-left text-[18px]">
                                         <h1>{{ currentElement }}</h1>
                                     </header>
                                     <div class="flex overflow-visible">
@@ -196,13 +210,12 @@ import ResourcesSection from "@/Components/CourseElements/ResourcesSection";
 import ExamsSection from "@/Components/CourseElements/ExamsSection";
 import HoursSection from "@/Components/CourseElements/HoursSection";
 
-const props = defineProps(['user', 'course', 'courses']);
+const props = defineProps(['user', 'course', 'courses', 'course_followings']);
+const courseElements = ['Assignments', 'Resources', 'Exams', 'Office Hours'];
+
 const accountType = props.user.account_type;
 
 const isCourse = ref(props.course);
-
-const courseElements = ['Assignments', 'Resources', 'Exams', 'Office Hours'];
-
 let currentElement = ref(courseElements[0]);
 
 const copyHintSeen = ref(false);
@@ -238,7 +251,7 @@ const createCourse = () => {
 };
 
 const postAnnouncement = () => {
-    announcementForm.post(route('courses.announcements.store', props.course.id), {
+    announcementForm.post(route('courses.announcements.store', props.course?.id), {
         onSuccess: () => {
             console.log('Announcement posted successfully!');
             announcementForm.reset();
@@ -248,10 +261,10 @@ const postAnnouncement = () => {
 };
 
 const joinCourse = () => {
-    joinCourseForm.post(route('courses.follower.store', joinCourseForm.keycode), {
+    joinCourseForm.post(route('courses.course_follower.store', joinCourseForm.keycode), {
         onSuccess: () => {
             console.log('course follow successful!');
-            // joinCourseForm.reset();
+            joinCourseForm.reset();
             joinCourseModalOpen.value = false;
         },
     });
@@ -260,5 +273,3 @@ const joinCourse = () => {
 const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
 
 </script>
-
-<!--KZzBQBpo0bjV2I5CDkJr-->

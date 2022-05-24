@@ -7,7 +7,6 @@ use App\Http\Requests\StoreAnnouncementRequest;
 use App\Models\Announcement;
 use App\Models\Course;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 
 class AnnouncementController extends Controller
 {
@@ -20,8 +19,6 @@ class AnnouncementController extends Controller
     {
         $request->user()->announcements()->create(array_merge($request->validated(), [
             'course_id' => $course->getKey(),
-            'prefix'     => Auth::user()->prefix,
-            'name'      => Auth::user()->name,
         ]));
         return back();
     }

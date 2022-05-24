@@ -34,12 +34,11 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'store'])->name('store');
     Route::get('/courses/{course}', [\App\Http\Controllers\CourseController::class, 'show'])->name('show');
 
+    Route::post('/courses/{keycode}', [\App\Http\Controllers\CourseController::class, 'store_course_follow'])->name('course_follower.store');
+
     Route::post('/courses/{course}/announcements', [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store');
     Route::delete('/announcements/{announcement}', [\App\Http\Controllers\AnnouncementController::class, 'destroy'])->name('announcements.delete');
-
     Route::post('/courses/{course}/assignments', [\App\Http\Controllers\AssignmentController::class, 'store'])->name('assignments.store');
-
-//    Route::post('/courses/{keycode}', [\App\Http\Controllers\GroupController::class, 'store_course_follow'])->name('course_follower.store');
 });
 
 Route::middleware(['auth', 'verified'])->name('groups.')->group(function() {

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Course extends Model
 {
@@ -15,9 +17,6 @@ class Course extends Model
         'code',
         'description',
         'user_id',
-        'admin_prefix',
-        'admin_name',
-        'admin_email',
         'keycode',
     ];
 
@@ -30,26 +29,28 @@ class Course extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return HasMany
      */
-    public function follow(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function announcements(): HasMany
     {
-        return $this->belongsTo(Follow::class);
+        return $this->hasMany(Announcement::class)->with('user')->orderBy('created_at', 'desc');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function announcements(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Announcement::class)->orderBy('created_at', 'desc');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function assignments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function assignments(): HasMany
     {
         return $this->hasMany(Assignment::class)->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function course_followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'course_user','user_id', 'course_id')
+            ->with('announcements', 'assignments')
+            ->withTimestamps();
     }
 }

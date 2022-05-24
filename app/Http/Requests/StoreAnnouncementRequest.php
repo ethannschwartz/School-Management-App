@@ -12,7 +12,7 @@ class StoreAnnouncementRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return $this->route('course')->user_id === $this->user()->getKey();
     }

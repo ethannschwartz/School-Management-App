@@ -4,7 +4,7 @@
             <div class="flex gap-2 items-start">
                 <img draggable="false" :src="`https://i.pravatar.cc/150?img=${announcement?.user_id + 17}`" alt="pro-pic" class="w-[40px] rounded-lg shadow-md">
                 <div>
-                    <h2 class="font-bold text-slate-600">{{ announcement?.prefix }} {{ announcement?.name?.split(' ')[1] }}</h2>
+                    <h2 class="font-bold text-slate-600">{{ announcement.user.prefix }} {{ announcement.user.name.split(' ')[1] }}</h2>
 
                     <form v-if="isEditing" class="w-full flex items-center gap-2">
                         <input type="text" :value="announcement?.body" autofocus class="rounded-md my-[0.8em] h-[32px]" />
@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div v-if="announcementButtonsSeen && (user.id === course.user_id )" class="flex">
+            <div v-if="announcementButtonsSeen && (announcement.user_id === user.id)" class="flex">
                 <button @click="isEditing = !isEditing">
                     <BaseSvg name="icon-edit" class="opacity-50 hover:opacity-100 scale-75" />
                 </button>

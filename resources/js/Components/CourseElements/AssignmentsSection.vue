@@ -13,7 +13,7 @@
                 </div>
             </transition>
         </div>
-        <div class="text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]">
+        <div v-if="user.account_type ==='teacher'" class="text-slate-600 border-slate-400 border-[1px] border-b-0 last-of-type:border-b-[1px]">
             <button @click="assignmentModalSeen = !assignmentModalSeen" class="flex items-center justify-center gap-1 w-full h-full opacity-60 hover:opacity-100 hover:bg-slate-200 active:bg-slate-300 p-2">
                 <span>Create Assignment</span>
                 <BaseSvg name="icon-plus-sign" class="fill-slate-600 duration-200" />
@@ -77,7 +77,7 @@ const assignmentForm = useForm({
 });
 
 const createAssignment = () => {
-    assignmentForm.post(route('courses.assignments.store', props.course[0].id), {
+    assignmentForm.post(route('courses.assignments.store', props.course?.id), {
         onSuccess: () => {
             console.log('Assignment posted successfully!');
             assignmentForm.reset();

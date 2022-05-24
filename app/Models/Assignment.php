@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Assignment extends Model
 {
@@ -18,12 +19,18 @@ class Assignment extends Model
         'course_id',
     ];
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function course()
+    /**
+     * @return BelongsTo
+     */
+    public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
     }

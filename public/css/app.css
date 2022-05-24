@@ -823,6 +823,9 @@ select {
   height: -moz-fit-content;
   height: fit-content;
 }
+.h-2\/3 {
+  height: 66.666667%;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -887,6 +890,9 @@ select {
 }
 .w-3\/4 {
   width: 75%;
+}
+.w-2\/3 {
+  width: 66.666667%;
 }
 .max-w-xl {
   max-width: 36rem;
@@ -1132,6 +1138,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(148 163 184 / var(--tw-border-opacity));
 }
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1186,6 +1196,14 @@ select {
 }
 .bg-gray-900\/30 {
   background-color: rgb(17 24 39 / 0.3);
+}
+.bg-purple-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(147 51 234 / var(--tw-bg-opacity));
+}
+.bg-slate-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 .fill-slate-600 {
   fill: #475569;
@@ -1355,6 +1373,9 @@ select {
 }
 .text-\[23px\] {
   font-size: 23px;
+}
+.text-\[35px\] {
+  font-size: 35px;
 }
 .font-medium {
   font-weight: 500;

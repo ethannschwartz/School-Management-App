@@ -21,7 +21,7 @@ class GroupController extends Controller
     {
         return Inertia::render('Groups', [
             'user' => Auth::user(),
-            'group' => $request->user()->groups()->with('user')->where('user_id', Auth::id())->first(),
+            'group' => $request->user()->groups()->with('user')->first(),
             'groups' => $request->user()->groups()->get(),
             'followings' => $request->user()->followings()->get(),
         ]);
@@ -46,10 +46,18 @@ class GroupController extends Controller
      */
     public function show(Request $request, Group $group): Response
     {
-        return Inertia::render('Groups', [
-            'user' => Auth::user(),
-            'group' => $group->with('user')->where('id', $group->getKey())->get()[0],
-        ]);
+        if($group->user_id === Auth::id()){
+            return Inertia::render('Groups', [
+                'user' => Auth::user(),
+                'group' => $group->with('user')->where('id', $group->getKey())->first(),
+                'groups' => $request->user()->groups()->get(),
+            ]);
+        } else {
+            return Inertia::render('GroupUnauthorized', [
+                'user' => Auth::user(),
+                'group' => $group->with('user')->where('id', $group->getKey())->first(),
+            ]);
+        }
     }
 
     /**

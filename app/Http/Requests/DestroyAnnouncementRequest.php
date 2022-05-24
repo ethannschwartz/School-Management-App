@@ -14,7 +14,7 @@ class DestroyAnnouncementRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->route('announcement')->user_id === $this->user()->getKey();
     }
 
     /**
