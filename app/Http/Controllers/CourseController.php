@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,12 +25,15 @@ class CourseController extends Controller
                 'user' => Auth::user(),
                 'course' => $request->user()->courses()->with('announcements', 'assignments', 'user')->first(),
                 'courses' => $request->user()->courses()->get(),
+                'students' => $request->user()->courses()->first()->course_followers()->get(),
             ]);
         } else {
+            dd($request->user()->course_followings()->get());
             return Inertia::render('Courses', [
                 'user' => Auth::user(),
-                'course' => $request->user()->course_followings()->with('announcements', 'assignments', 'user')->first(),
-                'courses' => $request->user()->course_followings()->get(),
+                'course' => $request->user()->courses()->first(),
+//                'course' => $request->user()->courses()->course_followings()->with('announcements', 'assignments', 'user')->first(),
+//                'courses' => $request->user()->course_followings()->get(),
             ]);
         }
     }
@@ -58,12 +62,13 @@ class CourseController extends Controller
                 'user' => Auth::user(),
                 'course' => $course->with('announcements', 'assignments', 'user')->where('id', $course->getKey())->first(),
                 'courses' => $request->user()->courses()->get(),
+                'students' => $course->course_followers()->get(),
             ]);
         } else {
             return Inertia::render('Courses', [
                 'user' => Auth::user(),
                 'course' => $course->with('announcements', 'assignments', 'user')->where('id', $course->getKey())->first(),
-                'courses' => $request->user()->course_followings()->get(),
+                'courses' => $request->user()->course_followers()->get(),
             ]);
         }
     }

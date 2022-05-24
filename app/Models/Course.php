@@ -49,7 +49,7 @@ class Course extends Model
      */
     public function course_followers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'course_user','user_id', 'course_id')
+        return $this->belongsToMany(User::class, 'course_user','course_id', 'user_id')
             ->with('announcements', 'assignments')
             ->withTimestamps();
     }

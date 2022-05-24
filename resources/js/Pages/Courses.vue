@@ -210,7 +210,7 @@ import ResourcesSection from "@/Components/CourseElements/ResourcesSection";
 import ExamsSection from "@/Components/CourseElements/ExamsSection";
 import HoursSection from "@/Components/CourseElements/HoursSection";
 
-const props = defineProps(['user', 'course', 'courses', 'course_followings']);
+const props = defineProps(['user', 'course', 'courses', 'course_followings', 'students']);
 const courseElements = ['Assignments', 'Resources', 'Exams', 'Office Hours'];
 
 const accountType = props.user.account_type;
