@@ -28,7 +28,7 @@ class CourseController extends Controller
                 'students' => $request->user()->courses()->first()->course_followers()->get(),
             ]);
         } else {
-            dd($request->user()->course_followings()->get());
+//            dd($request->user()->course_followings()->get());
             return Inertia::render('Courses', [
                 'user' => Auth::user(),
                 'course' => $request->user()->courses()->first(),
