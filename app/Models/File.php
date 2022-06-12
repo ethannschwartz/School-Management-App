@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Announcement extends Model
+class File extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'body',
+        'title',
+        'path',
         'user_id',
-        'course_id'
+        'course_id',
     ];
 
     /**

@@ -31,26 +31,8 @@ class Course extends Model
     /**
      * @return HasMany
      */
-    public function announcements(): HasMany
+    public function files(): HasMany
     {
-        return $this->hasMany(Announcement::class)->with('user')->orderBy('created_at', 'desc');
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function assignments(): HasMany
-    {
-        return $this->hasMany(Assignment::class)->orderBy('created_at', 'desc');
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function course_followers(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'course_user','course_id', 'user_id')
-            ->with('announcements', 'assignments')
-            ->withTimestamps();
+        return $this->hasMany(File::class);
     }
 }

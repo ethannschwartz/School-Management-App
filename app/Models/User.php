@@ -55,45 +55,9 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
-
-    /**
-     * @return HasMany
-     */
-    public function groups(): HasMany
+    public function files(): HasMany
     {
-        return $this->hasMany(Group::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function announcements(): HasMany
-    {
-        return $this->hasMany(Announcement::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function assignments(): HasMany
-    {
-        return $this->hasMany(Assignment::class);
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function followings(): BelongsToMany
-    {
-        return $this->belongsToMany(Group::class, 'group_user', 'group_id', 'user_id');
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function course_followings(): BelongsToMany
-    {
-        return $this->belongsToMany(Course::class,'course_user', 'course_id', 'user_id');
+        return $this->hasMany(File::class);
     }
 
 }

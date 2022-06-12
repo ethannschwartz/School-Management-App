@@ -20,22 +20,11 @@ class CourseController extends Controller
      */
     public function index(Request $request): Response
     {
-        if ($request->user()->account_type === 'teacher') {
-            return Inertia::render('Courses', [
-                'user' => Auth::user(),
-                'course' => $request->user()->courses()->with('announcements', 'assignments', 'user')->first(),
-                'courses' => $request->user()->courses()->get(),
-                'students' => $request->user()->courses()->first()->course_followers()->get(),
-            ]);
-        } else {
-//            dd($request->user()->course_followings()->get());
-            return Inertia::render('Courses', [
-                'user' => Auth::user(),
-                'course' => $request->user()->courses()->first(),
-//                'course' => $request->user()->courses()->course_followings()->with('announcements', 'assignments', 'user')->first(),
-//                'courses' => $request->user()->course_followings()->get(),
-            ]);
-        }
+        return Inertia::render('Courses', [
+            'user' => Auth::user(),
+            'course' => $request->user()->courses()->with('user')->first(),
+            'courses' => $request->user()->courses()->get(),
+        ]);
     }
 
     /**
@@ -57,30 +46,10 @@ class CourseController extends Controller
      */
     public function show(Request $request, Course $course): Response
     {
-        if((Auth::user()->account_type === 'teacher')) {
-            return Inertia::render('Courses', [
-                'user' => Auth::user(),
-                'course' => $course->with('announcements', 'assignments', 'user')->where('id', $course->getKey())->first(),
-                'courses' => $request->user()->courses()->get(),
-                'students' => $course->course_followers()->get(),
-            ]);
-        } else {
-            return Inertia::render('Courses', [
-                'user' => Auth::user(),
-                'course' => $course->with('announcements', 'assignments', 'user')->where('id', $course->getKey())->first(),
-                'courses' => $request->user()->course_followers()->get(),
-            ]);
-        }
-    }
-
-    /**
-     * @param Request $request
-     * @return RedirectResponse
-     */
-    public function store_course_follow(Request $request): RedirectResponse
-    {
-        $course = Course::all()->where('keycode', $request->input('keycode'))->first();
-        $course->course_followers()->attach(Auth::id());
-        return back();
+        return Inertia::render('Courses', [
+            'user' => Auth::user(),
+            'course' => $course->with('user')->where('id', $course->getKey())->first(),
+            'courses' => $request->user()->courses()->get(),
+        ]);
     }
 }

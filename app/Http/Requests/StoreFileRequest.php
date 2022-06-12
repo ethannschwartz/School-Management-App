@@ -3,15 +3,16 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
-class StoreGroupRequest extends FormRequest
+class StoreFileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,11 +22,11 @@ class StoreGroupRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'title' => 'required | max:255 | string',
-            'description' => 'nullable | max:1000 | string',
+            'title' => ['string', 'required', 'max:255'],
+//            'file' => ['file'],
         ];
     }
 }

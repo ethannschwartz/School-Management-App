@@ -15,16 +15,16 @@
                             <Link :only="['course']"
                                   @click="isCourse = course"
                                   preserve-state
-                                  :class="isCourse?.id === course?.id ? 'text-white bg-teal-600 hover:!bg-teal-600' : 'text-slate-600' "
+                                  :class="course?.id === isCourse.id ? 'text-white bg-teal-600 hover:!bg-teal-600' : 'text-slate-600' "
                                   class="w-full capitalize flex justify-between items-center p-2 border-b-[1px] border-gray-200 hover:bg-slate-100 hover:cursor-pointer"
                                   :href="route('courses.show', course?.id)"
                             >
                                 {{ course?.title }} ({{ course?.section }})
-                                <button class="hover:bg-teal-700 px-2 rounded-md" v-if="isCourse?.id === course?.id && user.id === course?.user_id" @click="settingsOpen = !settingsOpen">•••</button>
+                                <button class="hover:bg-teal-700 px-2 rounded-md" v-if="course?.id === props.course?.id && user.id === props.course?.user_id" @click="settingsOpen = !settingsOpen">•••</button>
                             </Link>
 
                             <transition name="expand">
-                                <ul v-if="isCourse === course && settingsOpen" class="absolute -right-[140px] top-0 bg-slate-700 shadow-md">
+                                <ul v-if="props.course === course && settingsOpen" class="absolute -right-[140px] top-0 bg-slate-700 shadow-md">
                                     <li>
                                         <Link class="flex justify-between items-center w-[140px] text-white capitalize block p-2 bg-slate-700 hover:bg-slate-800 hover:cursor-pointer">
                                             Edit
@@ -60,79 +60,24 @@
                 <section class="w-full h-full">
                     <header class="w-full bg-gray-200 p-4">
                         <h1 class="text-3xl capitalize">{{ course?.title }} <span class="text-slate-500 text-2xl">({{ course?.section }})</span></h1>
-                        <h2 class="text-xl">{{ course?.user.prefix }} {{ course?.user.name?.split(" ")[1] }}</h2>
-
-                        <div v-if="user.account_type === 'teacher' " class="flex whitespace-nowrap w-fit">
-                            <div class="hidden xl:flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
-                                <button @click="copyText" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ course?.keycode }}</button>
-                                <BaseSvg name="icon-clipboard-copy" class="ml-2 opacity-50 scale-75" />
-                            </div>
-                            <HintTransition :hint-seen="copyHintSeen" name="fade">Click to Copy</HintTransition>
-                        </div>
-
-                        <div v-else class="flex whitespace-nowrap w-fit">
-                            <div class="hidden xl:flex w-fit whitespace-nowrap" @mouseover="copyHintSeen=true" @mouseleave="copyHintSeen=false">
-                                <a :href="`mailTo:${course?.user.email}`" class="w-fit whitespace-nowrap flex items-center text-md text-slate-500 select-all cursor-pointer hover:text-blue-600 hover:underline underline-offset-4">{{ course?.user.email }}</a>
-                                <BaseSvg name="icon-mail-envelope" class="ml-2 opacity-50 scale-75" />
-                            </div>
-                            <HintTransition :hint-seen="copyHintSeen" name="fade">Email {{ course?.user.prefix }} {{ course?.user.name.split(' ')[1]}}</HintTransition>
-                        </div>
+                        <h2 class="text-xl">{{ course?.user?.prefix }} {{ course?.user?.name?.split(" ")[1] }}</h2>
                     </header>
 
-                    <div class="flex justify-between gap-[16px] m-6">
-                        <article class="w-1/2 pr-4 h-[400px] border-r-[1px]">
-                            <header class="flex items-center justify-between px-[8px]">
-                                <h2 class="text-[18px] tracking-wider text-slate-600">Announcements</h2>
-                                <div>
-                                    <button v-if="user.account_type === 'teacher'" class="text-slate-500" @click="announcementModalSeen = !announcementModalSeen">
-                                        <BaseSvg name="icon-add-box" class="opacity-75 hover:opacity-100 fill-slate-700" />
-                                    </button>
-                                </div>
-                            </header>
 
-                            <ul class="z-0 h-full overflow-y-scroll p-2">
-                                <li v-if="course?.announcements?.length !== 0">
-                                    <AnnouncementCard v-for="announcement in course?.announcements" :announcement="announcement" :user="user" :course="course" />
-                                </li>
+                    <div class="p-8 w-full">
+                        <h2 class="mb-4 text-gray-600">{{ course?.user.name }}'s Content</h2>
+                        <div class="flex gap-8">
 
-                                <li v-else class="h-full flex items-center justify-center text-center text-slate-600 text-[18px] w-full">
-                                    <div class="bg-slate-100 border-[1px] shadow-md rounded-lg px-6 py-2">You don't have any announcements</div>
-                                </li>
-                            </ul>
-                        </article>
+                            <FileCard v-for="file in files" :title="file.title" :link="file.link" />
 
-                        <article class="block w-1/2 px-4 overflow-hidden">
-                            <header>
-                                <ul class="flex gap-4 flex-wrap">
-                                    <li @click="currentElement=courseElement" :class="currentElement === courseElement ? 'bg-pink-600 !text-white hover:!bg-pink-600' : 'bg-pink-200'" class="text-pink-600 px-4 rounded-full tracking-wider whitespace-nowrap hover:bg-pink-300" v-for="courseElement in courseElements">
-                                        <button>{{ courseElement }}</button>
-                                    </li>
-                                </ul>
-                            </header>
+                            <button @click="uploadFileModalOpen = true" class="flex justify-center items-center h-full text-gray-200 text-center w-48 h-72 bg-slate-600 border-slate-500 border rounded-sm relative duration-200 hover:-translate-y-1">
+                                <span class="text-7xl">+</span>
+                                <span class="absolute left-0 bottom-0 w-full p-3">Create New</span>
+                            </button>
 
-                                <div>
-                                    <header class="text-slate-600 mt-[1em] text-left text-[18px]">
-                                        <h1>{{ currentElement }}</h1>
-                                    </header>
-                                    <div class="flex overflow-visible">
-                                        <transition name="slide">
-                                            <AssignmentsSection v-if="currentElement==='Assignments'" :course="course" :user="user" />
-                                        </transition>
-                                        <transition name="slide">
-                                            <ResourcesSection v-if="currentElement==='Resources'" :course="course" :user="user" />
-                                        </transition>
-                                        <transition name="slide">
-                                            <ExamsSection v-if="currentElement==='Exams'" :course="course" :user="user" />
-                                        </transition>
-                                        <transition name="slide">
-                                            <HoursSection v-if="currentElement==='Office Hours'" :course="course" :user="user" />
-                                        </transition>
-                                    </div>
-                                </div>
-
-
-                        </article>
+                        </div>
                     </div>
+
                 </section>
 
 
@@ -150,14 +95,15 @@
     </transition>
 
     <transition name="fade">
-        <Modal v-if="announcementModalSeen" :open="announcementModalSeen" @close="announcementModalSeen = !announcementModalSeen" submit-label="Post Announcement" header="Post Announcement" :submit-function="postAnnouncement">
-            <textarea type="text" :placeholder="`Announce to ${course.title} (${course.section})`" rows="6" class="p-2 border border-gray-200 rounded-md resize-none" v-model="announcementForm.body"></textarea>
+        <Modal v-if="joinCourseModalOpen" :open="joinCourseModalOpen" @close="joinCourseModalOpen = !joinCourseModalOpen" submit-label="Join Course" header="Join Course" :submit-function="joinCourse">
+            <input type="text" placeholder="Keycode" class="p-2 border border-gray-200 rounded-md" v-model="joinCourseForm.keycode">
         </Modal>
     </transition>
 
     <transition name="fade">
-        <Modal v-if="joinCourseModalOpen" :open="joinCourseModalOpen" @close="joinCourseModalOpen = !joinCourseModalOpen" submit-label="Join Course" header="Join Course" :submit-function="joinCourse">
-            <input type="text" placeholder="Keycode" class="p-2 border border-gray-200 rounded-md" v-model="joinCourseForm.keycode">
+        <Modal v-if="uploadFileModalOpen" :open="uploadFileModalOpen" @close="uploadFileModalOpen = !uploadFileModalOpen" submit-label="Upload File" header="Upload File" :submit-function="uploadFile">
+            <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="uploadFileForm.title">
+            <input type="file" placeholder="File" name="file" @input="uploadFileForm.file = $event.target.files[0]" v-model="uploadFileForm.file">
         </Modal>
     </transition>
 
@@ -201,25 +147,18 @@
 import {ref} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 import BaseSvg from "@/Components/BaseSvg";
-import HintTransition from "@/Components/HintTransition";
 import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
-import AnnouncementCard from "@/Components/AnnouncementCard";
-import AssignmentsSection from "@/Components/CourseElements/AssignmentsSection";
-import ResourcesSection from "@/Components/CourseElements/ResourcesSection";
-import ExamsSection from "@/Components/CourseElements/ExamsSection";
-import HoursSection from "@/Components/CourseElements/HoursSection";
+import FileCard from "@/Components/Cards/FileCard";
 
-const props = defineProps(['user', 'course', 'courses', 'course_followings', 'students']);
-const courseElements = ['Assignments', 'Resources', 'Exams', 'Office Hours'];
-
+const props = defineProps(['user', 'course', 'courses']);
+const isCourse = ref(props.courses[0]);
 const accountType = props.user.account_type;
-
-const isCourse = ref(props.course);
-let currentElement = ref(courseElements[0]);
-
 const copyHintSeen = ref(false);
 const settingsOpen = ref(false);
+let createCourseModalOpen = ref(false);
+let joinCourseModalOpen = ref(false);
+let uploadFileModalOpen = ref(false);
 
 const createCourseForm = useForm({
     title: null,
@@ -232,13 +171,10 @@ const joinCourseForm = useForm({
     keycode: null,
 });
 
-const announcementForm = useForm({
-    body: null,
+const uploadFileForm = useForm({
+    title: 'First Chemistry File Upload',
+    file: null,
 });
-
-let createCourseModalOpen = ref(false);
-let joinCourseModalOpen = ref(false);
-let announcementModalSeen = ref(false);
 
 const createCourse = () => {
     createCourseForm.post(route('courses.store'), {
@@ -246,16 +182,6 @@ const createCourse = () => {
             console.log('Course created successfully!');
             createCourseForm.reset();
             createCourseModalOpen.value = false;
-        },
-    });
-};
-
-const postAnnouncement = () => {
-    announcementForm.post(route('courses.announcements.store', props.course?.id), {
-        onSuccess: () => {
-            console.log('Announcement posted successfully!');
-            announcementForm.reset();
-            announcementModalSeen.value = false;
         },
     });
 };
@@ -270,6 +196,26 @@ const joinCourse = () => {
     });
 };
 
+const uploadFile = () => {
+    uploadFileForm.post(route('courses.file.store'), {
+        onSuccess: () => {
+            console.log('File upload successful!');
+            uploadFileModalOpen.value = false;
+        }
+    });
+};
+
 const copyText = (event) => navigator.clipboard.writeText(event.target.textContent);
+
+const files = [
+    {
+        title:'Principles of Organic Chemistry',
+        link: 'courses.index',
+    },
+    {
+        title:'Advanced Quantum Chemistry Theory',
+        link: 'courses.index',
+    },
+];
 
 </script>

@@ -3,12 +3,12 @@
         <nav class="flex justify-between duration-150 items-center px-4 px-12 lg:px-16 h-[49px] lg:h-[80px]">
 
             <div class="flex-grow basis-1/4">
-                <h1 class="text-xl lg:text-3xl font-semibold hidden lg:block">AroundU High</h1>
+                <h1 class="text-xl lg:text-3xl font-semibold hidden lg:block">Publify</h1>
                 <h1 class="block lg:hidden">Menu</h1>
             </div>
 
             <div>
-                <h1 class="text-xl lg:text-3xl font-semibold block lg:hidden">AroundU High</h1>
+                <h1 class="text-xl lg:text-3xl font-semibold block lg:hidden">Publify</h1>
                 <ul class="hidden lg:flex gap-8 items-center">
                     <Link v-for="navLink in navLinks"
                           :href="route(navLink.route)"
@@ -66,26 +66,11 @@ const navLinks = [
         title: 'Courses',
         route: 'courses.index',
     },
-    {
-        id: 2,
-        title: 'Groups',
-        route: 'groups.index',
-    },
-    {
-        id: 3,
-        title: 'Schedule',
-        route: 'schedule.index',
-    },
-    {
-        id: 4,
-        title: 'Events',
-        route: 'groups.index',
-    },
-    {
-        id: 5,
-        title: 'Gradebook',
-        route: 'groups.index',
-    },
+    // {
+    //     id: 1,
+    //     title: 'Groups',
+    //     route: 'groups.index',
+    // },
 ];
 
 let currentPage = ref(navLinks[0]);
