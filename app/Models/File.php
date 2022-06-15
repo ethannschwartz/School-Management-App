@@ -11,10 +11,9 @@ class File extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'path',
+        'filename',
+        'url',
         'user_id',
-        'course_id',
     ];
 
     /**

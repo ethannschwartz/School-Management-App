@@ -22702,7 +22702,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['user', 'course', 'courses'],
+  props: ['user', 'course', 'courses', 'files'],
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -22724,7 +22724,7 @@ __webpack_require__.r(__webpack_exports__);
       keycode: null
     });
     var uploadFileForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-      title: 'First Chemistry File Upload',
+      filename: 'First Chemistry File Upload',
       file: null
     });
 
@@ -25540,7 +25540,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [$setup.uploadFileModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
         key: 0,
         open: $setup.uploadFileModalOpen,
-        onClose: _cache[14] || (_cache[14] = function ($event) {
+        onClose: _cache[13] || (_cache[13] = function ($event) {
           return $setup.uploadFileModalOpen = !$setup.uploadFileModalOpen;
         }),
         "submit-label": "Upload File",
@@ -25553,19 +25553,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Title",
             "class": "p-2 border border-gray-200 rounded-md",
             "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
-              return $setup.uploadFileForm.title = $event;
+              return $setup.uploadFileForm.filename = $event;
             })
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.uploadFileForm.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.uploadFileForm.filename]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
             type: "file",
             placeholder: "File",
             name: "file",
             onInput: _cache[12] || (_cache[12] = function ($event) {
               return $setup.uploadFileForm.file = $event.target.files[0];
-            }),
-            "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
-              return $setup.uploadFileForm.file = $event;
             })
           }, null, 32
           /* HYDRATE_EVENTS */

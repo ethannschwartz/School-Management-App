@@ -37,6 +37,7 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::get('/courses/{course}', [CourseController::class, 'show'])->name('show');
 
     Route::post('courses/files', [FileController::class, 'store'])->name('file.store');
+    Route::get('courses/files', [FileController::class, 'index'])->name('file.index');
 
 });
 

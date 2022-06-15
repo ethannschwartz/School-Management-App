@@ -24,6 +24,7 @@ class CourseController extends Controller
             'user' => Auth::user(),
             'course' => $request->user()->courses()->with('user')->first(),
             'courses' => $request->user()->courses()->get(),
+            'files' => $request->user()->files()->get(),
         ]);
     }
 

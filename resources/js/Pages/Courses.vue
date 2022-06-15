@@ -102,8 +102,8 @@
 
     <transition name="fade">
         <Modal v-if="uploadFileModalOpen" :open="uploadFileModalOpen" @close="uploadFileModalOpen = !uploadFileModalOpen" submit-label="Upload File" header="Upload File" :submit-function="uploadFile">
-            <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="uploadFileForm.title">
-            <input type="file" placeholder="File" name="file" @input="uploadFileForm.file = $event.target.files[0]" v-model="uploadFileForm.file">
+            <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="uploadFileForm.filename">
+            <input type="file" placeholder="File" name="file" @input="uploadFileForm.file = $event.target.files[0]">
         </Modal>
     </transition>
 
@@ -151,7 +151,7 @@ import Modal from "@/Components/Modals/Modal";
 import {useForm} from "@inertiajs/inertia-vue3";
 import FileCard from "@/Components/Cards/FileCard";
 
-const props = defineProps(['user', 'course', 'courses']);
+const props = defineProps(['user', 'course', 'courses', 'files']);
 const isCourse = ref(props.courses[0]);
 const accountType = props.user.account_type;
 const copyHintSeen = ref(false);
@@ -172,7 +172,7 @@ const joinCourseForm = useForm({
 });
 
 const uploadFileForm = useForm({
-    title: 'First Chemistry File Upload',
+    filename: 'First Chemistry File Upload',
     file: null,
 });
 
