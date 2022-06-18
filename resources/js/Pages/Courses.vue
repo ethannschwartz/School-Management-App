@@ -68,7 +68,7 @@
                         <h2 class="mb-4 text-gray-600">{{ course?.user.name }}'s Content</h2>
                         <div class="flex gap-8">
 
-                            <FileCard v-for="file in files" :title="file.title" :link="file.link" />
+                            <FileCard v-for="file in files" :file="file" />
 
                             <button @click="uploadFileModalOpen = true" class="flex justify-center items-center h-full text-gray-200 text-center w-48 h-72 bg-slate-600 border-slate-500 border rounded-sm relative duration-200 hover:-translate-y-1">
                                 <span class="text-7xl">+</span>
@@ -210,11 +210,13 @@ const copyText = (event) => navigator.clipboard.writeText(event.target.textConte
 const files = [
     {
         title:'Principles of Organic Chemistry',
-        link: 'courses.index',
+        link: 'courses.file.show',
+        key: 2,
     },
     {
         title:'Advanced Quantum Chemistry Theory',
-        link: 'courses.index',
+        link: 'courses.file.show',
+        key: 3,
     },
 ];
 

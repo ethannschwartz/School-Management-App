@@ -4,6 +4,7 @@ export default {
             'Auth/Login',
             'Auth/Register',
             'Auth/ResetPassword',
+            'FileViewer',
         ],
     },
 }
