@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('filename');
             $table->string('url');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('course_id');
             $table->timestamps();
         });
     }

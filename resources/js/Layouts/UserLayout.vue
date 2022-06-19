@@ -10,7 +10,7 @@
     </footer>
 </template>
 <script setup>
-import Navbar from "@/Components/Navbar";
+import Navbar from "@/Components/Modules/Navbar";
 
 const props = defineProps(['user']);
 

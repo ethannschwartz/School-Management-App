@@ -35,4 +35,12 @@ class Course extends Model
     {
         return $this->hasMany(File::class);
     }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

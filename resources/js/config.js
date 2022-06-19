@@ -7,4 +7,9 @@ export default {
             'FileViewer',
         ],
     },
+    dialogs: {
+        modals: {
+            zindex: 40,
+        },
+    },
 }

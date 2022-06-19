@@ -14,6 +14,7 @@ class File extends Model
         'filename',
         'url',
         'user_id',
+        'course_id',
     ];
 
     /**

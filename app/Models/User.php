@@ -55,9 +55,19 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
+    /**
+     * @return HasMany
+     */
     public function files(): HasMany
     {
         return $this->hasMany(File::class);
     }
 
+    /**
+     * @return HasMany
+     */
+    public function followings(): HasMany
+    {
+        return $this->hasMany(Course::class);
+    }
 }

@@ -13,7 +13,7 @@
                     <Link v-for="navLink in navLinks"
                           :href="route(navLink.route)"
                           class="duration-200 hover:text-slate-800"
-                          :class="navLink.title === $inertia.page.component ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600': null">
+                          :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null">
                         {{ navLink.title }}
                     </Link>
                 </ul>
@@ -56,24 +56,21 @@
 
 <script setup>
 import {Link} from "@inertiajs/inertia-vue3";
-import BaseSvg from "@/Components/BaseSvg";
+import {BaseSvg} from "@/Components";
 import {ref} from "vue";
 const props = defineProps(['user']);
 
+const profileDropdownSeen = ref(false);
+
 const navLinks = [
     {
-        id: 1,
         title: 'Courses',
         route: 'courses.index',
     },
-    // {
-    //     id: 1,
-    //     title: 'Groups',
-    //     route: 'groups.index',
-    // },
+    {
+        title: 'Analytics',
+        route: 'courses.index',
+    },
 ];
-
-let currentPage = ref(navLinks[0]);
-const profileDropdownSeen = ref(false);
 
 </script>

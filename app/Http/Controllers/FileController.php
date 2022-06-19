@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFileRequest;
+use App\Models\Course;
 use App\Models\File;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class FileController extends Controller
      * @param StoreFileRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreFileRequest $request): RedirectResponse
+    public function store(StoreFileRequest $request, Course $course): RedirectResponse
     {
         $path = $request->file('file')->store('files', 's3');
 
@@ -27,6 +28,7 @@ class FileController extends Controller
             'filename' => basename($path),
             'url'     => Storage::disk('s3')->url($path),
             'user_id' => Auth::id(),
+            'course_id' => $course->getKey(),
         ]);
         return back();
     }
@@ -38,8 +40,14 @@ class FileController extends Controller
      */
     public function show(Request $request, File $file): Response
     {
-        return Inertia::render('FileViewer', [
-            'file' => $file,
-        ]);
+        $response = Storage::disk('s3')->response('files/' . $file->filename);
+
+        if(Auth::user()===$request->user()){
+            return Inertia::render('FileViewer', [
+                'file' => $response,
+            ]);
+        } else {
+            return Inertia::render('Courses');
+        }
     }
 }
