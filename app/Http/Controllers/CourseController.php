@@ -14,6 +14,18 @@ use Inertia\Response;
 class CourseController extends Controller
 {
     /**
+     * @param StoreCourseRequest $request
+     * @return RedirectResponse
+     */
+    public function store(StoreCourseRequest $request): RedirectResponse
+    {
+        $request->user()->courses()->create(array_merge($request->validated(), [
+            'keycode' => Str::random(20),
+        ]));
+        return back();
+    }
+
+    /**
      * @param Request $request
      * @return Response
      */
@@ -32,18 +44,6 @@ class CourseController extends Controller
                 'courses' => $request->user()->followings()->get(),
             ]);
         }
-    }
-
-    /**
-     * @param StoreCourseRequest $request
-     * @return RedirectResponse
-     */
-    public function store(StoreCourseRequest $request): RedirectResponse
-    {
-        $request->user()->courses()->create(array_merge($request->validated(), [
-            'keycode' => Str::random(20),
-        ]));
-        return back();
     }
 
     /**
@@ -74,6 +74,7 @@ class CourseController extends Controller
                     'course' => $request->user()->followings()->with('user', 'files')->first(),
                     'courses' => $request->user()->followings()->get(),
                 ]);
+
             }
              else {
                 return Inertia::render('Unauthorized', [
@@ -82,5 +83,15 @@ class CourseController extends Controller
                 ]);
             }
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function search(Request $request)
+    {
+        $data = Course::where('title', 'LIKE', '%', $request->input('search'))->get();
+        dd($data);
     }
 }

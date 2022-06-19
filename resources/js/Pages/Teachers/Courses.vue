@@ -76,7 +76,6 @@
 <script setup>
 import {ref} from "vue";
 import {FileCard, CourseBank, CreateCourseModal, UploadFileModal, Button} from "@/Components";
-import BaseSvg from "@/Components/Modules/BaseSvg";
 
 const props = defineProps(['user', 'course', 'courses']);
 const modalSeen = ref(false);

@@ -10,6 +10,7 @@ import HintTransition from "@/Components/Modules/Transitions/HintTransition";
 
 import CreateCourseModal from './Modules/Modals/CreateCourseModal';
 import UploadFileModal from './Modules/Modals/UploadFileModal';
+import JoinCourseModal from './Modules/Modals/JoinCourseModal';
 
 import Button from './Modules/Button';
 
@@ -26,6 +27,7 @@ export {
 
     CreateCourseModal,
     UploadFileModal,
+    JoinCourseModal,
 
     Button,
 }
