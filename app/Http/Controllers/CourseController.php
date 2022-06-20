@@ -85,7 +85,11 @@ class CourseController extends Controller
         }
     }
 
-    public function search(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function search(Request $request): Response
     {
         return Inertia::render('Students/Courses', [
             'course_search' => Course::query()
