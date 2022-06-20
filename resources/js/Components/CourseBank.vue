@@ -1,5 +1,5 @@
 <template>
-    <aside class="h-full w-[250px] border-r border-gray-200 relative">
+    <aside class="h-full w-64 border-r border-gray-200 relative">
 
         <header class="flex justify-between items-center border-b border-gray-200">
             <h2 class="font-medium text-slate-700 p-2 text-xl text-center">Courses</h2>
@@ -13,8 +13,7 @@
                       class="w-full capitalize flex justify-between items-center p-2 border-b border-gray-200 hover:bg-slate-100 hover:cursor-pointer"
                       :href="route('courses.show', course?.id)"
                 >
-                    {{ course?.title }} ({{ course?.section }})
-
+                    {{ course?.title }} <span v-if="course?.section">({{ course?.section }})</span>
                 </Link>
             </li>
         </ul>
@@ -30,7 +29,6 @@ import {Link} from "@inertiajs/inertia-vue3";
 import {ref} from "vue";
 
 const modalSeen = ref(false);
-
 const props = defineProps(['courses', 'user']);
 
 </script>

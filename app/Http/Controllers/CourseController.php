@@ -85,13 +85,19 @@ class CourseController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     * @return void
-     */
     public function search(Request $request)
     {
-        $data = Course::where('title', 'LIKE', '%', $request->input('search'))->get();
-        dd($data);
+        return Inertia::render('Students/Courses', [
+            'course_search' => Course::query()
+                    ->when($request->input('search'), function ($query, $search) {
+                        $query->where('title','ilike', "%{$search}%");
+                    })
+                    ->simplePaginate(10)
+                    ->through(fn($course) => [
+                        'id' => $course->getKey(),
+                        'title' => $course->title,
+                    ],
+                ),
+        ]);
     }
 }

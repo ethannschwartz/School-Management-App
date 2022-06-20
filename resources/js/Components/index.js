@@ -3,9 +3,10 @@ import NavLink from './Modules/NavLink';
 import Modal from  './Modules/Modals/Modal';
 import FileCard from './Modules/Cards/FileCard';
 import CourseBank from './CourseBank';
+import SectionHeader from './SectionHeader';
 
-import ModalTransition from "@/Components/Modules/Transitions/ModalTransition";
 import BaseSvg from "@/Components/Modules/BaseSvg";
+import ModalTransition from "@/Components/Modules/Transitions/ModalTransition";
 import HintTransition from "@/Components/Modules/Transitions/HintTransition";
 
 import CreateCourseModal from './Modules/Modals/CreateCourseModal';
@@ -22,6 +23,7 @@ export {
     ModalTransition,
     HintTransition,
     CourseBank,
+    SectionHeader,
 
     FileCard,
 

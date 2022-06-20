@@ -36,7 +36,7 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::post('courses', [CourseController::class, 'store'])->name('store');
     Route::get('courses/{course}', [CourseController::class, 'show'])->name('show');
 
-    Route::get('search/{course}', [CourseController::class, 'get_courses'])->name('search');
+    Route::get('search', [CourseController::class, 'search'])->name('search');
 
     Route::post('courses/{course}/files', [FileController::class, 'store'])->name('file.store');
 

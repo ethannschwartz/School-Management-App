@@ -17,10 +17,7 @@
 
                 <section class="w-full h-full">
 
-                    <header v-if="courses.length !== 0" class="w-full bg-gray-200 p-4">
-                        <h1 class="text-3xl capitalize">{{ course?.title }} <span class="text-slate-500 text-2xl">({{ course?.section }})</span></h1>
-                        <h2 class="text-xl">{{ course?.user?.prefix }} {{ course?.user?.name?.split(" ")[1] }}</h2>
-                    </header>
+                    <SectionHeader v-if="courses.length!==0" :course="course" />
 
                     <div class="p-8 w-full h-full">
 
@@ -44,38 +41,23 @@
         </div>
     </section>
 
-
     <transition name="fade">
+
         <CreateCourseModal v-if="modalSeen==='createCourseModal'" @close="modalSeen=false" />
+
     </transition>
 
     <transition name="fade">
+
         <UploadFileModal v-if="modalSeen==='uploadFileModal'" :course="course" @close="modalSeen=false" />
+
     </transition>
 
 </template>
 
-<style>
-.slide-enter-from, .slide-leave-to {
-    opacity:0;
-    transform: translateX(100%) ;
-    transform-origin: left;
-}
-
-.slide-enter-to, .slide-leave-from {
-    opacity:1;
-    transform: translateX(0);
-    transform-origin: left;
-}
-
-.slide-enter-active, .slide-leave-active {
-    transition: all 0.15s ease-in;
-}
-</style>
-
 <script setup>
 import {ref} from "vue";
-import {FileCard, CourseBank, CreateCourseModal, UploadFileModal, Button} from "@/Components";
+import {FileCard, CourseBank, CreateCourseModal, UploadFileModal, Button, SectionHeader} from "@/Components";
 
 const props = defineProps(['user', 'course', 'courses']);
 const modalSeen = ref(false);

@@ -10,10 +10,21 @@
             <div>
                 <h1 class="text-xl lg:text-3xl font-semibold block lg:hidden">Publify</h1>
                 <ul class="hidden lg:flex gap-8 items-center">
-                    <Link v-for="navLink in navLinks"
+                    <Link v-if="user.account_type ==='teacher'"
+                          v-for="navLink in teacherLinks"
                           :href="route(navLink.route)"
                           class="duration-200 hover:text-slate-800"
-                          :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null">
+                          :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null"
+                    >
+                        {{ navLink.title }}
+                    </Link>
+
+                    <Link v-else
+                          v-for="navLink in studentLinks"
+                          :href="route(navLink.route)"
+                          class="duration-200 hover:text-slate-800"
+                          :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null"
+                    >
                         {{ navLink.title }}
                     </Link>
                 </ul>
@@ -24,7 +35,8 @@
                     <BaseSvg name="icon-profile" class="scale-[35%] lg:scale-50 fill-slate-600" />
                     {{ user.name }}
                 </h2>
-                <transition name="appear">
+
+                <transition name="slide-down">
                     <form v-if="profileDropdownSeen" class="absolute -bottom-10 shadow-xl border-[1px] bg-gray-100 hover:bg-gray-200 rounded-md" action="/login">
                         <Link method="post" as="button" :href="route('logout')" class="text-slate-600 rounded-md py-2 px-4">Logout</Link>
                     </form>
@@ -36,19 +48,19 @@
 </template>
 
 <style scoped>
-.appear-enter-from, .appear-leave-to {
+.slide-down-enter-from, .slide-down-leave-to {
     opacity:0;
-    transform: scaleY(0.5);
+    transform: translateY(-50%);
     transform-origin: top;
 }
 
-.appear-enter-to, .appear-leave-from {
+.slide-down-enter-to, .slide-down-leave-from {
     opacity:1;
-    transform: scaleY(1);
+    transform: translateY(0%);
     transform-origin: top;
 }
 
-.appear-enter-active, .appear-leave-active {
+.slide-down-enter-active, .slide-down-leave-active {
     transition: all 0.15s ease-in;
 }
 
@@ -58,17 +70,25 @@
 import {Link} from "@inertiajs/inertia-vue3";
 import {BaseSvg} from "@/Components";
 import {ref} from "vue";
-const props = defineProps(['user']);
 
+const props = defineProps(['user']);
 const profileDropdownSeen = ref(false);
 
-const navLinks = [
+const teacherLinks = [
     {
         title: 'Courses',
         route: 'courses.index',
     },
     {
         title: 'Analytics',
+        route: 'courses.index',
+    },
+];
+
+
+const studentLinks = [
+    {
+        title: 'Courses',
         route: 'courses.index',
     },
 ];

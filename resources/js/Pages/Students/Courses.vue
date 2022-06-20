@@ -19,11 +19,7 @@
 
                 <section class="w-full h-full">
 
-                    <header v-if="course" class="w-full bg-gray-200 p-4">
-                        <h1 class="text-3xl capitalize">{{ course?.title }} <span class="text-slate-500 text-2xl">({{ course?.section }})</span></h1>
-                        <h2 class="text-xl">{{ course?.user?.prefix }} {{ course?.user?.name?.split(" ")[1] }}</h2>
-                    </header>
-
+                    <SectionHeader v-if="courses.length!==0" :course="course" />
 
                     <div class="flex gap-8 p-8 w-full">
 
@@ -40,7 +36,7 @@
 
     <transition name="fade">
 
-        <JoinCourseModal v-if="modalSeen==='joinCourseModal'" />
+        <JoinCourseModal v-if="modalSeen==='joinCourseModal'" @close="modalSeen=false" />
 
     </transition>
 
@@ -48,9 +44,9 @@
 
 <script setup>
 import {ref} from "vue";
-import {FileCard, CourseBank, JoinCourseModal} from "@/Components";
+import {FileCard, CourseBank, JoinCourseModal, SectionHeader} from "@/Components";
 
-const props = defineProps(['user', 'course', 'courses']);
+const props = defineProps(['user', 'course', 'courses', 'course_search']);
 const modalSeen = ref(false);
 
 </script>
