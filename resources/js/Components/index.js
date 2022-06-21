@@ -12,8 +12,10 @@ import HintTransition from "@/Components/Modules/Transitions/HintTransition";
 import CreateCourseModal from './Modules/Modals/CreateCourseModal';
 import UploadFileModal from './Modules/Modals/UploadFileModal';
 import JoinCourseModal from './Modules/Modals/JoinCourseModal';
+import FollowTeacherModal from './Modules/Modals/FollowTeacherModal';
 
-import Button from './Modules/Button';
+import Button from './Modules/FormElements/Button';
+import Input from './Modules/FormElements/Input';
 
 export {
     BaseSvg,
@@ -30,6 +32,8 @@ export {
     CreateCourseModal,
     UploadFileModal,
     JoinCourseModal,
+    FollowTeacherModal,
 
     Button,
+    Input,
 }

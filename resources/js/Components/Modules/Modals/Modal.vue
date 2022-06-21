@@ -9,48 +9,21 @@
             <header class="w-3/4 mx-auto p-4">
                 <h1 class="text-3xl text-slate-600 font-bold">{{ header }}</h1>
             </header>
-            <form :action="action" enctype="multipart/form-data" :method="method" @submit.prevent="submitFunction" class="w-3/4 mx-auto flex flex-col justify-evenly gap-4">
+            <form :action="action" enctype="multipart/form-data" :method="method" @submit.prevent="submitFunction" class="w-3/4 mb-4 mx-auto flex flex-col justify-evenly gap-4">
 
                 <slot />
 
-                <Button type="submit" class="flex justify-center bg-teal-600 hover:bg-teal-700 active:bg-teal-900">{{ submitLabel }}</Button>
-                <Button type="button" class="w-full mb-4 flex justify-center" @click="$emit('close')">Close</Button>
+                <Button type="submit" color="teal" class="flex justify-center">{{ submitLabel }}</Button>
+                <Button type="button" color="gray" class="flex justify-center" @click="$emit('close')">Cancel</Button>
+
             </form>
         </div>
     </div>
 </template>
 
-<script>
-import Button from "../../../../../vendor/laravel/breeze/stubs/inertia-vue/resources/js/Components/Button";
-import BaseSvg from "@/Components/Modules/BaseSvg";
-export default {
-    components: {BaseSvg, Button},
-    props: {
-        open: {
-            type: Boolean,
-            required: false,
-        },
-        header: {
-            type: String,
-            required: true,
-        },
-        submitFunction: {
-            type: Function,
-            required: false,
-        },
-        submitLabel: {
-            type: String,
-            required: false,
-        },
-        action: {
-            type: String,
-            required: false,
-        },
-        method: {
-            type: String,
-            required: false,
-        },
-    },
-};
+<script setup>
+import {BaseSvg, Button} from "@/Components";
+const props = defineProps(['open', 'header', 'submitFunction', 'submitLabel', 'action', 'method']);
+
 
 </script>

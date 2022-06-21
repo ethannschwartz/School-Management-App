@@ -10,7 +10,7 @@
             <div>
                 <h1 class="text-xl lg:text-3xl font-semibold block lg:hidden">Publify</h1>
                 <ul class="hidden lg:flex gap-8 items-center">
-                    <Link v-if="user.account_type ==='teacher'"
+                    <Link v-if="user?.account_type ==='teacher'"
                           v-for="navLink in teacherLinks"
                           :href="route(navLink.route)"
                           class="duration-200 hover:text-slate-800"
@@ -90,6 +90,10 @@ const studentLinks = [
     {
         title: 'Courses',
         route: 'courses.index',
+    },
+    {
+        title: 'Teachers',
+        route: 'users.teachers.index',
     },
 ];
 

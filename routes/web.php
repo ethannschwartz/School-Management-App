@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,12 +37,13 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::get('courses', [CourseController::class, 'index'])->name('index');
     Route::post('courses', [CourseController::class, 'store'])->name('store');
     Route::get('courses/{course}', [CourseController::class, 'show'])->name('show');
-
     Route::get('search', [CourseController::class, 'search'])->name('search');
-
     Route::post('courses/{course}/files', [FileController::class, 'store'])->name('file.store');
-
     Route::get('files/{file:id}', [FileController::class, 'show'])->name('file.show');
+});
+
+Route::middleware(['auth', 'verified'])->name('users.')->group(function() {
+    Route::get('teachers', [TeachersController::class, 'index'])->name('teachers.index');
 });
 
 require __DIR__.'/auth.php';

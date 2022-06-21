@@ -13,7 +13,10 @@
                       class="w-full capitalize flex justify-between items-center p-2 border-b border-gray-200 hover:bg-slate-100 hover:cursor-pointer"
                       :href="route('courses.show', course?.id)"
                 >
-                    {{ course?.title }} <span v-if="course?.section">({{ course?.section }})</span>
+                    <span>
+                        {{ course?.title }} <span v-if="course?.section">({{ course?.section }})</span>
+                    </span>
+                    <button class="px-2 hover:bg-teal-700 rounded-md" v-if="$page.props.course.id === course?.id">•••</button>
                 </Link>
             </li>
         </ul>
