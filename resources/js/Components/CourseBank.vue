@@ -5,7 +5,8 @@
             <h2 class="font-medium text-slate-700 p-2 text-xl text-center">Courses</h2>
         </header>
 
-        <ul class="w-[250px]">
+        <ul class="w-64">
+
             <li v-for="course in courses" class="relative">
                 <Link :only="['course']"
                       preserve-state
@@ -19,6 +20,7 @@
                     <button class="px-2 hover:bg-teal-700 rounded-md" v-if="$page.props.course.id === course?.id">•••</button>
                 </Link>
             </li>
+
         </ul>
 
         <slot />

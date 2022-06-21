@@ -13,7 +13,7 @@
 
                 <slot />
 
-                <Button type="submit" color="teal" class="flex justify-center">{{ submitLabel }}</Button>
+                <Button type="submit" color="teal" class="flex justify-center" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">{{ submitLabel }}</Button>
                 <Button type="button" color="gray" class="flex justify-center" @click="$emit('close')">Cancel</Button>
 
             </form>
@@ -23,7 +23,7 @@
 
 <script setup>
 import {BaseSvg, Button} from "@/Components";
-const props = defineProps(['open', 'header', 'submitFunction', 'submitLabel', 'action', 'method']);
+const props = defineProps(['open', 'form', 'header', 'submitFunction', 'submitLabel', 'action', 'method']);
 
 
 </script>

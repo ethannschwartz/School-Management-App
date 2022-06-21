@@ -1,6 +1,6 @@
 <template>
 
-    <Modal @close="$emit('close')" submit-label="Upload File" header="Upload File" :submit-function="uploadFile">
+    <Modal @close="$emit('close')" submit-label="Upload File" header="Upload File" :submit-function="uploadFile" :form="uploadFileForm">
         <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="uploadFileForm.filename">
         <input type="file" placeholder="File" name="file" @input="uploadFileForm.file = $event.target.files[0]">
     </Modal>

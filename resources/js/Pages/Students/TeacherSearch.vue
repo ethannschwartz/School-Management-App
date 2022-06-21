@@ -16,7 +16,7 @@
             <ul class="p-2">
                 <li class="flex items-center justify-between border-t p-2 text-lg" v-for="teacher in teachers">
                     <span>{{ teacher.name }}</span>
-                    <Link :href="route('users.store_subscription', teacher)"
+                    <Link :href="route('users.store', teacher)"
                           method="post"
                           as="button"
                           preserve-state
@@ -25,6 +25,17 @@
                           class="inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:shadow-outline-gray transition ease-in-out duration-150 bg-blue-600 hover:bg-blue-700 active:bg-blue-900"
                     >
                         Subscribe
+                    </Link>
+
+                    <Link :href="route('users.destroy', teacher)"
+                          method="delete"
+                          as="button"
+                          preserve-state
+                          preserve-scroll
+                          :only="['teacher']"
+                          class="inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:shadow-outline-gray transition ease-in-out duration-150 bg-blue-600 hover:bg-blue-700 active:bg-blue-900"
+                    >
+                        Unsubscribe
                     </Link>
                 </li>
             </ul>
