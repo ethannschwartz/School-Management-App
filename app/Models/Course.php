@@ -39,7 +39,7 @@ class Course extends Model
     /**
      * @return BelongsToMany
      */
-    public function followers(): BelongsToMany
+    public function subscribers(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }

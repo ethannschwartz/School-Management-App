@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Foundation\Application;
@@ -42,8 +44,13 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::get('files/{file:id}', [FileController::class, 'show'])->name('file.show');
 });
 
+Route::middleware(['auth', 'verified'])->name('analytics.')->group(function() {
+    Route::get('analytics', [AnalyticsController::class, 'index'])->name('index');
+});
+
 Route::middleware(['auth', 'verified'])->name('users.')->group(function() {
-    Route::get('teachers', [TeachersController::class, 'index'])->name('teachers.index');
+    Route::get('teachers', [SubscriberController::class, 'index'])->name('teachers.index');
+    Route::post('teacher/{user}', [SubscriberController::class, 'store_subscription'])->name('store_subscription');
 });
 
 require __DIR__.'/auth.php';

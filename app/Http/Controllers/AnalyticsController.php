@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class TeachersController extends Controller
+class AnalyticsController extends Controller
 {
     /**
      * @param Request $request
@@ -15,12 +15,11 @@ class TeachersController extends Controller
      */
     public function index(Request $request): Response
     {
-        $teachers = $request->user()->with('courses')->where('account_type', 'teacher')->get();
-        return Inertia::render('Students/TeacherSearch', [
+        return Inertia::render('Teachers/Analytics', [
             'user' => Auth::user(),
-            'teachers' => $teachers,
+            'subscribers' => $request->user()->subscribers()->get(),
+            'course' => $request->user()->courses()->first(),
+            'courses' => $request->user()->courses()->get(),
         ]);
     }
-
-
 }

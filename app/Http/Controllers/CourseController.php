@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,10 +39,12 @@ class CourseController extends Controller
                 'courses' => $request->user()->courses()->get(),
             ]);
         } else {
+            $teacher = $request->user()->subscribings()->first();
+
             return Inertia::render('Students/Courses', [
                 'user' => Auth::user(),
-                'course' => $request->user()->followings()->with('user', 'files')->first(),
-                'courses' => $request->user()->followings()->get(),
+                'course' => Course::with('files', 'user')->where('user_id', $teacher->pivot->subscribed_id)->first(),
+                'courses' => Course::all()->where('user_id', $teacher->pivot->subscribed_id),
             ]);
         }
     }
@@ -71,8 +74,8 @@ class CourseController extends Controller
             if($course->followers()->where('user_id' === $request->user()->getKey())){
                 return Inertia::render('Students/Courses', [
                     'user' => Auth::user(),
-                    'course' => $request->user()->followings()->with('user', 'files')->first(),
-                    'courses' => $request->user()->followings()->get(),
+                    'course' => $request->user()->subscribers()->with('user', 'files')->first(),
+                    'courses' => $request->user()->subscribings()->get(),
                 ]);
 
             }

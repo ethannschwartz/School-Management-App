@@ -81,7 +81,7 @@ const teacherLinks = [
     },
     {
         title: 'Analytics',
-        route: 'courses.index',
+        route: 'analytics.index',
     },
 ];
 

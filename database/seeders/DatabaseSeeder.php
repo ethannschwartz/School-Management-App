@@ -31,6 +31,19 @@ class DatabaseSeeder extends Seeder
              'updated_at' => now(),
          ]);
 
+        User::factory()->create([
+            'id' => 2,
+            'prefix' => 'Mr.',
+            'name' => 'Michael Scott',
+            'account_type' => 'student',
+            'email' => 'demo@aol.com',
+            'email_verified_at' => null,
+            'password' => Hash::make('password'),
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
          Course::factory(1)->create([
              'id' => 1,
              'title' => 'General Chemistry',

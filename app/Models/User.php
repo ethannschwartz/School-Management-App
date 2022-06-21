@@ -64,10 +64,18 @@ class User extends Authenticatable
     }
 
     /**
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function followings(): HasMany
+    public function subscribers(): BelongsToMany
     {
-        return $this->hasMany(Course::class);
+        return $this->belongsToMany(User::class, 'subscribings', 'subscribed_id', 'subscriber_id')->withTimestamps();
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function subscribings(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'subscribings', 'subscriber_id', 'subscribed_id')->withTimestamps();
     }
 }
