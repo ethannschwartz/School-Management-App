@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -39,9 +38,9 @@ class CourseController extends Controller
         } else {
             $teacher_ids = $request->user()->subscribings()->pluck('subscribed_id');
             return Inertia::render('Students/Courses', [
-                'course' => Course::with('files', 'user')->where('user_id', $request->user()->subscribings()->pluck('subscribed_id')->toArray())->first(),
+                'course' => Course::with('files', 'user')->where('user_id', $teacher_ids->toArray())->first(),
                 'courses' => Course::all()->whereIn('user_id', $teacher_ids),
-                'teachers' => User::with('courses')->where('account_type', 'teacher')->get(),
+                'teachers' => $request->user()->subscribings()->with('courses')->get(),
             ]);
         }
     }
@@ -72,12 +71,14 @@ class CourseController extends Controller
                 return Inertia::render('Students/Courses', [
                     'course' => Course::with('files', 'user')->where('id', $course->getKey())->first(),
                     'courses' => Course::all()->whereIn('user_id', $teacher_ids),
+                    'teachers' => $request->user()->subscribings()->with('courses')->get(),
                 ]);
             }
              else {
                 return Inertia::render('Unauthorized', [
                     'course' => Course::with('user')->where('id', $course->getKey())->first(),
                     'courses' => Course::all()->where('user_id', $course->user()->getParentKey()),
+                    'teachers' => $request->user()->subscribings()->with('courses')->get(),
                 ]);
             }
         }

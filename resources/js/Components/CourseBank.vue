@@ -2,7 +2,7 @@
     <aside class="h-full w-64 border-r border-gray-200 relative">
 
         <header class="flex justify-between items-center border-b border-gray-200">
-            <h2 class="font-medium text-slate-700 p-2 text-xl text-center">Courses</h2>
+            <h2 class="font-medium text-slate-700 p-2 text-xl text-center">{{ title }}</h2>
         </header>
 
         <ul class="w-64">
@@ -34,6 +34,6 @@ import {Link} from "@inertiajs/inertia-vue3";
 import {ref} from "vue";
 
 const modalSeen = ref(false);
-const props = defineProps(['courses']);
+const props = defineProps(['courses', 'title']);
 
 </script>

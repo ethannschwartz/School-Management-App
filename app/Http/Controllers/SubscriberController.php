@@ -12,16 +12,12 @@ class SubscriberController extends Controller
 {
     /**
      * @param Request $request
-     * @param User $user
      * @return Response
      */
-    public function index(Request $request, User $user): Response
+    public function index(Request $request): Response
     {
-        $teachers = $request->user()->with('courses')->where('account_type', 'teacher')->get();
-
         return Inertia::render('Students/TeacherSearch', [
-            'teachers' => $teachers,
-            'subscribings' => $user->subscribings()->get(),
+            'teachers' => $request->user()->subscribings()->with('courses')->get(),
         ]);
     }
 

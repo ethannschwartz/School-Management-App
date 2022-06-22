@@ -4,7 +4,7 @@
         <div class="px-8 lg:px-16 py-8 lg:py-16">
             <div class="h-[600px] flex bg-white shadow-lg">
 
-                <CourseBank :courses="courses" >
+                <CourseBank :courses="courses" title="Teachers" >
 
                     <div class="border-t !w-full border-gray-200 absolute bottom-0 text-center">
 
@@ -46,7 +46,7 @@
 import {ref} from "vue";
 import {FileCard, CourseBank, JoinCourseModal, SectionHeader} from "@/Components";
 
-const props = defineProps(['course', 'courses']);
+const props = defineProps(['course', 'courses', 'course_search']);
 const modalSeen = ref(false);
 
 </script>
