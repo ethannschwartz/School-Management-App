@@ -10,7 +10,6 @@
                    placeholder="Search"
             />
 
-
             <h1>Teachers:</h1>
 
             <ul class="p-2">

@@ -1,7 +1,7 @@
 <template>
     <Navbar :user="user" />
 
-    <main>
+    <main class="pt-14">
         <slot></slot>
     </main>
 

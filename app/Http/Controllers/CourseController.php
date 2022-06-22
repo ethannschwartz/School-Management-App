@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -33,18 +33,15 @@ class CourseController extends Controller
     {
         if($request->user()->account_type === 'teacher') {
             return Inertia::render('Teachers/Courses', [
-                'user' => Auth::user(),
                 'course' => $request->user()->courses()->with('user', 'files')->first(),
                 'courses' => $request->user()->courses()->get(),
             ]);
         } else {
-            $teachers = $request->user()->subscribings()->get();
             $teacher_ids = $request->user()->subscribings()->pluck('subscribed_id');
-
             return Inertia::render('Students/Courses', [
-                'user' => Auth::user(),
-                'course' => Course::with('files', 'user')->where('user_id', $teachers->first()->pivot->subscribed_id)->first(),
+                'course' => Course::with('files', 'user')->where('user_id', $request->user()->subscribings()->pluck('subscribed_id')->toArray())->first(),
                 'courses' => Course::all()->whereIn('user_id', $teacher_ids),
+                'teachers' => User::with('courses')->where('account_type', 'teacher')->get(),
             ]);
         }
     }
@@ -62,27 +59,23 @@ class CourseController extends Controller
         if ($request->user()->account_type === 'teacher') {
             if($request->user()->getKey() === $course->user_id){
                 return Inertia::render('Teachers/Courses', [
-                    'user' => Auth::user(),
                     'course' => $course->with('user', 'files')->where('id', $course->getKey())->first(),
                     'courses' => $request->user()->courses()->get(),
                 ]);
             } else {
                 return Inertia::render('Unauthorized', [
-                    'user' => Auth::user(),
                     'course' => $course->user()->get(),
                 ]);
             }
         } else {
             if(in_array($course->user_id, $teacher_ids->toArray())){
                 return Inertia::render('Students/Courses', [
-                    'user' => Auth::user(),
                     'course' => Course::with('files', 'user')->where('id', $course->getKey())->first(),
                     'courses' => Course::all()->whereIn('user_id', $teacher_ids),
                 ]);
             }
              else {
                 return Inertia::render('Unauthorized', [
-                    'user' => Auth::user(),
                     'course' => Course::with('user')->where('id', $course->getKey())->first(),
                     'courses' => Course::all()->where('user_id', $course->user()->getParentKey()),
                 ]);

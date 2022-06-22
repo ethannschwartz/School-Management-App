@@ -16,7 +16,6 @@ class AnalyticsController extends Controller
     public function index(Request $request): Response
     {
         return Inertia::render('Teachers/Analytics', [
-            'user' => Auth::user(),
             'subscribers' => $request->user()->subscribers()->get(),
             'course' => $request->user()->courses()->first(),
             'courses' => $request->user()->courses()->get(),

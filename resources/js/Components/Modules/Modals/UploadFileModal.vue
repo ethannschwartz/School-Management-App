@@ -1,7 +1,7 @@
 <template>
 
     <Modal @close="$emit('close')" submit-label="Upload File" header="Upload File" :submit-function="uploadFile" :form="uploadFileForm">
-        <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="uploadFileForm.filename">
+        <input type="text" placeholder="Title" class="p-2 border border-gray-200 rounded-md" v-model="uploadFileForm.title">
         <input type="file" placeholder="File" name="file" @input="uploadFileForm.file = $event.target.files[0]">
     </Modal>
 
@@ -14,7 +14,7 @@ import {useForm} from "@inertiajs/inertia-vue3";
 const props = defineProps(['course']);
 
 const uploadFileForm = useForm({
-    filename: 'First Chemistry File Upload',
+    title: null,
     file: null,
 });
 

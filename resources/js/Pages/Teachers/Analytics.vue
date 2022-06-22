@@ -1,6 +1,6 @@
 <template>
 
-    <section class="pt-16 bg-teal-100">
+    <section class="bg-teal-100">
         <div class="px-8 lg:px-16 py-8 lg:py-16">
             <div class="h-[600px] flex bg-white shadow-lg">
 

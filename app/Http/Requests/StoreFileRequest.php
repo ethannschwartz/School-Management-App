@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
 
 class StoreFileRequest extends FormRequest
 {
@@ -25,7 +24,8 @@ class StoreFileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'filename' => ['string', 'required', 'max:255'],
+            'title' => ['string', 'required', 'max:255'],
+            'filename' => ['string', 'max:255'],
         ];
     }
 }

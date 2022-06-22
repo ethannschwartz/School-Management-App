@@ -34,6 +34,6 @@ import {Link} from "@inertiajs/inertia-vue3";
 import {ref} from "vue";
 
 const modalSeen = ref(false);
-const props = defineProps(['courses', 'user']);
+const props = defineProps(['courses']);
 
 </script>

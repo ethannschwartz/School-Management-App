@@ -9,13 +9,14 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Inertia\Inertia;
-use Inertia\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileController extends Controller
 {
+
     /**
      * @param StoreFileRequest $request
+     * @param Course $course
      * @return RedirectResponse
      */
     public function store(StoreFileRequest $request, Course $course): RedirectResponse
@@ -25,6 +26,7 @@ class FileController extends Controller
         Storage::disk('s3')->setVisibility($path, 'public');
 
         File::create([
+            'title' => $request->input('title'),
             'filename' => basename($path),
             'url'     => Storage::disk('s3')->url($path),
             'user_id' => Auth::id(),
@@ -34,20 +36,19 @@ class FileController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param File $file
-     * @return Response
+     * @return StreamedResponse
      */
-    public function show(Request $request, File $file): Response
+    public function show(Request $request, File $file): StreamedResponse
     {
-        $response = Storage::disk('s3')->response('files/' . $file->filename);
+        return Storage::disk('s3')->response('files/' . $file->filename);
 
-        if(Auth::user()===$request->user()){
-            return Inertia::render('FileViewer', [
-                'file' => $response,
-            ]);
-        } else {
-            return Inertia::render('Courses');
-        }
+//        if(Auth::user()===$request->user()){
+//            return Inertia::render('FileViewer', [
+//                'file' => $response,
+//            ]);
+//        } else {
+//            return Inertia::render('Courses');
+//        }
     }
 }
