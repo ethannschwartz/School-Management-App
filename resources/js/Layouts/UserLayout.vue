@@ -19,15 +19,12 @@ const props = defineProps(['user']);
 
 <style>
 .slide-enter-from, .slide-leave-to {
-    opacity:0;
-    transform: translateX(100%) ;
-    transform-origin: left;
+    overflow:hidden;
+    transform: translateY(-100%) ;
 }
 
 .slide-enter-to, .slide-leave-from {
-    opacity:1;
-    transform: translateX(0);
-    transform-origin: left;
+    transform: translateY(0);
 }
 
 .slide-enter-active, .slide-leave-active {

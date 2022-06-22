@@ -16,8 +16,21 @@ class SubscriberController extends Controller
      */
     public function index(Request $request): Response
     {
-        return Inertia::render('Students/TeacherSearch', [
+        return Inertia::render('Students/Teachers', [
             'teachers' => $request->user()->subscribings()->with('courses')->get(),
+            'teacher' => $request->user()->subscribings()->first(),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function show(Request $request, User $user): Response
+    {
+        return Inertia::render('Students/Teachers', [
+            'teachers' => $request->user()->subscribings()->with('courses')->get(),
+            'teacher' => $request->user()->subscribings()->where('user_id', $user->getKey())->get(),
         ]);
     }
 

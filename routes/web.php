@@ -51,6 +51,8 @@ Route::middleware(['auth', 'verified'])->name('users.')->group(function() {
     Route::get('teachers', [SubscriberController::class, 'index'])->name('teachers.index');
     Route::post('teacher/{user}', [SubscriberController::class, 'store'])->name('store');
     Route::delete('teacher/{user}', [SubscriberController::class, 'destroy'])->name('destroy');
+    Route::get('teachers{user}', [SubscriberController::class, 'show'])->name('teachers.show');
+
 });
 
 require __DIR__.'/auth.php';

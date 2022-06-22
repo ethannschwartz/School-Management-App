@@ -4,7 +4,7 @@
         <div class="px-8 lg:px-16 py-8 lg:py-16">
             <div class="h-[600px] flex bg-white shadow-lg">
 
-                <CourseBank :courses="courses" title="Teachers" >
+                <CourseBank :courses="courses" title="Courses" >
 
                     <div class="border-t !w-full border-gray-200 absolute bottom-0 text-center">
 
@@ -50,21 +50,3 @@ const props = defineProps(['course', 'courses', 'course_search']);
 const modalSeen = ref(false);
 
 </script>
-
-<style>
-.slide-enter-from, .slide-leave-to {
-    opacity:0;
-    transform: translateX(100%) ;
-    transform-origin: left;
-}
-
-.slide-enter-to, .slide-leave-from {
-    opacity:1;
-    transform: translateX(0);
-    transform-origin: left;
-}
-
-.slide-enter-active, .slide-leave-active {
-    transition: all 0.15s ease-in;
-}
-</style>
