@@ -10,7 +10,7 @@
                         <h2 class="relative font-medium text-slate-700 p-2 text-xl text-center">Teachers</h2>
                     </header>
 
-                    <ul class="duration-150 w-64 relative z-30">
+                    <ul class="duration-150 w-full relative z-30">
 
                         <li v-for="teacher in teachers" class="relative z-30">
                             <button @click.prevent="isSeen===teacher.id? isSeen=false : isSeen=teacher.id"
