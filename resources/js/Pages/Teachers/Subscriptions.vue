@@ -4,16 +4,16 @@
         <div class="px-8 lg:px-16 py-8 lg:py-16">
             <div class="h-[600px] flex bg-white shadow-lg">
 
-                <CourseBank :courses="courses" >
+                <CourseBank :courses="courses" title="Courses" >
 
                 </CourseBank>
 
                 <section class="w-full h-full">
 
                     <div class="p-8">
-                        Roster:
+                        <h1 class="text-2xl font-medium text-slate-400 border-b pb-3">Roster</h1>
 
-                        <ul>
+                        <ul class="p-4">
                             <li v-for="subscriber in subscribers">{{ subscriber.name }}</li>
                         </ul>
                     </div>

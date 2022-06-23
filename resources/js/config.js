@@ -19,14 +19,14 @@ export default {
                 route: 'courses.index',
             },
             {
-                title: 'Analytics',
-                route: 'analytics.index',
+                title: 'Subscriptions',
+                route: 'subscriptions.index',
             },
         ],
         studentLinks: [
             {
                 title: 'Teachers',
-                route: 'users.teachers.index',
+                route: 'teachers.index',
             },
             {
                 title: 'Courses',

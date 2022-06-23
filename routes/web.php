@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\SubscriberController;
-use App\Http\Controllers\TeacherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -43,15 +42,15 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::get('files/{file}', [FileController::class, 'show'])->name('files.show');
 });
 
-Route::middleware(['auth', 'verified'])->name('analytics.')->group(function() {
-    Route::get('analytics', [AnalyticsController::class, 'index'])->name('index');
+Route::middleware(['auth', 'verified'])->name('subscriptions.')->group(function() {
+    Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('index');
 });
 
-Route::middleware(['auth', 'verified'])->name('users.')->group(function() {
-    Route::get('teachers', [SubscriberController::class, 'index'])->name('teachers.index');
+Route::middleware(['auth', 'verified'])->name('teachers.')->group(function() {
+    Route::get('teachers', [SubscriberController::class, 'index'])->name('index');
     Route::post('teacher/{user}', [SubscriberController::class, 'store'])->name('store');
     Route::delete('teacher/{user}', [SubscriberController::class, 'destroy'])->name('destroy');
-    Route::get('teachers/{course}', [SubscriberController::class, 'show'])->name('teachers.show');
+    Route::get('teachers/{course}', [SubscriberController::class, 'show'])->name('show');
 });
 
 require __DIR__.'/auth.php';
