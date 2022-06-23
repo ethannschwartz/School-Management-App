@@ -1,5 +1,5 @@
 <template>
-    <aside class="h-full w-64 border-r border-gray-200 relative">
+    <aside class="relative z-40 h-full w-72 border-r border-gray-200 relative">
 
         <header class="flex justify-between items-center border-b border-gray-200">
             <h2 class="font-medium text-slate-700 p-2 text-xl text-center">{{ title }}</h2>

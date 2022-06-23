@@ -5,6 +5,9 @@ import FileCard from './Modules/Cards/FileCard';
 import CourseBank from './CourseBank';
 import SectionHeader from './SectionHeader';
 
+import CourseLink from './Modules/Cards/CourseLink';
+import TeacherLink from './Modules/Cards/TeacherLink';
+
 import BaseSvg from "@/Components/Modules/BaseSvg";
 import ModalTransition from "@/Components/Modules/Transitions/ModalTransition";
 import HintTransition from "@/Components/Modules/Transitions/HintTransition";
@@ -26,6 +29,9 @@ export {
     HintTransition,
     CourseBank,
     SectionHeader,
+
+    CourseLink,
+    TeacherLink,
 
     FileCard,
 

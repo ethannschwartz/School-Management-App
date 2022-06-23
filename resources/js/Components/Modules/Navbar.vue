@@ -11,7 +11,7 @@
                 <h1 class="text-xl lg:text-3xl font-semibold block lg:hidden">Publify</h1>
                 <ul class="hidden lg:flex gap-8 items-center">
                     <Link v-if="user?.account_type ==='teacher'"
-                          v-for="navLink in teacherLinks"
+                          v-for="navLink in config.nav.teacherLinks"
                           :href="route(navLink.route)"
                           class="duration-200 hover:text-slate-800"
                           :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null"
@@ -20,7 +20,7 @@
                     </Link>
 
                     <Link v-else
-                          v-for="navLink in studentLinks"
+                          v-for="navLink in config.nav.studentLinks"
                           :href="route(navLink.route)"
                           class="duration-200 hover:text-slate-800"
                           :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null"
@@ -67,34 +67,12 @@
 </style>
 
 <script setup>
+import config from "@/config";
 import {Link} from "@inertiajs/inertia-vue3";
 import {BaseSvg} from "@/Components";
 import {ref} from "vue";
 
 const props = defineProps(['user']);
 const profileDropdownSeen = ref(false);
-
-const teacherLinks = [
-    {
-        title: 'Courses',
-        route: 'courses.index',
-    },
-    {
-        title: 'Analytics',
-        route: 'analytics.index',
-    },
-];
-
-
-const studentLinks = [
-    {
-        title: 'Courses',
-        route: 'courses.index',
-    },
-    {
-        title: 'Teachers',
-        route: 'users.teachers.index',
-    },
-];
 
 </script>

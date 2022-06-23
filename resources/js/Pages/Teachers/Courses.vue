@@ -15,20 +15,20 @@
 
                 </CourseBank>
 
-                <section class="w-full h-full">
+                <section class="relative w-full h-full overflow-hidden">
 
-                    <SectionHeader v-if="courses.length!==0" :course="course" />
+                    <SectionHeader v-if="courses.length!==0" :course="course"/>
 
-                    <div class="p-8 w-full h-full">
+                    <div class="p-8 w-full h-full overflow-y-scroll">
 
-                        <div class="flex gap-8">
-
-                            <FileCard v-for="file in course?.files" :file="file" />
+                        <div class="flex flex-wrap gap-8 p-8 pb-32 w-full">
 
                             <button @click="modalSeen='uploadFileModal'" class="flex justify-center items-center h-full text-gray-200 text-center w-48 h-72 bg-slate-600 border-slate-500 border rounded-sm relative duration-200 hover:-translate-y-1">
                                 <span class="text-7xl">+</span>
                                 <span class="absolute left-0 bottom-0 w-full p-3">Create New</span>
                             </button>
+
+                            <FileCard v-for="file in course?.files" :file="file" />
 
                         </div>
 

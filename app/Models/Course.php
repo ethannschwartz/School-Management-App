@@ -33,7 +33,7 @@ class Course extends Model
      */
     public function files(): HasMany
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(File::class)->orderByDesc('created_at');
     }
 
     /**

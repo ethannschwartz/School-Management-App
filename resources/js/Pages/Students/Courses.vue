@@ -17,11 +17,11 @@
 
                 </CourseBank>
 
-                <section class="w-full h-full">
+                <section class="relative w-full overflow-hidden">
 
                     <SectionHeader v-if="courses.length!==0" :course="course" />
 
-                    <div class="flex gap-8 p-8 w-full">
+                    <div class="flex flex-wrap gap-8 p-8 pb-32 w-full h-full overflow-y-scroll">
 
                         <FileCard v-for="file in course?.files" :file="file" />
 
@@ -46,7 +46,6 @@
 import {ref} from "vue";
 import {FileCard, CourseBank, JoinCourseModal, SectionHeader} from "@/Components";
 
-const props = defineProps(['course', 'courses', 'course_search']);
+const props = defineProps(['course', 'courses']);
 const modalSeen = ref(false);
-
 </script>
