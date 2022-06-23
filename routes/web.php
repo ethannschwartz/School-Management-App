@@ -40,6 +40,10 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::get('search', [CourseController::class, 'search'])->name('search');
     Route::post('courses/{course}/files', [FileController::class, 'store'])->name('file.store');
     Route::get('files/{file}', [FileController::class, 'show'])->name('files.show');
+
+    Route::get('publish/epub', 'EpubController@create');
+    Route::get('publish/mobi', 'MobiController@create');
+    Route::get('publish/pdf', 'PdfController@create');
 });
 
 Route::middleware(['auth', 'verified'])->name('subscriptions.')->group(function() {
