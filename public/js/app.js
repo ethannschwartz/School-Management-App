@@ -23502,8 +23502,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  key: 0,
-  "class": "relative z-10"
+  "class": "w-full"
 };
 var _hoisted_2 = {
   "class": "flex items-center gap-2"
@@ -23516,9 +23515,9 @@ var _hoisted_4 = {
   "class": "text-slate-300"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _$props$teacher, _$props$teacher2;
+  var _$props$teacher;
 
-  return $props.isSeen === ((_$props$teacher = $props.teacher) === null || _$props$teacher === void 0 ? void 0 : _$props$teacher.id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$teacher2 = $props.teacher) === null || _$props$teacher2 === void 0 ? void 0 : _$props$teacher2.courses, function (course) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$teacher = $props.teacher) === null || _$props$teacher === void 0 ? void 0 : _$props$teacher.courses, function (course) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
       "class": "flex items-center justify-between w-full font-medium p-2 text-white bg-slate-600 hover:bg-slate-700 active:bg-slate-900 border-b border-t first-of-type:border-t-0 border-t-slate-500 border-slate-700",
       href: _ctx.route('teachers.show', course),
@@ -23543,7 +23542,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["href"]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
+  ))]);
 }
 
 /***/ }),
@@ -23603,7 +23602,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-white duration-150 relative z-30 flex items-center justify-between w-full font-medium p-2 text-slate-600 hover:bg-slate-100 active:bg-slate-200 active:text-black border-b"
+  "class": "bg-white duration-150 relative z-50 flex items-center justify-between w-full font-medium p-2 text-slate-600 hover:bg-slate-100 active:bg-slate-200 active:text-black border-b"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _$props$teacher, _$props$teacher2;
@@ -25467,7 +25466,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "pt-14"
+  "class": "pt-14 relative"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", {
@@ -26577,75 +26576,82 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-teal-100"
+  "class": "bg-teal-100 block px-8 lg:px-16 py-8 lg:py-16"
 };
 var _hoisted_2 = {
-  "class": "px-8 lg:px-16 py-8 lg:py-16"
-};
-var _hoisted_3 = {
   "class": "h-[600px] flex bg-white shadow-lg"
 };
-var _hoisted_4 = {
-  "class": "relative z-40 h-full w-72 border-r border-gray-200 relative"
+var _hoisted_3 = {
+  "class": "relative h-full overflow-hidden w-72 border-r border-gray-200 relative"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", {
   "class": "relative z-40 bg-white flex justify-between items-center border-b border-gray-200"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "relative font-medium text-slate-700 p-2 text-xl text-center"
+  "class": "font-medium text-slate-700 p-2 text-xl text-center"
 }, "Teachers")], -1
 /* HOISTED */
 );
 
+var _hoisted_5 = {
+  "class": "duration-150 bg-white h-full"
+};
 var _hoisted_6 = {
-  "class": "duration-150 w-full relative z-30"
-};
-var _hoisted_7 = {
-  "class": "bg-white relative z-30"
-};
-var _hoisted_8 = {
   "class": "relative w-full overflow-hidden"
 };
-var _hoisted_9 = {
+var _hoisted_7 = {
   "class": "flex flex-wrap gap-8 p-8 pb-32 w-full h-full overflow-y-scroll"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _$props$course;
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.teachers, function (teacher) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TeacherLink"], {
-      "is-seen": $setup.isSeen,
-      teacher: teacher,
-      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $setup.isSeen === (teacher === null || teacher === void 0 ? void 0 : teacher.id) ? $setup.isSeen = false : $setup.isSeen = teacher === null || teacher === void 0 ? void 0 : teacher.id;
-      }, ["prevent"])
-    }, null, 8
-    /* PROPS */
-    , ["is-seen", "teacher", "onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
-      name: "slide"
-    }, {
-      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CourseLink"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
+    name: "list"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.teachers, function (teacher) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+          "class": "block bg-white relative",
+          key: teacher
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TeacherLink"], {
           "is-seen": $setup.isSeen,
-          teacher: teacher
+          teacher: teacher,
+          onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+            return $setup.isSeen === (teacher === null || teacher === void 0 ? void 0 : teacher.id) ? $setup.isSeen = false : $setup.isSeen = teacher === null || teacher === void 0 ? void 0 : teacher.id;
+          }, ["prevent"])
         }, null, 8
         /* PROPS */
-        , ["is-seen", "teacher"])];
-      }),
-      _: 2
-      /* DYNAMIC */
+        , ["is-seen", "teacher", "onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+          name: "list"
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [$setup.isSeen === (teacher === null || teacher === void 0 ? void 0 : teacher.id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["CourseLink"], {
+              "is-seen": $setup.isSeen,
+              teacher: teacher,
+              key: teacher
+            }, null, 8
+            /* PROPS */
+            , ["is-seen", "teacher"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+          }),
+          _: 2
+          /* DYNAMIC */
 
-    }, 1024
-    /* DYNAMIC_SLOTS */
-    )]);
-  }), 256
-  /* UNKEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_8, [$props.teachers.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["SectionHeader"], {
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        )]);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_6, [$props.teachers.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["SectionHeader"], {
     key: 0,
     course: $props.course
   }, null, 8
   /* PROPS */
-  , ["course"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$course = $props.course) === null || _$props$course === void 0 ? void 0 : _$props$course.files, function (file) {
+  , ["course"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$course = $props.course) === null || _$props$course === void 0 ? void 0 : _$props$course.files, function (file) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["FileCard"], {
       file: file
     }, null, 8
@@ -26653,7 +26659,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["file"]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
     name: "fade"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -27278,7 +27284,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.slide-enter-from, .slide-leave-to {\n    overflow:hidden;\n    transform: translateY(-100%) ;\n}\n.slide-enter-to, .slide-leave-from {\n    transform: translateY(0);\n}\n.slide-enter-active, .slide-leave-active {\n    transition: all 0.15s ease-in;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.slide-enter-from,\n.slide-leave-to {\n    overflow: hidden;\n    transform: translateY(-100%);\n}\n.slide-enter-to,\n.slide-leave-from {\n    transform: translateY(0);\n}\n.slide-enter-active,\n.slide-leave-active {\n    transition: all 0.4s ease-in;\n}\n.slide-enter-active {\n    position: relative;\n}\n.list-move,\n.list-enter-active,\n.list-leave-active {\n    transition: all 0.3s ease;\n    overflow: hidden;\n}\n.list-enter-from,\n.list-leave-to {\n    transform: translateY(-100%);\n    overflow: hidden;\n}\n.list-leave-active {\n    position: absolute;\n    overflow: hidden;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

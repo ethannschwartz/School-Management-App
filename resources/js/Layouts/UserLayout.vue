@@ -1,7 +1,7 @@
 <template>
     <Navbar :user="user" />
 
-    <main class="pt-14">
+    <main class="pt-14 relative">
         <slot></slot>
     </main>
 
@@ -18,16 +18,41 @@ const props = defineProps(['user']);
 
 
 <style>
-.slide-enter-from, .slide-leave-to {
-    overflow:hidden;
-    transform: translateY(-100%) ;
+.slide-enter-from,
+.slide-leave-to {
+    overflow: hidden;
+    transform: translateY(-100%);
 }
 
-.slide-enter-to, .slide-leave-from {
+.slide-enter-to,
+.slide-leave-from {
     transform: translateY(0);
 }
 
-.slide-enter-active, .slide-leave-active {
-    transition: all 0.15s ease-in;
+.slide-enter-active,
+.slide-leave-active {
+    transition: all 0.4s ease-in;
+}
+
+.slide-enter-active {
+    position: relative;
+}
+
+.list-move,
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.list-enter-from,
+.list-leave-to {
+    transform: translateY(-100%);
+    overflow: hidden;
+}
+
+.list-leave-active {
+    position: absolute;
+    overflow: hidden;
 }
 </style>

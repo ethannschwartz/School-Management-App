@@ -1,47 +1,51 @@
 <template>
 
-    <section class="bg-teal-100">
-        <div class="px-8 lg:px-16 py-8 lg:py-16">
-            <div class="h-[600px] flex bg-white shadow-lg">
+    <section class="bg-teal-100 block px-8 lg:px-16 py-8 lg:py-16">
 
-                <aside class="relative z-40 h-full w-72 border-r border-gray-200 relative">
+        <div class="h-[600px] flex bg-white shadow-lg">
 
-                    <header class="relative z-40 bg-white flex justify-between items-center border-b border-gray-200">
-                        <h2 class="relative font-medium text-slate-700 p-2 text-xl text-center">Teachers</h2>
-                    </header>
+            <aside class="relative h-full overflow-hidden w-72 border-r border-gray-200 relative">
 
-                    <ul class="duration-150 w-full relative z-30">
+                <header class="relative z-40 bg-white flex justify-between items-center border-b border-gray-200">
+                    <h2 class="font-medium text-slate-700 p-2 text-xl text-center">Teachers</h2>
+                </header>
 
-                        <li v-for="teacher in teachers" class="bg-white relative z-30">
 
-                            <TeacherLink :is-seen="isSeen" :teacher="teacher" @click.prevent="isSeen===teacher?.id? isSeen=false : isSeen=teacher?.id" />
+                    <ul class="duration-150 bg-white h-full">
 
-                            <transition name="slide">
+                        <TransitionGroup name="list">
 
-                                <CourseLink :is-seen="isSeen" :teacher="teacher" />
+                            <li v-for="teacher in teachers" class="block bg-white relative" :key="teacher">
 
-                            </transition>
+                                <TeacherLink :is-seen="isSeen" :teacher="teacher" @click.prevent="isSeen===teacher?.id? isSeen=false : isSeen=teacher?.id" />
 
-                        </li>
+                                <Transition name="list">
+
+                                    <CourseLink v-if="isSeen===teacher?.id" :is-seen="isSeen" :teacher="teacher" :key="teacher" />
+
+                                </Transition>
+
+                            </li>
+
+                        </TransitionGroup>
 
                     </ul>
 
-                </aside>
+            </aside>
 
-                <section class="relative w-full overflow-hidden">
+            <section class="relative w-full overflow-hidden">
 
-                    <SectionHeader v-if="teachers.length!==0" :course="course" />
+                <SectionHeader v-if="teachers.length!==0" :course="course" />
 
-                    <div class="flex flex-wrap gap-8 p-8 pb-32 w-full h-full overflow-y-scroll">
+                <div class="flex flex-wrap gap-8 p-8 pb-32 w-full h-full overflow-y-scroll">
 
-                        <FileCard v-for="file in course?.files" :file="file" />
+                    <FileCard v-for="file in course?.files" :file="file" />
 
-                    </div>
+                </div>
 
-                </section>
+            </section>
 
 
-            </div>
         </div>
     </section>
 

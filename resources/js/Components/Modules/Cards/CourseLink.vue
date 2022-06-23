@@ -1,5 +1,5 @@
 <template>
-    <ul v-if="isSeen===teacher?.id" class="relative z-10">
+    <ul class="w-full">
         <Link class="flex items-center justify-between w-full font-medium p-2 text-white bg-slate-600 hover:bg-slate-700 active:bg-slate-900 border-b border-t first-of-type:border-t-0 border-t-slate-500 border-slate-700"
               :href="route('teachers.show', course)"
               preserve-state
