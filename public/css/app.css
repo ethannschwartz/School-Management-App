@@ -653,9 +653,6 @@ select {
 .z-30 {
   z-index: 30;
 }
-.z-20 {
-  z-index: 20;
-}
 .z-\[100\] {
   z-index: 100;
 }
