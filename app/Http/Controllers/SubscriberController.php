@@ -20,6 +20,16 @@ class SubscriberController extends Controller
     {
         if($request->user()->account_type === 'student') {
             return Inertia::render('Students/Teachers', [
+                'teacher_search' => User::query()
+                    ->when($request->input('search'), function ($query, $search) {
+                        $query->where('name', 'like', "%{$search}%");
+                    })
+                    ->paginate(10)
+                    ->withQueryString()
+                    ->through(fn($user) => [
+                        'id' => $user->id,
+                        'name'=> $user->name,
+                    ]),
                 'teachers' => $request->user()->subscribings()->with('courses')->get(),
                 'teacher' => $request->user()->subscribings()->first(),
                 'course' => Course::with('files', 'user')->whereIn('user_id',  $request->user()->subscribings()->pluck('subscribed_id'))->first(),

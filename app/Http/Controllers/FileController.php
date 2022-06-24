@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFileRequest;
 use App\Models\Course;
 use App\Models\File;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use \CloudConvert\CloudConvert;
@@ -20,9 +18,9 @@ class FileController extends Controller
     /**
      * @param StoreFileRequest $request
      * @param Course $course
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreFileRequest $request, Course $course): RedirectResponse
+    public function store(StoreFileRequest $request, Course $course): \Illuminate\Http\RedirectResponse
     {
         $cloudconvert = new CloudConvert(['api_key' => env('CLOUDCONVERT_API_KEY')]);
 //
@@ -51,22 +49,21 @@ class FileController extends Controller
 //        $cloudconvert->jobs()->create($job);
 
 //        dd($request->file('file')->getClientOriginalName());
+//        dd($request->file('file'));
         $job = (new Job())
             ->addTask(
-                (new Task('import/upload', $request->file('file')->getClientOriginalName()))
+                (new Task('import/upload', 'upload-file'))
             )
             ->addTask(
-                (new Task('convert', 'convert-to-epub'))
-                    ->set('input_format', 'pdf')
+                (new Task('convert', 'convert-file'))
+                    ->set('input_format', 'docx')
                     ->set('output_format', 'epub')
                     ->set('engine', 'calibre')
-                    ->set('input', ["test-file"])
-                    ->set('engine_version', '5.37')
-                    ->set('filename', 'output.epub')
+                    ->set('input', ["upload-file"])
             )
             ->addTask(
-                (new Task('export/s3', 'epub-file'))
-                    ->set('input', ["convert-to-epub"])
+                (new Task('export/s3', 'export-file'))
+                    ->set('input', ["convert-file"])
                     ->set('bucket', env('AWS_BUCKET'))
                     ->set('region', env('AWS_DEFAULT_REGION'))
                     ->set('access_key_id', env('AWS_ACCESS_KEY_ID'))
@@ -75,8 +72,7 @@ class FileController extends Controller
 
         $cloudconvert->jobs()->create($job);
 
-        dd($cloudconvert);
-
+        return back()->with('status', 303);
 
 //        $path = $request->file('file')->store('files', 's3');
 

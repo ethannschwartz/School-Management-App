@@ -6,12 +6,28 @@
 
             <aside class="relative h-full overflow-hidden w-72 border-r border-gray-200 relative">
 
-                <header class="relative z-40 bg-white flex justify-between items-center border-b border-gray-200">
-                    <h2 class="font-medium text-slate-700 p-2 text-xl text-center">Teachers</h2>
-                </header>
+                <TransitionGroup name="list" >
+
+                    <header key="header" class="text-left relative z-40 bg-white block border-gray-200">
+
+                        <div class="flex justify-between items-center relative z-50 bg-white border-b">
+                            <h2 class="font-medium text-slate-700 p-2 text-xl relative z-50">Teachers</h2>
+                            <button @click.prevent="isSeen==='search'?isSeen=false:isSeen='search'" >
+                                <BaseSvg :name="isSeen==='search'?'icon-closing-x':'icon-search'" class="scale-75 duration-150 fill-slate-400 mx-2 hover:fill-slate-800"/>
+                            </button>
+                        </div>
+
+                        <Transition name="list">
+                            <div v-if="isSeen==='search'" class="relative z-0 flex items-center bg-slate-800 text-slate-200 w-full overflow-hidden">
+                                <BaseSvg name="icon-search" class="fill-slate-200 mx-2" />
+                                <input type="text" v-model="search " placeholder="Search" class="bg-slate-800 py-2 px-0 w-full border-0 focus:outline-none focus:ring-0" >
+                            </div>
+                        </Transition>
+
+                    </header>
 
 
-                    <ul class="duration-150 bg-white h-full">
+                    <ul key="courses" class="duration-150 bg-white h-full relative z-40 overflow-hidden">
 
                         <TransitionGroup name="list">
 
@@ -30,6 +46,8 @@
                         </TransitionGroup>
 
                     </ul>
+
+                </TransitionGroup>
 
             </aside>
 
@@ -58,12 +76,21 @@
 </template>
 
 <script setup>
-import {ref, defineProps} from "vue";
-import {FileCard, JoinCourseModal, SectionHeader} from "@/Components";
-import {CourseLink, TeacherLink} from "@/Components";
+import {ref, watch, defineProps} from "vue";
+import {FileCard, JoinCourseModal, SectionHeader, CourseLink, TeacherLink, BaseSvg} from "@/Components";
+import {Inertia} from "@inertiajs/inertia";
 
-const props = defineProps(['teachers', 'course']);
+const props = defineProps(['teachers', 'teacher_search' , 'course']);
 const modalSeen = ref(false);
 const isSeen = ref(props.course?.user?.id);
+
+let search = ref('');
+
+watch(search, value => {
+    Inertia.get(route('teachers.index'), { search : value }, {
+        preserveState: true,
+        preserveScroll: true,
+    });
+});
 
 </script>

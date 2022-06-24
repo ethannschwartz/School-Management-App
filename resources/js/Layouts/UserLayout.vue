@@ -12,8 +12,15 @@
 
 <script setup>
 import {Navbar} from "@/Components";
+import {InertiaProgress} from "@inertiajs/progress";
 const props = defineProps(['user']);
 
+InertiaProgress.init({
+    delay: 250,
+    color: '#48c499',
+    includeCSS: true,
+    showSpinner: false,
+})
 </script>
 
 

@@ -24,6 +24,7 @@ import ClosingXCircle from './SvgPaths/ClosingXCircle'
 import ChevronUp from './SvgPaths/ChevronUp'
 import ChevronDown from './SvgPaths/ChevronDown'
 import MailEnvelope from './SvgPaths/MailEnvelope'
+import Search from './SvgPaths/Search'
 
 export default {
     name: 'base-svg',
@@ -44,6 +45,7 @@ export default {
         'icon-chevron-up': ChevronUp,
         'icon-chevron-down': ChevronDown,
         'icon-mail-envelope': MailEnvelope,
+        'icon-search': Search,
     },
     props: {
         name: {
