@@ -97,12 +97,21 @@ const modalSeen = ref(false);
 const isSeen = ref(props.course?.user?.id);
 
 let search = ref('');
-
-watch(search, value => {
-    Inertia.get(route('teachers.index'), { search : value }, {
-        preserveState: true,
-        preserveScroll: true,
+    watch(search, value => {
+        Inertia.get(route('teachers.index'), { search : value }, {
+            preserveState: true,
+            preserveScroll: true,
+        });
     });
-});
+//
+// do {
+//     watch(search, value => {
+//         Inertia.get(route('teachers.index'), { search : value }, {
+//             preserveState: true,
+//             preserveScroll: true,
+//         });
+//     });
+// } while (search.value !== '')
+
 
 </script>

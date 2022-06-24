@@ -23260,7 +23260,16 @@ __webpack_require__.r(__webpack_exports__);
         preserveState: true,
         preserveScroll: true
       });
-    });
+    }); //
+    // do {
+    //     watch(search, value => {
+    //         Inertia.get(route('teachers.index'), { search : value }, {
+    //             preserveState: true,
+    //             preserveScroll: true,
+    //         });
+    //     });
+    // } while (search.value !== '')
+
     var __returned__ = {
       props: props,
       modalSeen: modalSeen,
