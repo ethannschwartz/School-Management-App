@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use \CloudConvert\CloudConvert;
+use \CloudConvert\Models\Job;
+use \CloudConvert\Models\Task;
 
 class FileController extends Controller
 {
@@ -21,21 +24,77 @@ class FileController extends Controller
      */
     public function store(StoreFileRequest $request, Course $course): RedirectResponse
     {
-        $path = $request->file('file')->store('files', 's3');
+        $cloudconvert = new CloudConvert(['api_key' => env('CLOUDCONVERT_API_KEY')]);
+//
+//        $job = (new Job())
+//            ->addTask(
+//                (new Task('import/upload', 'test-file'))
+//            )
+//            ->addTask(
+//                (new Task('convert', 'convert-to-epub'))
+//                    ->set('input_format', 'pdf')
+//                    ->set('output_format', 'epub')
+//                    ->set('engine', 'calibre')
+//                    ->set('input', ["test-file"])
+//                    ->set('engine_version', '5.37')
+//                    ->set('filename', 'output.epub')
+//            )
+//            ->addTask(
+//                (new Task('export/s3', 'epub-file'))
+//                    ->set('input', ["convert-to-epub"])
+//                    ->set('bucket', env('AWS_BUCKET'))
+//                    ->set('region', env('AWS_DEFAULT_REGION'))
+//                    ->set('access_key_id', env('AWS_ACCESS_KEY_ID'))
+//                    ->set('secret_access_key', env('AWS_SECRET_ACCESS_KEY'))
+//            );
+//
+//        $cloudconvert->jobs()->create($job);
 
-        Storage::disk('s3')->setVisibility($path, 'public');
+//        dd($request->file('file')->getClientOriginalName());
+        $job = (new Job())
+            ->addTask(
+                (new Task('import/upload', $request->file('file')->getClientOriginalName()))
+            )
+            ->addTask(
+                (new Task('convert', 'convert-to-epub'))
+                    ->set('input_format', 'pdf')
+                    ->set('output_format', 'epub')
+                    ->set('engine', 'calibre')
+                    ->set('input', ["test-file"])
+                    ->set('engine_version', '5.37')
+                    ->set('filename', 'output.epub')
+            )
+            ->addTask(
+                (new Task('export/s3', 'epub-file'))
+                    ->set('input', ["convert-to-epub"])
+                    ->set('bucket', env('AWS_BUCKET'))
+                    ->set('region', env('AWS_DEFAULT_REGION'))
+                    ->set('access_key_id', env('AWS_ACCESS_KEY_ID'))
+                    ->set('secret_access_key', env('AWS_SECRET_ACCESS_KEY'))
+            );
 
-        File::create([
-            'title' => $request->input('title'),
-            'filename' => basename($path),
-            'url'     => Storage::disk('s3')->url($path),
-            'user_id' => Auth::id(),
-            'course_id' => $course->getKey(),
-        ]);
-        return back();
+        $cloudconvert->jobs()->create($job);
+
+        dd($cloudconvert);
+
+
+//        $path = $request->file('file')->store('files', 's3');
+
+//        Storage::disk('s3')->setVisibility($path, 'public');
+//
+//        File::create([
+//            'title' => $request->input('title'),
+//            'filename' => basename($path),
+//            'url'     => Storage::disk('s3')->url($path),
+//            'user_id' => Auth::id(),
+//            'course_id' => $course->getKey(),
+//        ]);
+//        return back();
     }
 
+
     /**
+     * @param Request $request
      * @param File $file
      * @return StreamedResponse
      */
