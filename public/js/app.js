@@ -26674,9 +26674,18 @@ var _hoisted_8 = {
   "class": "duration-150 bg-white h-full relative z-40 overflow-hidden"
 };
 var _hoisted_9 = {
-  "class": "relative w-full overflow-hidden"
+  "class": "font-medium"
 };
 var _hoisted_10 = {
+  "class": "text-slate-400 text-xs"
+};
+var _hoisted_11 = {
+  "class": "text-slate-300"
+};
+var _hoisted_12 = {
+  "class": "relative w-full overflow-hidden"
+};
+var _hoisted_13 = {
   "class": "flex flex-wrap gap-8 p-8 pb-32 w-full h-full overflow-y-scroll"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -26720,7 +26729,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         name: "list"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.teachers, function (teacher) {
+          return [$setup.isSeen === 'search' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            key: 0
+          }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.teacher_search.data, function (teacher) {
+            return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+              key: teacher.name,
+              "class": "flex items-center justify-between w-full font-medium p-2 text-white bg-slate-800 hover:bg-slate-900 border-b border-t first-of-type:border-t-0 border-t-slate-500 border-blue-700"
+            }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(teacher === null || teacher === void 0 ? void 0 : teacher.name), 1
+            /* TEXT */
+            ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(teacher === null || teacher === void 0 ? void 0 : teacher.courses, function (course) {
+              return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(course.title), 1
+              /* TEXT */
+              );
+            }), 256
+            /* UNKEYED_FRAGMENT */
+            ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(teacher === null || teacher === void 0 ? void 0 : teacher.section), 1
+            /* TEXT */
+            )]);
+          }), 128
+          /* KEYED_FRAGMENT */
+          )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.teachers, function (teacher) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
               "class": "block bg-white relative",
               key: teacher
@@ -26762,12 +26790,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_9, [$props.teachers.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["SectionHeader"], {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_12, [$props.teachers.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["SectionHeader"], {
     key: 0,
     course: $props.course
   }, null, 8
   /* PROPS */
-  , ["course"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$course = $props.course) === null || _$props$course === void 0 ? void 0 : _$props$course.files, function (file) {
+  , ["course"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$course = $props.course) === null || _$props$course === void 0 ? void 0 : _$props$course.files, function (file) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["FileCard"], {
       file: file
     }, null, 8
