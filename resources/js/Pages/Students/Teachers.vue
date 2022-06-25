@@ -36,11 +36,13 @@
                                 v-for="teacher in teacher_search.data"
                                 class="flex items-center justify-between w-full font-medium p-2 text-white bg-slate-800 hover:bg-slate-900 border-b border-t first-of-type:border-t-0 border-t-slate-500 border-blue-700"
                             >
-                                <ul>
-                                    <li class="font-medium">{{ teacher?.name }}</li>
-                                    <li class="text-slate-400 text-xs" v-for="course in teacher?.courses">{{ course.title }}</li>
-                                </ul>
-                                <span class="text-slate-300">{{ teacher?.section }}</span>
+                                <Link>
+                                    <ul>
+                                        <li class="font-medium">{{ teacher?.name }}</li>
+                                        <li class="text-slate-400 text-xs" v-for="course in teacher?.courses">{{ course.title }}</li>
+                                    </ul>
+                                    <span class="text-slate-300">{{ teacher?.section }}</span>
+                                </Link>
                             </li>
 
                             <li v-for="teacher in teachers" class="block bg-white relative" :key="teacher">
@@ -79,39 +81,26 @@
         </div>
     </section>
 
-    <transition name="fade">
-
-        <JoinCourseModal v-if="modalSeen==='joinCourseModal'" @close="modalSeen=false" />
-
-    </transition>
-
 </template>
 
 <script setup>
 import {ref, watch, defineProps} from "vue";
-import {FileCard, JoinCourseModal, SectionHeader, CourseLink, TeacherLink, BaseSvg} from "@/Components";
+import {FileCard, SectionHeader, CourseLink, TeacherLink, BaseSvg} from "@/Components";
 import {Inertia} from "@inertiajs/inertia";
+import {Link} from "@inertiajs/inertia-vue3";
+import {debounce} from "lodash";
 
 const props = defineProps(['teachers', 'teacher_search' , 'course']);
 const modalSeen = ref(false);
 const isSeen = ref(props.course?.user?.id);
 
 let search = ref('');
-    watch(search, value => {
-        Inertia.get(route('teachers.index'), { search : value }, {
-            preserveState: true,
-            preserveScroll: true,
-        });
-    });
-//
-// do {
-//     watch(search, value => {
-//         Inertia.get(route('teachers.index'), { search : value }, {
-//             preserveState: true,
-//             preserveScroll: true,
-//         });
-//     });
-// } while (search.value !== '')
 
+watch(search, debounce((value) => {
+    Inertia.get(route('teachers.index'), { search : value }, {
+        preserveState: true,
+        preserveScroll: true,
+    });
+}, 200));
 
 </script>
