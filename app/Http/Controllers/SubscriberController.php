@@ -8,7 +8,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Inertia\LazyProp;
 use Inertia\Response;
 
 class SubscriberController extends Controller
