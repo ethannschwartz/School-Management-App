@@ -33,14 +33,14 @@
 
                             <li v-if="isSeen==='search'"
                                 :key="teacher.name"
-                                v-for="teacher in teacher_search.data"
-                                class="flex items-center justify-between w-full font-medium p-2 text-white bg-slate-800 hover:bg-slate-900 border-b border-t first-of-type:border-t-0 border-t-slate-500 border-blue-700"
+                                v-for="teacher in teacher_search?.data"
+                                class="flex items-center justify-between w-full font-medium p-2 text-white bg-slate-800 hover:bg-slate-900 border-b border-t first-of-type:border-t-0 border-t-slate-500 border-slate-700 hover:border-white"
                             >
-                                <Link>
-                                    <ul>
-                                        <li class="font-medium">{{ teacher?.name }}</li>
-                                        <li class="text-slate-400 text-xs" v-for="course in teacher?.courses">{{ course.title }}</li>
-                                    </ul>
+                                <Link as="button" :href="route('teachers.get_info', teacher)" class="block text-left w-full">
+                                    <span class="block">
+                                        <span class="font-medium">{{ teacher?.name }}</span>
+                                        <span class="block text-slate-400 text-xs" v-for="course in teacher?.courses">{{ course.title }}</span>
+                                    </span>
                                     <span class="text-slate-300">{{ teacher?.section }}</span>
                                 </Link>
                             </li>

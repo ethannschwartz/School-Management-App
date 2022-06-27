@@ -1,7 +1,7 @@
 <template>
 
     <Link v-if="inertia"
-          :href="route()"
+          :href="route(route.name, route.key)"
           :preserve-state="preserve_state"
           :preserve_scroll="preserve_scroll"
           :only="only"

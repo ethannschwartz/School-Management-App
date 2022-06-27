@@ -14,7 +14,7 @@ import HintTransition from "@/Components/Modules/Transitions/HintTransition";
 
 import CreateCourseModal from './Modules/Modals/CreateCourseModal';
 import UploadFileModal from './Modules/Modals/UploadFileModal';
-import JoinCourseModal from './Modules/Modals/JoinCourseModal';
+import SubscribeDialog from './Modules/Dialogs/SubscribeDialog';
 import FollowTeacherModal from './Modules/Modals/FollowTeacherModal';
 
 import Button from './Modules/FormElements/Button';
@@ -37,8 +37,9 @@ export {
 
     CreateCourseModal,
     UploadFileModal,
-    JoinCourseModal,
     FollowTeacherModal,
+
+    SubscribeDialog,
 
     Button,
     Input,

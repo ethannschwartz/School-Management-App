@@ -34,17 +34,11 @@
         </div>
     </section>
 
-    <transition name="fade">
-
-        <JoinCourseModal v-if="modalSeen==='joinCourseModal'" @close="modalSeen=false" />
-
-    </transition>
-
 </template>
 
 <script setup>
 import {ref} from "vue";
-import {FileCard, CourseBank, JoinCourseModal, SectionHeader} from "@/Components";
+import {FileCard, CourseBank, SectionHeader} from "@/Components";
 
 const props = defineProps(['course', 'courses']);
 const modalSeen = ref(false);

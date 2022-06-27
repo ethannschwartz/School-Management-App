@@ -8,19 +8,20 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Inertia\LazyProp;
 use Inertia\Response;
 
 class SubscriberController extends Controller
 {
     /**
      * @param Request $request
-     * @return RedirectResponse|Response
+     * @return Response|RedirectResponse
      */
     public function index(Request $request): Response|RedirectResponse
     {
         if($request->user()->account_type === 'student') {
             return Inertia::render('Students/Teachers', [
-                'teacher_search' => User::query()
+                'teacher_search' => fn() => User::query()
                     ->where('account_type', 'teacher')
                     ->when($request->input('search'), function ($query, $search) {
                         $query->where('name', 'like', "%{$search}%");
@@ -87,5 +88,17 @@ class SubscriberController extends Controller
     {
         $user->subscribers()->detach($request->user()->getKey());
         return back();
+    }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return Response
+     */
+    public function get_info(Request $request, User $user): Response
+    {
+        return Inertia::render('Students/TeacherProfile', [
+              'teacher' => $user->load('courses'),
+        ]);
     }
 }
