@@ -22,6 +22,10 @@ export default {
                 title: 'Subscriptions',
                 route: 'subscriptions.index',
             },
+            {
+                title: 'Profile',
+                route: 'teachers.profile.show',
+            },
         ],
         studentLinks: [
             {

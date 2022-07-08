@@ -24,33 +24,7 @@ class FileController extends Controller
     public function store(StoreFileRequest $request, Course $course): RedirectResponse
     {
         $cloudconvert = new CloudConvert(['api_key' => env('CLOUDCONVERT_API_KEY')]);
-//
-//        $job = (new Job())
-//            ->addTask(
-//                (new Task('import/upload', 'test-file'))
-//            )
-//            ->addTask(
-//                (new Task('convert', 'convert-to-epub'))
-//                    ->set('input_format', 'pdf')
-//                    ->set('output_format', 'epub')
-//                    ->set('engine', 'calibre')
-//                    ->set('input', ["test-file"])
-//                    ->set('engine_version', '5.37')
-//                    ->set('filename', 'output.epub')
-//            )
-//            ->addTask(
-//                (new Task('export/s3', 'epub-file'))
-//                    ->set('input', ["convert-to-epub"])
-//                    ->set('bucket', env('AWS_BUCKET'))
-//                    ->set('region', env('AWS_DEFAULT_REGION'))
-//                    ->set('access_key_id', env('AWS_ACCESS_KEY_ID'))
-//                    ->set('secret_access_key', env('AWS_SECRET_ACCESS_KEY'))
-//            );
-//
-//        $cloudconvert->jobs()->create($job);
 
-//        dd($request->file('file')->getClientOriginalName());
-//        dd($request->file('file'));
         $job = (new Job())
             ->addTask(
                 (new Task('import/upload', 'upload-file'))

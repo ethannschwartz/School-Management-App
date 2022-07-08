@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FileController;
@@ -56,6 +57,10 @@ Route::middleware(['auth', 'verified'])->name('teachers.')->group(function() {
     Route::get('teachers/{course}', [SubscriberController::class, 'show'])->name('show');
 
     Route::get('profile/{user}', [SubscriberController::class, 'get_info'])->name('get_info');
+
+    Route::get('profile', [ProfileController::class, 'show'] )->name('profile.show');
+    Route::post('profile/{user}', [ProfileController::class, 'store'] )->name('profile.store');
+
 });
 
 require __DIR__.'/auth.php';

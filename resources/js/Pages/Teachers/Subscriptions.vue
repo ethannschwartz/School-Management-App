@@ -11,7 +11,7 @@
                 <section class="w-full h-full">
 
                     <div class="p-8">
-                        <h1 class="text-2xl font-medium text-slate-400 border-b pb-3">Roster</h1>
+                        <h1 class="text-lg font-medium text-slate-400 border-b pb-3">Roster</h1>
 
                         <ul class="p-4">
                             <li v-for="subscriber in subscribers">{{ subscriber.name }}</li>
@@ -30,7 +30,7 @@
 import {ref} from "vue";
 import {CourseBank} from "@/Components";
 
-const props = defineProps(['user', 'course', 'courses', 'subscribers']);
+const props = defineProps(['course', 'courses', 'subscribers']);
 const modalSeen = ref(false);
 
 
