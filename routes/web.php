@@ -37,8 +37,11 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::get('courses', [CourseController::class, 'index'])->name('index');
     Route::post('courses', [CourseController::class, 'store'])->name('store');
     Route::get('courses/{course}', [CourseController::class, 'show'])->name('show');
-    Route::get('search', [CourseController::class, 'search'])->name('search');
     Route::post('courses/{course}/files', [FileController::class, 'store'])->name('file.store');
+
+    Route::get('courses/teacher_search', [SubscriberController::class, 'index'])->name('teachers.index');
+
+    Route::get('search', [CourseController::class, 'search'])->name('search');
     Route::get('files/{file}', [FileController::class, 'show'])->name('files.show');
 });
 

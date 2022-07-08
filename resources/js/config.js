@@ -25,12 +25,12 @@ export default {
         ],
         studentLinks: [
             {
-                title: 'Teachers',
-                route: 'teachers.index',
-            },
-            {
                 title: 'Courses',
                 route: 'courses.index',
+            },
+            {
+                title: 'Teachers',
+                route: 'teachers.index',
             },
         ],
     },

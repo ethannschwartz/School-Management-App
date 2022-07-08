@@ -19,7 +19,7 @@ class SubscriberController extends Controller
     public function index(Request $request): Response|RedirectResponse
     {
         if($request->user()->account_type === 'student') {
-            return Inertia::render('Students/Teachers', [
+            return Inertia::render('Students/Courses', [
                 'teacher_search' => fn() => User::query()
                     ->where('account_type', 'teacher')
                     ->when($request->input('search'), function ($query, $search) {
@@ -53,7 +53,7 @@ class SubscriberController extends Controller
 
         if($request->user()->account_type === 'student'){
             if (in_array($course->user_id, $teacher_ids->toArray())) {
-                return Inertia::render('Students/Teachers', [
+                return Inertia::render('Students/Courses', [
                     'teachers' => $request->user()->subscribings()->with('courses')->get(),
                     'course' => Course::with('files', 'user')->where('id', $course->getKey())->first(),
                 ]);

@@ -3,7 +3,7 @@
 
         <div class="relative p-8 bg-white border border-slate-200 rounded-md h-96 w-1/2 shadow-2xl">
 
-            <Link :href="route('teachers.index')" class="flex items-center gap-1 text-gray-400 hover:text-gray-600 fill fill-gray-400 hover:fill-gray-400 uppercase tracking-widest mb-4">
+            <Link :href="route('courses.index')" class="flex items-center gap-1 text-gray-400 hover:text-gray-600 fill fill-gray-400 hover:fill-gray-400 uppercase tracking-widest mb-4">
                 <BaseSvg name="icon-chevron-left" class="fill-current" />
                 Back
             </Link>
@@ -22,7 +22,7 @@
             </div>
 
             <div class="absolute bottom-4 left-4 right-4 flex justify-center mt-4">
-                <button class="text-lg p-2 rounded-md w-full bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-900">Subscribe for just $8 monthly</button>
+                <button class="text-lg p-2 rounded-md w-full bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-900 whitespace-nowrap">Subscribe for just $8 monthly</button>
             </div>
 
         </div>

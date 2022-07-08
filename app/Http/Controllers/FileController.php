@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFileRequest;
 use App\Models\Course;
 use App\Models\File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -18,9 +19,9 @@ class FileController extends Controller
     /**
      * @param StoreFileRequest $request
      * @param Course $course
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function store(StoreFileRequest $request, Course $course): \Illuminate\Http\RedirectResponse
+    public function store(StoreFileRequest $request, Course $course): RedirectResponse
     {
         $cloudconvert = new CloudConvert(['api_key' => env('CLOUDCONVERT_API_KEY')]);
 //
