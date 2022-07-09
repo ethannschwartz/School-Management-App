@@ -22,7 +22,13 @@
             </div>
 
             <div class="absolute bottom-4 left-4 right-4 flex justify-center mt-4">
-                <button class="text-lg p-2 rounded-md w-full bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-900 whitespace-nowrap">Subscribe for just $8 monthly</button>
+                <Link :href="route('courses.teachers.store', teacher.id)"
+                      method="post"
+                      as="button"
+                      class="text-lg p-2 rounded-md w-full bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-900 whitespace-nowrap"
+                >
+                    Subscribe for just $8 monthly
+                </Link>
             </div>
 
         </div>
