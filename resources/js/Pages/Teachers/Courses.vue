@@ -41,13 +41,13 @@
         </div>
     </section>
 
-    <transition name="fade">
+    <transition name="modal">
 
         <CreateCourseModal v-if="modalSeen==='createCourseModal'" @close="modalSeen=false" />
 
     </transition>
 
-    <transition name="fade">
+    <transition name="modal">
 
         <UploadFileModal v-if="modalSeen==='uploadFileModal'" :course="course" @close="modalSeen=false" />
 

@@ -1,5 +1,5 @@
 <template>
-    <header class="fixed w-full z-30 text-slate-600 bg-white shadow-md">
+    <header class="fixed w-full z-[70] text-slate-600 bg-white shadow-md">
         <nav class="flex justify-between duration-150 items-center px-4 px-12 lg:px-16 h-[49px] lg:h-[80px]">
 
             <div class="flex-grow basis-1/4">
@@ -31,14 +31,14 @@
             </div>
 
             <div class="flex gap-8 items-center justify-end relative flex-grow basis-1/4">
-                <h2 class="flex justify-end items-center  cursor-pointer" v-if="user" @click="profileDropdownSeen =! profileDropdownSeen">
-                    <BaseSvg name="icon-profile" class="scale-[35%] lg:scale-50 fill-slate-600" />
+                <h2 class="flex justify-end gap-2 items-center cursor-pointer text-gray-600 hover:text-gray-800 active:text-black select-none" v-if="user" @click.prevent="profileDropdownSeen =! profileDropdownSeen">
+                    <BaseSvg name="icon-profile" class="scale-75 md:scale-100 fill-slate-600" />
                     {{ user.name }}
                 </h2>
 
                 <transition name="slide-down">
-                    <form v-if="profileDropdownSeen" class="absolute -bottom-10 shadow-xl border-[1px] bg-gray-100 hover:bg-gray-200 rounded-md" action="/login">
-                        <Link method="post" as="button" :href="route('logout')" class="text-slate-600 rounded-md py-2 px-4">Logout</Link>
+                    <form v-if="profileDropdownSeen" class="absolute -bottom-10 shadow-xl border bg-gray-100 hover:bg-gray-200 rounded-sm" action="/login">
+                        <Link method="post" as="button" :href="route('logout')" class="text-slate-600 py-2 px-4">Logout</Link>
                     </form>
                 </transition>
 

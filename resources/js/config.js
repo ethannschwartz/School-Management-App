@@ -5,6 +5,8 @@ export default {
             'Auth/Register',
             'Auth/ResetPassword',
             'FileViewer',
+            'Students/TeacherProfile',
+            'Branding',
         ],
     },
     dialogs: {
@@ -19,18 +21,18 @@ export default {
                 route: 'courses.index',
             },
             {
-                title: 'Subscriptions',
-                route: 'subscriptions.index',
+                title: 'Subscribers',
+                route: 'subscribers.index',
+            },
+            {
+                title: 'Profile',
+                route: 'profile.show',
             },
         ],
         studentLinks: [
             {
                 title: 'Courses',
                 route: 'courses.index',
-            },
-            {
-                title: 'Teachers',
-                route: 'teachers.index',
             },
         ],
     },

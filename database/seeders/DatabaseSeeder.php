@@ -31,6 +31,32 @@ class DatabaseSeeder extends Seeder
              'updated_at' => now(),
          ]);
 
+        User::factory(1)->create([
+            'id' => 3,
+            'prefix' => 'Mr.',
+            'name' => 'Max Reed',
+            'account_type' => 'teacher',
+            'email' => 'maxreed@aroundu.co',
+            'email_verified_at' => null,
+            'password' => Hash::make('password'),
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        User::factory(1)->create([
+            'id' => 4,
+            'prefix' => 'Mrs.',
+            'name' => 'Oryan Malka',
+            'account_type' => 'teacher',
+            'email' => 'orianmalkao@gmail.com',
+            'email_verified_at' => null,
+            'password' => Hash::make('password'),
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
         User::factory()->create([
             'id' => 2,
             'prefix' => 'Mr.',
