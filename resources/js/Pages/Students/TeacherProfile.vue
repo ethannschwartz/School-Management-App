@@ -28,10 +28,18 @@
         </div>
 
     </section>
+
+    <transition name="modal">
+
+        <FollowTeacherModal />
+
+    </transition>
 </template>
 
 <script setup>
-import {BaseSvg} from "@/Components";
+import {BaseSvg, FollowTeacherModal} from "@/Components";
 import {Link} from "@inertiajs/inertia-vue3";
 const props = defineProps(['teacher']);
+
+
 </script>
