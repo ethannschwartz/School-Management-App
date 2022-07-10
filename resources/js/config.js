@@ -5,6 +5,8 @@ export default {
             'Auth/Register',
             'Auth/ResetPassword',
             'FileViewer',
+            'Students/TeacherProfile',
+            'Branding',
         ],
     },
     dialogs: {
@@ -24,7 +26,7 @@ export default {
             },
             {
                 title: 'Profile',
-                route: 'profile.profile.show',
+                route: 'profile.show',
             },
         ],
         studentLinks: [

@@ -653,6 +653,15 @@ select {
 .top-4 {
   top: 1rem;
 }
+.\!bottom-0 {
+  bottom: 0px !important;
+}
+.top-2 {
+  top: 0.5rem;
+}
+.right-2 {
+  right: 0.5rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -843,6 +852,9 @@ select {
 .h-2 {
   height: 0.5rem;
 }
+.h-24 {
+  height: 6rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -981,6 +993,12 @@ select {
 .cursor-pointer {
   cursor: pointer;
 }
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 .resize-none {
   resize: none;
 }
@@ -1040,6 +1058,9 @@ select {
 }
 .gap-3 {
   gap: 0.75rem;
+}
+.gap-12 {
+  gap: 3rem;
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1164,6 +1185,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity));
 }
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
 .border-r-white {
   --tw-border-opacity: 1;
   border-right-color: rgb(255 255 255 / var(--tw-border-opacity));
@@ -1171,6 +1196,22 @@ select {
 .border-t-slate-500 {
   --tw-border-opacity: 1;
   border-top-color: rgb(100 116 139 / var(--tw-border-opacity));
+}
+.border-t-blue-800 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(30 64 175 / var(--tw-border-opacity));
+}
+.border-t-blue-600 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(37 99 235 / var(--tw-border-opacity));
+}
+.border-t-blue-400 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(96 165 250 / var(--tw-border-opacity));
+}
+.border-t-blue-200 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(191 219 254 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1242,6 +1283,9 @@ select {
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+.bg-gray-900\/60 {
+  background-color: rgb(17 24 39 / 0.6);
 }
 .fill-current {
   fill: currentColor;
@@ -1376,6 +1420,9 @@ select {
 }
 .pl-4 {
   padding-left: 1rem;
+}
+.pt-10 {
+  padding-top: 2.5rem;
 }
 .text-left {
   text-align: left;
@@ -2029,6 +2076,10 @@ select {
 }
 @media (min-width: 1024px) {
 
+  .lg\:relative {
+    position: relative;
+  }
+
   .lg\:mb-0 {
     margin-bottom: 0px;
   }
@@ -2051,6 +2102,10 @@ select {
 
   .lg\:h-\[80px\] {
     height: 80px;
+  }
+
+  .lg\:h-14 {
+    height: 3.5rem;
   }
 
   .lg\:scale-50 {
@@ -2080,6 +2135,10 @@ select {
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
+  }
+
+  .lg\:pt-14 {
+    padding-top: 3.5rem;
   }
 
   .lg\:text-6xl {

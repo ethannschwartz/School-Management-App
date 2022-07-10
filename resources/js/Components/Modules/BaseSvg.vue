@@ -26,6 +26,7 @@ import ChevronDown from './SvgPaths/ChevronDown'
 import MailEnvelope from './SvgPaths/MailEnvelope'
 import Search from './SvgPaths/Search'
 import CloudUpload from './SvgPaths/CloudUpload'
+import Exit from './SvgPaths/Exit'
 
 export default {
     name: 'base-svg',
@@ -48,6 +49,7 @@ export default {
         'icon-mail-envelope': MailEnvelope,
         'icon-search': Search,
         'icon-cloud-upload': CloudUpload,
+        'icon-exit': Exit,
     },
     props: {
         name: {

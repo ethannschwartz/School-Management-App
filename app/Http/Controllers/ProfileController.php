@@ -15,10 +15,9 @@ class ProfileController extends Controller
 {
     /**
      * @param Request $request
-     * @param User $user
      * @return RedirectResponse|Response
      */
-    public function show(Request $request, User $user): Response|RedirectResponse
+    public function show(Request $request): Response|RedirectResponse
     {
         if($request->user()->account_type === 'teacher') {
             return Inertia::render('Teachers/Profile', [

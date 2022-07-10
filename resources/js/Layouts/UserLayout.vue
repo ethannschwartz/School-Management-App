@@ -1,13 +1,15 @@
 <template>
+
     <Navbar :user="user" />
 
-    <main class="pt-14 relative">
+    <main class="pt-10 lg:pt-14 relative">
         <slot></slot>
     </main>
 
-    <footer class="w-screen h-14 bg-teal-200 text-teal-600 flex justify-center items-center">
+    <footer class="absolute lg:relative bottom-0 w-screen h-24 lg:h-14 bg-teal-200 text-teal-600 flex justify-center items-center">
         Developed by Publify | 2022
     </footer>
+
 </template>
 
 <script setup>
@@ -25,6 +27,7 @@ InertiaProgress.init({
 
 
 <style>
+/*Slide*/
 .slide-enter-from,
 .slide-leave-to {
     overflow: hidden;
@@ -45,6 +48,7 @@ InertiaProgress.init({
     position: relative;
 }
 
+/*List*/
 .list-move,
 .list-enter-active,
 .list-leave-active {
@@ -62,4 +66,20 @@ InertiaProgress.init({
     position: absolute;
     overflow: hidden;
 }
+
+/*Modal*/
+.modal-enter-active {
+    transition: all 0.3s ease;
+}
+
+.modal-leave-active {
+    transition: all 0.3s;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+    transform: scale(1);
+    opacity: 0;
+}
+
 </style>

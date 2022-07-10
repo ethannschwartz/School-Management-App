@@ -1,6 +1,6 @@
 <template>
 
-    <div class="absolute left-0 right-0 top-0 flex flex-col justify-center w-screen h-screen absolute top-0 left-0 bg-gray-900/30 backdrop-blur-sm z-[100]">
+    <div class="fixed left-0 right-0 top-0 !bottom-0 flex flex-col justify-center w-screen bg-gray-900/30 backdrop-blur-sm z-[100]">
 
         <div class="relative bg-white rounded-md h-fit max-w-[730px] w-[500px] mx-auto p-8">
 

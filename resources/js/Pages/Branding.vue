@@ -1,6 +1,6 @@
 <template>
 
-    <section id="top" class="h-auto bg-white mt-16 mx-8">
+    <section id="top" class="h-auto bg-white mt-8 mx-8">
 
         <header class="text-xl md:text-2xl lg:text-3xl font-medium pb-4 w-full border-b p-2 mb-4">
             Publify Branding
@@ -35,12 +35,12 @@
 
             <div class="mb-4">
                 <p>Submit:</p>
-                <button class="bg-teal-600 hover:bg-teal-700 active:bg-teal-900 text-white py-2 px-4 rounded-sm uppercase tracking-wider">Submit</button>
+                <Button class="bg-teal-600 hover:bg-teal-700 active:bg-teal-900 text-white py-2 px-4 rounded-sm uppercase tracking-wider">Submit</Button>
             </div>
 
             <div class="mb-4">
                 <p>Cancel:</p>
-                <button class="bg-gray-600 hover:bg-gray-700 active:bg-gray-900 text-white py-2 px-4 rounded-sm uppercase tracking-wider">Cancel</button>
+                <Button class="bg-gray-600 hover:bg-gray-700 active:bg-gray-900 text-white py-2 px-4 rounded-sm uppercase tracking-wider">Cancel</Button>
             </div>
 
             <div class="mb-4">
@@ -141,7 +141,7 @@
 </template>
 
 <script setup>
-import {BaseSvg, FileCard, TeacherLink, CourseLink} from "@/Components";
+import {Button, BaseSvg, FileCard, TeacherLink, CourseLink} from "@/Components";
 
 const file = {
     title:'Example File',

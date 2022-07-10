@@ -49,8 +49,8 @@ Route::middleware(['auth', 'verified'])->name('subscribers.')->group(function() 
 });
 
 Route::middleware(['auth', 'verified'])->name('profile.')->group(function() {
-    Route::get('profile', [ProfileController::class, 'show'] )->name('profile.show');
-    Route::post('profile/{user:id}', [ProfileController::class, 'store'] )->name('profile.store');
+    Route::get('profile', [ProfileController::class, 'show'] )->name('show');
+    Route::post('profile/{user:id}', [ProfileController::class, 'store'] )->name('store');
 });
 
 Route::middleware(['auth', 'verified'])->name('teachers.')->group(function() {
