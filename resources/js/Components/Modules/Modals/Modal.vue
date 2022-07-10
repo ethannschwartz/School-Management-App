@@ -20,14 +20,15 @@
 
                 <slot />
 
-                <Button type="submit"
-                        color="teal"
-                        class="flex justify-center w-full"
-                        :class="{ 'opacity-25': form.processing }"
-                        :disabled="form.processing"
-                >
-                    {{ submitLabel }}
-                </Button>
+<!--                <Button type="submit"-->
+<!--                        color="teal"-->
+<!--                        class="flex justify-center w-full"-->
+<!--                        :class="{ 'opacity-25': form.processing }"-->
+<!--                        :disabled="form.processing"-->
+<!--                >-->
+<!--                    {{ submitLabel }}-->
+<!--                </Button>-->
+                <Button type="submit" color="teal" class="flex justify-center w-full" >{{ submitLabel }}</Button>
 
                 <Button type="button"
                         color="gray"
