@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProfileRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -13,14 +14,19 @@ use Inertia\Response;
 class ProfileController extends Controller
 {
     /**
+     * @param Request $request
      * @param User $user
-     * @return Response
+     * @return RedirectResponse|Response
      */
-    public function show(User $user): Response
+    public function show(Request $request, User $user): Response|RedirectResponse
     {
-        return Inertia::render('Teachers/Profile', [
-            'profile' => $user->profile(),
-        ]);
+        if($request->user()->account_type === 'teacher') {
+            return Inertia::render('Teachers/Profile', [
+                'profile' => $request->user()->profile,
+            ]);
+        } else {
+            return Redirect::route('courses.index');
+        }
     }
 
     /**
@@ -33,14 +39,12 @@ class ProfileController extends Controller
 
         Storage::disk('s3')->setVisibility($path, 'public');
 
-        $request->user()->profile()->create(array_merge($request->validated(), [
+        $request->user()->profile()->updateOrCreate(array_merge($request->validated(), [
+            'institution'    => $request->input('institution'),
+            'subject'        => $request->input('subject'),
             'profile_image' => Storage::disk('s3')->url($path),
         ]));
         return back();
-    }
-
-    public function update(Request $request)
-    {
 
     }
 }

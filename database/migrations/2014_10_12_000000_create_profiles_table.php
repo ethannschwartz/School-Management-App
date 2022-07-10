@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->foreignId('user_id');
+            $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('profile_image')->nullable();
             $table->string('institution')->nullable();
             $table->string('subject')->nullable();
+            $table->timestamps();
         });
     }
 

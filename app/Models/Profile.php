@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class profile extends Model
+class Profile extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class profile extends Model
         'user_id',
         'institution',
         'subject',
-        'file',
+        'profile_image',
     ];
 
     /**

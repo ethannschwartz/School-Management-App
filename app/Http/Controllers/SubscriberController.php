@@ -14,36 +14,6 @@ class SubscriberController extends Controller
 {
     /**
      * @param Request $request
-     * @return Response|RedirectResponse
-     */
-    public function index(Request $request): Response|RedirectResponse
-    {
-        if($request->user()->account_type === 'student') {
-            return Inertia::render('Students/Courses', [
-                'teacher_search' => fn() => User::query()
-                    ->where('account_type', 'teacher')
-                    ->when($request->input('search'), function ($query, $search) {
-                        $query->where('name', 'like', "%{$search}%");
-                    })
-                    ->paginate(5)
-                    ->withQueryString()
-                    ->through(fn($user) => [
-                        'id' => $user->id,
-                        'prefix' => $user->prefix,
-                        'name'=> $user->name,
-                        'courses' => $user->courses,
-                    ]),
-                'teachers' => $request->user()->subscribings()->with('courses')->get(),
-                'teacher' => $request->user()->subscribings()->first(),
-                'course' => Course::with('files', 'user')->whereIn('user_id',  $request->user()->subscribings()->pluck('subscribed_id'))->first(),
-            ]);
-        } else {
-            return Redirect::route('courses.index');
-        }
-    }
-
-    /**
-     * @param Request $request
      * @param Course $course
      * @return RedirectResponse|Response
      */
@@ -97,7 +67,8 @@ class SubscriberController extends Controller
     public function get_info(Request $request, User $user): Response
     {
         return Inertia::render('Students/TeacherProfile', [
-              'teacher' => $user->load('courses'),
+            'teacher' => $user->load('courses'),
+            'profile' => $user->load('profile'),
         ]);
     }
 }

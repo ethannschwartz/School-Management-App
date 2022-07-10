@@ -14,7 +14,7 @@ class SubscriptionController extends Controller
      */
     public function index(Request $request): Response
     {
-        return Inertia::render('Teachers/Subscriptions', [
+        return Inertia::render('Teachers/Subscribers', [
             'subscribers' => $request->user()->subscribers()->get(),
             'course' => $request->user()->courses()->first(),
             'courses' => $request->user()->courses()->get(),
