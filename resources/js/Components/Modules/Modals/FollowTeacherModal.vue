@@ -29,7 +29,6 @@
 import {defineProps} from "vue";
 import {Modal} from "@/Components";
 import {useForm} from "@inertiajs/inertia-vue3";
-import {Inertia} from "@inertiajs/inertia";
 const props = defineProps(['teacher']);
 
 const creditCardForm = useForm({

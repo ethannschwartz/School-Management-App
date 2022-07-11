@@ -30,7 +30,22 @@
 <!--                >-->
 <!--                    Subscribe for just $8 monthly-->
 <!--                </Link>-->
-                <Button color="teal" @click.prevent="modalSeen==='FollowTeacherModal'?modalSeen=false:modalSeen='FollowTeacherModal'">Subscribe for just $8 monthly</Button>
+                <Button v-if="userHasPaymentMethod"
+                        color="teal"
+                        @click.prevent="modalSeen==='FollowTeacherModal'?modalSeen=false:modalSeen='FollowTeacherModal'"
+                >
+                    Subscribe for just $8 monthly
+                </Button>
+
+                <Link class="inline-flex justify-center w-full items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:shadow-outline-gray transition ease-in-out duration-150 bg-teal-600 hover:bg-teal-700 active:bg-teal-900"
+                      v-else
+                      as="button"
+                      method="get"
+                      :href="route('settings.index')"
+                >
+                    Set Up Payment Method
+                </Link>
+
             </div>
 
         </div>
@@ -49,7 +64,10 @@ import {BaseSvg, FollowTeacherModal, Button} from "@/Components";
 import {Link} from "@inertiajs/inertia-vue3";
 import {ref} from "vue";
 
+
+const userHasPaymentMethod = ref(false);
 const props = defineProps(['teacher']);
 
 const modalSeen = ref(false);
+
 </script>
