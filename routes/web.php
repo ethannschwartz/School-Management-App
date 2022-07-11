@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CourseController;
@@ -42,6 +43,10 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
     Route::get('search', [CourseController::class, 'search'])->name('search');
     Route::get('files/{file}', [FileController::class, 'show'])->name('files.show');
     Route::post('course/teacher/{user:id}', [SubscriberController::class, 'store'])->name('teachers.store');
+});
+
+Route::middleware(['auth', 'verified'])->name('settings.')->group(function() {
+    Route::get('settings', [PaymentController::class, 'index'])->name('index');
 });
 
 Route::middleware(['auth', 'verified'])->name('subscribers.')->group(function() {

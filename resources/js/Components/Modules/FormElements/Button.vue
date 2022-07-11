@@ -24,8 +24,7 @@
 
 <script setup>
 import {Link} from "@inertiajs/inertia-vue3";
-import {defineProps} from "vue";
-
+const route=  false;
 const props = defineProps(['type','color','inertia','href','key','preserve_state','preserve_scroll','only']);
 
 let classes = `bg-${props.color}-600 hover:bg-${props.color}-700 active:bg-${props.color}-900 focus:border-${props.color}-900`;
