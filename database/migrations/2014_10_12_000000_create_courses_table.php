@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('code');
             $table->string('description');
             $table->unsignedBigInteger('user_id');
-            $table->string('keycode');
 
             $table->timestamps();
         });

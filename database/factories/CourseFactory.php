@@ -22,7 +22,6 @@ class CourseFactory extends Factory
         'code' => "string",
         'description' => "string",
         'user_id' => "int",
-        'keycode' => "string",
         'created_at' => "\Illuminate\Support\Carbon",
         'updated_at' => "\Illuminate\Support\Carbon",
     ])
@@ -34,7 +33,6 @@ class CourseFactory extends Factory
             'code' => $this->faker->shuffleString,
             'description' => $this->faker->paragraph(),
             'user_id' => 1,
-            'keycode' => Str::random(20),
             'created_at' => now(),
             'updated_at' => now(),
         ];

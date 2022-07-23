@@ -27467,22 +27467,32 @@ var _hoisted_2 = {
   "class": "px-8 lg:px-16 py-8 lg:py-16"
 };
 var _hoisted_3 = {
-  "class": "h-[600px] flex bg-white shadow-lg w-full"
-};
-var _hoisted_4 = ["onSubmit"];
-var _hoisted_5 = {
-  "for": "profile_image"
-};
-var _hoisted_6 = {
-  key: 0,
-  "class": "flex items-center justify-between mb-4"
-};
-var _hoisted_7 = {
-  key: 2,
-  "class": "flex items-center justify-between mb-4"
+  "class": "text-gray-600 h-[600px] flex bg-white shadow-lg w-full"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", {
+  "class": "p-4 lg:p-8 mb-4"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "text-xl"
+}, "Settings")], -1
+/* HOISTED */
+);
+
+var _hoisted_5 = {
+  "class": "p-4 lg:p-8 mb-4"
+};
+var _hoisted_6 = {
+  "class": "capitalize text-3xl"
+};
+var _hoisted_7 = {
+  "class": "capitalize"
+};
+var _hoisted_8 = ["onSubmit"];
+var _hoisted_9 = {
+  "for": "profile_image"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "w-full rounded-sm p-2 uppercase text-white tracking-wider bg-teal-600 hover:bg-teal-700 active:bg-teal-900"
 }, "Submit", -1
@@ -27490,10 +27500,16 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.name), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.email), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.account_type), 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.storeProfileDetails, ["prevent"]),
     "class": "block m-12 w-full"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseSvg"], {
     name: "icon-profile",
     "class": "cursor-pointer mb-4 fill-slate-600 hover:fill-slate-800 active:fill-slate-900"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -27507,43 +27523,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     formenctype: "multipart/form-data"
   }, null, 32
   /* HYDRATE_EVENTS */
-  )]), $props.profile.institution && $setup.edit !== 'institution' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.profile.institution) + " ", 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "underline underline-offset-4 hover:text-black text-teal-600",
-    onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $setup.edit === 'institution' ? $setup.edit = false : $setup.edit = 'institution';
-    }, ["prevent"]))
-  }, "Edit")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
-    key: 1,
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     placeholder: "Institution",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.profileDetails.institution = $event;
     }),
     "class": "block mb-4"
   }, null, 512
   /* NEED_PATCH */
-  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.profileDetails.institution]]), $props.profile.institution && $setup.edit !== 'subject' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.profile.subject) + " ", 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "underline underline-offset-4 hover:text-black text-teal-600",
-    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $setup.edit === 'subject' ? $setup.edit = false : $setup.edit = 'subject';
-    }, ["prevent"]))
-  }, "Edit")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
-    key: 3,
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.profileDetails.institution]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     placeholder: "Subject",
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.profileDetails.subject = $event;
     }),
     "class": "block mb-4"
   }, null, 512
   /* NEED_PATCH */
-  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.profileDetails.subject]]), _hoisted_8], 40
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.profileDetails.subject]]), _hoisted_10], 40
   /* PROPS, HYDRATE_EVENTS */
-  , _hoisted_4)])])]);
+  , _hoisted_8)])])]);
 }
 
 /***/ }),

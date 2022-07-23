@@ -2,7 +2,20 @@
 
     <section class="bg-teal-100">
         <div class="px-8 lg:px-16 py-8 lg:py-16">
-            <div class="h-[600px] flex bg-white shadow-lg w-full">
+            <div class="text-gray-600 h-[600px] flex bg-white shadow-lg w-full">
+
+                <header class="p-4 lg:p-8 mb-4">
+                    <h2 class="text-xl">Settings</h2>
+                </header>
+
+                <div class="p-4 lg:p-8 mb-4">
+
+                    <h3 class="capitalize text-3xl ">{{ user.name }}</h3>
+
+                    <p>{{ user.email }}</p>
+                    <p class="capitalize">{{ user.account_type }}</p>
+
+                </div>
 
                 <form @submit.prevent="storeProfileDetails" class="block m-12 w-full">
 
@@ -17,17 +30,17 @@
                         />
                     </label>
 
-                    <div v-if="profile.institution && edit !== 'institution'" class="flex items-center justify-between mb-4">
-                        {{ profile.institution }}
-                        <button class="underline underline-offset-4 hover:text-black text-teal-600" @click.prevent="edit === 'institution' ? edit=false: edit = 'institution'">Edit</button>
-                    </div>
+<!--                    <div v-if="profile.institution && edit !== 'institution'" class="flex items-center justify-between mb-4">-->
+<!--                        {{ profile.institution }}-->
+<!--                        <button class="underline underline-offset-4 hover:text-black text-teal-600" @click.prevent="edit === 'institution' ? edit=false: edit = 'institution'">Edit</button>-->
+<!--                    </div>-->
 
                     <input v-else type="text" placeholder="Institution" v-model="profileDetails.institution" class="block mb-4"  />
 
-                    <div v-if="profile.institution && edit !== 'subject'" class="flex items-center justify-between mb-4">
-                        {{ profile.subject }}
-                        <button class="underline underline-offset-4 hover:text-black text-teal-600" @click.prevent="edit === 'subject' ? edit=false: edit = 'subject'">Edit</button>
-                    </div>
+<!--                    <div v-if="profile.institution && edit !== 'subject'" class="flex items-center justify-between mb-4">-->
+<!--                        {{ profile.subject }}-->
+<!--                        <button class="underline underline-offset-4 hover:text-black text-teal-600" @click.prevent="edit === 'subject' ? edit=false: edit = 'subject'">Edit</button>-->
+<!--                    </div>-->
 
                     <input v-else type="text" placeholder="Subject" v-model="profileDetails.subject" class="block mb-4"  />
 

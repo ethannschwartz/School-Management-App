@@ -77,7 +77,6 @@ class DatabaseSeeder extends Seeder
              'code' => 'CH101',
              'description' => 'Learn general chemistry!',
              'user_id' => 1,
-             'keycode' => Str::random(20),
              'created_at' => now(),
              'updated_at' => now(),
          ]);

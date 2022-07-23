@@ -19,9 +19,7 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request): RedirectResponse
     {
-        $request->user()->courses()->create(array_merge($request->validated(), [
-            'keycode' => Str::random(20),
-        ]));
+        $request->user()->courses()->create(array_merge($request->validated()));
         return back();
     }
 

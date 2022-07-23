@@ -17,7 +17,6 @@ class Course extends Model
         'code',
         'description',
         'user_id',
-        'keycode',
     ];
 
     /**
