@@ -20,7 +20,11 @@
                         <Transition name="list">
                             <div v-if="isSeen==='search'" class="relative z-0 flex items-center bg-slate-800 text-slate-200 w-full overflow-hidden">
                                 <BaseSvg name="icon-search" class="fill-slate-200 mx-2" />
-                                <input type="text" v-model="search " placeholder="Search" class="bg-slate-800 py-2 px-0 w-full border-0 focus:outline-none focus:ring-0" >
+                                <input type="text"
+                                       v-model="search"
+                                       placeholder="Search"
+                                       class="bg-slate-800 py-2 px-0 w-full border-0 focus:outline-none focus:ring-0"
+                                />
                             </div>
                         </Transition>
 
@@ -97,10 +101,11 @@ const isSeen = ref(props.course?.user?.id);
 let search = ref('');
 
 watch(search, debounce((value) => {
-    Inertia.get(route('courses.index'), { search : value }, {
+    Inertia.get(route('courses.index'), {search: value}, {
+        only: ['teacher_search'],
         preserveState: true,
         preserveScroll: true,
     });
-}, 200));
+}, 400));
 
 </script>

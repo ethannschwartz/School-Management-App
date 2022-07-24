@@ -7,7 +7,6 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -38,7 +37,10 @@ class CourseController extends Controller
             $teacher_ids = $request->user()->subscribings()->pluck('subscribed_id');
 
             return Inertia::render('Students/Courses', [
-                'teacher_search' => fn() => User::query()
+                'teachers' => fn() => $request->user()->subscribings()->with('courses')->get(),
+                'teacher' => fn() => $request->user()->subscribings()->first(),
+                'course' => fn() => Course::with('files', 'user')->whereIn('user_id',  $teacher_ids)->first(),
+                'teacher_search' => Inertia::lazy(fn() => User::query()
                     ->where('account_type', 'teacher')
                     ->when($request->input('search'), function ($query, $search) {
                         $query->where('name', 'like', "%{$search}%");
@@ -50,10 +52,8 @@ class CourseController extends Controller
                         'prefix' => $user->prefix,
                         'name'=> $user->name,
                         'courses' => $user->courses,
-                    ]),
-                'teachers' => $request->user()->subscribings()->with('courses')->get(),
-                'teacher' => $request->user()->subscribings()->first(),
-                'course' => Course::with('files', 'user')->whereIn('user_id',  $teacher_ids)->first(),
+                    ])
+                ),
             ]);
         }
     }
@@ -94,25 +94,5 @@ class CourseController extends Controller
                 ]);
             }
         }
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     */
-    public function search(Request $request): Response
-    {
-        return Inertia::render('Students/Courses', [
-            'course_search' => Course::query()
-                    ->when($request->input('search'), function ($query, $search) {
-                        $query->where('title','ilike', "%{$search}%");
-                    })
-                    ->simplePaginate(10)
-                    ->through(fn($course) => [
-                        'id' => $course->getKey(),
-                        'title' => $course->title,
-                    ],
-                ),
-        ]);
     }
 }

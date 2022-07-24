@@ -23229,10 +23229,11 @@ __webpack_require__.r(__webpack_exports__);
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get(route('courses.index'), {
         search: value
       }, {
+        only: ['teacher_search'],
         preserveState: true,
         preserveScroll: true
       });
-    }, 200));
+    }, 400));
     var __returned__ = {
       props: props,
       modalSeen: modalSeen,
