@@ -25490,7 +25490,7 @@ var _hoisted_3 = {
   "class": "text-slate-500 text-2xl"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _$props$course, _$props$course2;
+  var _$props$course, _$props$course2, _$props$course3;
 
   return $props.course ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$course = $props.course) === null || _$props$course === void 0 ? void 0 : _$props$course.title) + " ", 1
   /* TEXT */
@@ -25498,13 +25498,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     as: "button",
-    href: _ctx.route('teachers.get_info', $props.course.user_id),
-    "class": "text-xl text-teal-600 hover:text-black underline underline-offset-4"
+    href: _ctx.route('teachers.get_info', (_$props$course3 = $props.course) === null || _$props$course3 === void 0 ? void 0 : _$props$course3.user_id),
+    "class": "text-xl text-pink-600 hover:text-black hover:underline underline-offset-4"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      var _$props$course3, _$props$course3$user, _$props$course4, _$props$course4$user, _$props$course4$user$;
+      var _$props$course4, _$props$course4$user, _$props$course5, _$props$course5$user, _$props$course5$user$;
 
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$course3 = $props.course) === null || _$props$course3 === void 0 ? void 0 : (_$props$course3$user = _$props$course3.user) === null || _$props$course3$user === void 0 ? void 0 : _$props$course3$user.prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$course4 = $props.course) === null || _$props$course4 === void 0 ? void 0 : (_$props$course4$user = _$props$course4.user) === null || _$props$course4$user === void 0 ? void 0 : (_$props$course4$user$ = _$props$course4$user.name) === null || _$props$course4$user$ === void 0 ? void 0 : _$props$course4$user$.split(" ")[1]), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$course4 = $props.course) === null || _$props$course4 === void 0 ? void 0 : (_$props$course4$user = _$props$course4.user) === null || _$props$course4$user === void 0 ? void 0 : _$props$course4$user.prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$course5 = $props.course) === null || _$props$course5 === void 0 ? void 0 : (_$props$course5$user = _$props$course5.user) === null || _$props$course5$user === void 0 ? void 0 : (_$props$course5$user$ = _$props$course5$user.name) === null || _$props$course5$user$ === void 0 ? void 0 : _$props$course5$user$.split(" ")[1]), 1
       /* TEXT */
       )];
     }),
@@ -26968,8 +26968,12 @@ var _hoisted_13 = {
 var _hoisted_14 = {
   "class": "flex flex-wrap gap-8 p-8 pb-32 w-full h-full overflow-y-scroll"
 };
+var _hoisted_15 = {
+  key: 1,
+  "class": "m-auto text-2xl lg:text-3xl text-gray-400"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _$props$course;
+  var _$props$course, _$props$course$files, _$props$course2, _$props$course3, _$props$course3$user, _$props$course4, _$props$course4$user, _$props$course4$user$;
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
     name: "list"
@@ -27090,7 +27094,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     course: $props.course
   }, null, 8
   /* PROPS */
-  , ["course"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$course = $props.course) === null || _$props$course === void 0 ? void 0 : _$props$course.files, function (file) {
+  , ["course"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [((_$props$course = $props.course) === null || _$props$course === void 0 ? void 0 : (_$props$course$files = _$props$course.files) === null || _$props$course$files === void 0 ? void 0 : _$props$course$files.length) > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 0
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((_$props$course2 = $props.course) === null || _$props$course2 === void 0 ? void 0 : _$props$course2.files, function (file) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["FileCard"], {
       file: file
     }, null, 8
@@ -27098,6 +27104,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["file"]);
   }), 256
   /* UNKEYED_FRAGMENT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$course3 = $props.course) === null || _$props$course3 === void 0 ? void 0 : (_$props$course3$user = _$props$course3.user) === null || _$props$course3$user === void 0 ? void 0 : _$props$course3$user.prefix) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$course4 = $props.course) === null || _$props$course4 === void 0 ? void 0 : (_$props$course4$user = _$props$course4.user) === null || _$props$course4$user === void 0 ? void 0 : (_$props$course4$user$ = _$props$course4$user.name) === null || _$props$course4$user$ === void 0 ? void 0 : _$props$course4$user$.split(" ")[1]) + " has no published content ", 1
+  /* TEXT */
   ))])])])]);
 }
 

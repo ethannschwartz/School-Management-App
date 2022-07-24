@@ -75,7 +75,13 @@
 
                 <div class="flex flex-wrap gap-8 p-8 pb-32 w-full h-full overflow-y-scroll">
 
-                    <FileCard v-for="file in course?.files" :file="file" />
+                    <FileCard v-if="course?.files?.length > 0" v-for="file in course?.files" :file="file" />
+
+                    <div v-else
+                         class="m-auto text-2xl lg:text-3xl text-gray-400"
+                    >
+                        {{ course?.user?.prefix }} {{ course?.user?.name?.split(" ")[1] }} has no published content
+                    </div>
 
                 </div>
 

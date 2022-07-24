@@ -683,6 +683,9 @@ select {
 .m-12 {
   margin: 3rem;
 }
+.m-auto {
+  margin: auto;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1419,6 +1422,12 @@ select {
 .font-bold {
   font-weight: 700;
 }
+.font-light {
+  font-weight: 300;
+}
+.font-extralight {
+  font-weight: 200;
+}
 .uppercase {
   text-transform: uppercase;
 }
@@ -1526,6 +1535,14 @@ select {
 .text-slate-300 {
   --tw-text-opacity: 1;
   color: rgb(203 213 225 / var(--tw-text-opacity));
+}
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+.text-pink-600 {
+  --tw-text-opacity: 1;
+  color: rgb(219 39 119 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
