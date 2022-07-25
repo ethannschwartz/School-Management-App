@@ -1,56 +1,37 @@
 <template>
-
     <section class="bg-teal-100">
         <div class="px-8 lg:px-16 py-8 lg:py-16">
             <div class="h-[600px] flex bg-white shadow-lg">
-
                 <CourseBank :courses="courses" title="Courses">
-
                     <div class="border-t !w-full border-gray-200 absolute bottom-0 text-center">
                         <button @click="modalSeen='createCourseModal'"
                                 class="w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white">
                             Create Course
                         </button>
                     </div>
-
                 </CourseBank>
-
                 <section class="relative w-full h-full overflow-hidden">
-
                     <SectionHeader v-if="courses.length!==0" :course="course" :user="user" />
-
                     <div class="p-8 w-full h-full overflow-y-scroll">
-
                         <div class="flex flex-wrap gap-8 p-8 pb-32 w-full">
-
                             <button @click="modalSeen='uploadFileModal'" class="flex justify-center items-center h-full text-gray-200 text-center w-48 h-72 bg-slate-600 border-slate-500 border rounded-sm relative duration-200 hover:-translate-y-1">
                                 <span class="text-7xl">+</span>
                                 <span class="absolute left-0 bottom-0 w-full p-3">Create New</span>
                             </button>
-
                             <FileCard v-for="file in course?.files" :file="file" />
-
                         </div>
-
                     </div>
-
                 </section>
-
-
             </div>
         </div>
     </section>
 
     <transition name="modal">
-
         <CreateCourseModal v-if="modalSeen==='createCourseModal'" @close="modalSeen=false" />
-
     </transition>
 
     <transition name="modal">
-
         <UploadFileModal v-if="modalSeen==='uploadFileModal'" :course="course" @close="modalSeen=false" />
-
     </transition>
 
 </template>
