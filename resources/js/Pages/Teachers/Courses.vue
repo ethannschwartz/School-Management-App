@@ -5,7 +5,8 @@
                 <CourseBank :courses="courses" title="Courses">
                     <div class="border-t !w-full border-gray-200 absolute bottom-0 text-center">
                         <button @click="modalSeen='createCourseModal'"
-                                class="w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white">
+                                class="w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white"
+                        >
                             Create Course
                         </button>
                     </div>
@@ -14,7 +15,9 @@
                     <SectionHeader v-if="courses.length!==0" :course="course" :user="user" />
                     <div class="p-8 w-full h-full overflow-y-scroll">
                         <div class="flex flex-wrap gap-8 p-8 pb-32 w-full">
-                            <button @click="modalSeen='uploadFileModal'" class="flex justify-center items-center h-full text-gray-200 text-center w-48 h-72 bg-slate-600 border-slate-500 border rounded-sm relative duration-200 hover:-translate-y-1">
+                            <button @click="modalSeen='uploadFileModal'"
+                                    class="flex justify-center items-center h-full text-gray-200 text-center w-48 h-72 bg-slate-600 border-slate-500 border rounded-sm relative duration-200 hover:-translate-y-1"
+                            >
                                 <span class="text-7xl">+</span>
                                 <span class="absolute left-0 bottom-0 w-full p-3">Create New</span>
                             </button>
