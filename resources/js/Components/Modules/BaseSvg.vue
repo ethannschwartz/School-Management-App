@@ -27,6 +27,12 @@ import MailEnvelope from './SvgPaths/MailEnvelope'
 import Search from './SvgPaths/Search'
 import CloudUpload from './SvgPaths/CloudUpload'
 import Exit from './SvgPaths/Exit'
+import BookmarkCollection from './SvgPaths/BookmarkCollection'
+import CreditCard from './SvgPaths/CreditCard'
+import Settings from './SvgPaths/Settings'
+import SecurityShield from './SvgPaths/SecurityShield'
+import ArrowRight from './SvgPaths/ArrowRight'
+import ArrowLeft from './SvgPaths/ArrowLeft'
 
 export default {
     name: 'base-svg',
@@ -50,6 +56,12 @@ export default {
         'icon-search': Search,
         'icon-cloud-upload': CloudUpload,
         'icon-exit': Exit,
+        'icon-bookmark-collection': BookmarkCollection,
+        'icon-credit-card': CreditCard,
+        'icon-security-shield': SecurityShield,
+        'icon-settings': Settings,
+        'icon-arrow-right': ArrowRight,
+        'icon-arrow-left': ArrowLeft,
     },
     props: {
         name: {

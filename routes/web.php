@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FileController;
@@ -45,7 +45,8 @@ Route::middleware(['auth', 'verified'])->name('courses.')->group(function() {
 });
 
 Route::middleware(['auth', 'verified'])->name('settings.')->group(function() {
-    Route::get('settings', [PaymentController::class, 'index'])->name('index');
+    Route::get('settings', [SettingsController::class, 'index'])->name('index');
+
 });
 
 Route::middleware(['auth', 'verified'])->name('subscribers.')->group(function() {

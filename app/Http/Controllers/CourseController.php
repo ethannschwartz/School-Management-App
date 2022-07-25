@@ -30,8 +30,8 @@ class CourseController extends Controller
     {
         if($request->user()->account_type === 'teacher') {
             return Inertia::render('Teachers/Courses', [
-                'course' => $request->user()->courses()->with('user', 'files')->first(),
-                'courses' => $request->user()->courses()->get(),
+                'course' => $request->user()->courses()->with('user', 'files')->first(['id', 'title', 'section', 'user_id']),
+                'courses' => $request->user()->courses()->get(['id', 'title','section']),
             ]);
         } else {
             $teacher_ids = $request->user()->subscribings()->pluck('subscribed_id');
@@ -39,13 +39,15 @@ class CourseController extends Controller
             return Inertia::render('Students/Courses', [
                 'teachers' => fn() => $request->user()->subscribings()->with('courses')->get(),
                 'teacher' => fn() => $request->user()->subscribings()->first(),
-                'course' => fn() => Course::with('files', 'user')->whereIn('user_id',  $teacher_ids)->first(),
+                'course' => fn() => Course::with('files', 'user')
+                    ->whereIn('user_id',  $teacher_ids)
+                    ->first(['id', 'title', 'user_id', 'section']),
                 'teacher_search' => Inertia::lazy(fn() => User::query()
                     ->where('account_type', 'teacher')
                     ->when($request->input('search'), function ($query, $search) {
                         $query->where('name', 'like', "%{$search}%");
                     })
-                    ->paginate(5)
+                    ->simplePaginate(8)
                     ->withQueryString()
                     ->through(fn($user) => [
                         'id' => $user->id,
@@ -70,8 +72,10 @@ class CourseController extends Controller
         if ($request->user()->account_type === 'teacher') {
             if($request->user()->getKey() === $course->user_id){
                 return Inertia::render('Teachers/Courses', [
-                    'course' => $course->with('user', 'files')->where('id', $course->getKey())->first(),
-                    'courses' => $request->user()->courses()->get(),
+                    'course' => $course->with('user', 'files')
+                        ->where('id', $course->getKey())
+                        ->first(['id', 'title', 'section', 'user_id']),
+                    'courses' => $request->user()->courses()->get(['id', 'title', 'section']),
                 ]);
             } else {
                 return Inertia::render('Unauthorized', [

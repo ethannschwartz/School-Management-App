@@ -10,11 +10,12 @@
             <div>
                 <h1 class="text-xl lg:text-3xl font-semibold block lg:hidden">Publify</h1>
                 <ul class="hidden lg:flex gap-8 items-center">
+
                     <Link v-if="user?.account_type ==='teacher'"
                           v-for="navLink in config.nav.teacherLinks"
                           :href="route(navLink.route)"
-                          class="duration-200 hover:text-slate-800"
-                          :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null"
+                          class="duration-150 px-3 py-1 rounded-sm border border-white"
+                          :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-white bg-slate-800' : 'hover:border-gray-400'"
                     >
                         {{ navLink.title }}
                     </Link>
@@ -22,11 +23,12 @@
                     <Link v-else
                           v-for="navLink in config.nav.studentLinks"
                           :href="route(navLink.route)"
-                          class="duration-200 hover:text-slate-800"
-                          :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-teal-600 underline underline-offset-4 font-bold hover:text-teal-600' : null"
+                          class="duration-150 px-3 py-1 rounded-sm border border-white"
+                          :class="$page.url.startsWith(`/${navLink.title.toLowerCase()}`) ? 'text-white bg-slate-800' : 'hover:border-gray-400'"
                     >
                         {{ navLink.title }}
                     </Link>
+
                 </ul>
             </div>
 
@@ -38,7 +40,13 @@
 
                 <transition name="slide-down">
                     <form v-if="profileDropdownSeen" class="absolute -bottom-10 shadow-xl border bg-gray-100 hover:bg-gray-200 rounded-sm" action="/login">
-                        <Link method="post" as="button" :href="route('logout')" class="text-slate-600 py-2 px-4">Logout</Link>
+                        <Link method="post"
+                              as="button"
+                              :href="route('logout')"
+                              class="text-slate-600 py-2 px-4"
+                        >
+                            Logout
+                        </Link>
                     </form>
                 </transition>
 

@@ -35,14 +35,14 @@
 <!--                        <button class="underline underline-offset-4 hover:text-black text-teal-600" @click.prevent="edit === 'institution' ? edit=false: edit = 'institution'">Edit</button>-->
 <!--                    </div>-->
 
-                    <input v-else type="text" placeholder="Institution" v-model="profileDetails.institution" class="block mb-4"  />
+                    <input type="text" placeholder="Institution" v-model="profileDetails.institution" class="block mb-4"  />
 
 <!--                    <div v-if="profile.institution && edit !== 'subject'" class="flex items-center justify-between mb-4">-->
 <!--                        {{ profile.subject }}-->
 <!--                        <button class="underline underline-offset-4 hover:text-black text-teal-600" @click.prevent="edit === 'subject' ? edit=false: edit = 'subject'">Edit</button>-->
 <!--                    </div>-->
 
-                    <input v-else type="text" placeholder="Subject" v-model="profileDetails.subject" class="block mb-4"  />
+                    <input type="text" placeholder="Subject" v-model="profileDetails.subject" class="block mb-4"  />
 
                     <button type="submit" class="w-full rounded-sm p-2 uppercase text-white tracking-wider bg-teal-600 hover:bg-teal-700 active:bg-teal-900">Submit</button>
                 </form>

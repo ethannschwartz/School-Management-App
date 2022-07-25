@@ -4,8 +4,9 @@
         <div>
             <h1 class="text-3xl capitalize">{{ course?.title }} <span class="text-slate-500 text-2xl">({{ course?.section }})</span></h1>
             <Link as="button"
+                  v-if="user.account_type === 'student'"
                   :href="route('teachers.get_info', course?.user_id)"
-                  class="text-xl text-pink-600 hover:text-black hover:underline underline-offset-4"
+                  class="text-xl text-blue-600 hover:text-black hover:underline underline-offset-4"
             >
                 {{ course?.user?.prefix }} {{ course?.user?.name?.split(" ")[1] }}
             </Link>

@@ -17,7 +17,7 @@
 
                 <section class="relative w-full h-full overflow-hidden">
 
-                    <SectionHeader v-if="courses.length!==0" :course="course"/>
+                    <SectionHeader v-if="courses.length!==0" :course="course" :user="user" />
 
                     <div class="p-8 w-full h-full overflow-y-scroll">
 
