@@ -1,14 +1,10 @@
 <template>
-    <section class="bg-teal-100">
-        <div class="px-8 lg:px-16 py-8 lg:py-16">
-            <div class="h-[600px] flex bg-white shadow-lg">
+
+    <section class="px-8 lg:px-16 py-8 lg:py-16">
+        <div class="h-[600px] flex bg-white shadow-lg">
                 <CourseBank :courses="courses" title="Courses">
-                    <div class="border-t !w-full border-gray-200 absolute bottom-0 text-center">
-                        <button @click="modalSeen='createCourseModal'"
-                                class="w-full font-medium p-2 text-slate-600 hover:bg-teal-600 hover:text-white active:bg-teal-900 active:text-white"
-                        >
-                            Create Course
-                        </button>
+                    <div class="absolute bottom-4 w-full px-4 text-center">
+                        <Button color="teal" @click="modalSeen='createCourseModal'">Create Course</Button>
                     </div>
                 </CourseBank>
                 <section class="relative w-full h-full overflow-hidden">
@@ -26,7 +22,6 @@
                     </div>
                 </section>
             </div>
-        </div>
     </section>
 
     <transition name="modal">

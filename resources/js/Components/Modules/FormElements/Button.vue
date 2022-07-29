@@ -7,7 +7,7 @@
           :only="only"
           as="button"
           :class="classes"
-          class="inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:shadow-outline-gray transition ease-in-out duration-150"
+          class="inline-flex justify-center w-full items-center px-4 py-2 border border-transparent rounded font-semibold text-xs text-center text-white uppercase tracking-widest focus:outline-none focus:shadow-outline-gray transition ease-in-out duration-150"
     >
         <slot />
     </Link>
@@ -15,7 +15,7 @@
     <button v-else
             :type="type"
             :class="classes"
-            class="inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:shadow-outline-gray transition ease-in-out duration-150"
+            class="inline-flex justify-center items-center w-full px-4 py-2 border border-transparent rounded font-semibold text-xs text-center text-white uppercase tracking-widest focus:outline-none focus:shadow-outline-gray transition ease-in-out duration-150"
     >
         <slot />
     </button>

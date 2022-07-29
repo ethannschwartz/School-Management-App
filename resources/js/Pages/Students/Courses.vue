@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-teal-100 block px-8 lg:px-16 py-8 lg:py-16">
+    <section class="block px-8 lg:px-16 py-8 lg:py-16">
         <div class="h-[600px] flex bg-white shadow-lg">
             <aside class="relative h-full overflow-hidden w-72 border-r border-gray-200 relative">
                 <TransitionGroup name="list" >

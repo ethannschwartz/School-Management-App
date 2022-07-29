@@ -1,7 +1,6 @@
 <template>
 
-    <section class="bg-teal-100">
-        <div class="px-8 lg:px-16 py-8 lg:py-16">
+        <section class="px-8 lg:px-16 py-8 lg:py-16">
             <div class="text-gray-600 h-[600px] flex bg-white shadow-lg w-full">
 
                 <header class="p-4 lg:p-8 mb-4">
@@ -48,8 +47,7 @@
                 </form>
 
             </div>
-        </div>
-    </section>
+        </section>
 
 </template>
 

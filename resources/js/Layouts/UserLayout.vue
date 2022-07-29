@@ -2,11 +2,11 @@
 
     <Navbar :user="user" />
 
-    <main class="pt-10 lg:pt-14 relative">
+    <main class="pt-10 lg:pt-14 relative bg-slate-600">
         <slot></slot>
     </main>
 
-    <footer class="absolute lg:relative bottom-0 w-screen h-24 lg:h-14 bg-teal-200 text-teal-600 flex justify-center items-center">
+    <footer class="absolute lg:relative bottom-0 w-screen h-24 lg:h-14 bg-slate-800 text-slate-200 flex justify-center items-center">
         Developed by Publify | 2022
     </footer>
 

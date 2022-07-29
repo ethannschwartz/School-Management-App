@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full flex items-center justify-center h-screen bg-teal-100">
+    <section class="w-full flex items-center justify-center h-screen">
         <div class="flex w-full bg-white h-[600px] mx-16 shadow-xl">
 
             <nav class="w-64 text-base h-full space-y-1.5 p-4">
